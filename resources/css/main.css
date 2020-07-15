@@ -1,5 +1,5 @@
 body{
-    background-color: blanchedalmond;
+    background-color: #29335c;
 }
 
 .main{
@@ -8,7 +8,7 @@ body{
     height: 400px;
     margin-top: 15%;
     margin-left: 25%;
-    background: linear-gradient( rgba(0,212,255,1), rgba(255,235,205,1));
+    background: linear-gradient( #DB2B39, #29335c);
     text-align: center;
 }
 #override div{

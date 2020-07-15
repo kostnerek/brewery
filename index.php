@@ -55,7 +55,8 @@
                                                 $result = $conn->query($sql);
                                                 if ($result->num_rows > 0) {
                                                     while($row = $result->fetch_assoc()) {
-                                                        echo  "<option onclick=brewerySet({$row["id"]}) value={$row["id"]}>{$row["name"]}</option>";
+                                                        $name = str_replace('_',' ',ucfirst($row['name']));
+                                                        echo  "<option onclick=brewerySet({$row["id"]}) value={$row["id"]}>{$name}</option>";
                                                     }
                                                 } 
                                             ?>
