@@ -17,15 +17,22 @@ class postBeer
 
     function __construct($conn)
     {
+        /* var_dump($_POST);
+        die(); */
         $this->conn = $conn;
         $this->beerName = $_POST['beer_name'];
         $this->country = $_POST['country'];
         $this->prodDate = $_POST['date'];
+        
         if ($_POST['option']==1) {//non existing brewery option
             $this->breweryName = $_POST['breweriesOne'];
         } 
         else {
             $this->breweryName = $_POST['breweries'];
+        }
+
+        if(isset($_POST['beer_name'])==false){
+            return 0;
         }
 
         $this->allDataArray = array($this->beerName, $this->breweryName, $this->country, $this->prodDate);
@@ -247,3 +254,4 @@ $submitPostAction = new postBeer($conn);
 $submitPostAction->checkStatus();
 $submitPostAction->addEntites();
 $submitPostAction->printData();
+header("Location: edit.php");
