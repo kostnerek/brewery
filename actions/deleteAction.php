@@ -14,19 +14,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/upload.css">
     <title>Edit</title>
 </head>
 <body>
     <?php 
-        include('config.php');
+        include('../config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data"> 
+        <form action="../edit.php" method="POST" id="main-form" enctype="multipart/form-data"> 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
-                <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='../upload.php'">Upload</button>
+                <button type="button" class="btn" onclick="window.location.href='../edit.php'">Edit</button>
             </div>
         </form>
 
@@ -38,7 +38,7 @@
                 echo "<form action='deleteAction.php' method='post'>";
                 echo "   <button class='btn' id='yesno-btn' type='submit' value='{$id}'name='delId'>YES</button>";
                 echo "</form>";
-                echo "<button type=\"button\" class=\"btn\" onclick=\"window.location.href='edit.php'\">NO</button>";
+                echo "<button type=\"button\" class=\"btn\" onclick=\"window.location.href='../edit.php'\">NO</button>";
                 echo "</div>";
             }
             
@@ -60,7 +60,7 @@
                 $sql = "DELETE FROM `beers` WHERE id='{$delId}'";
                 $conn->query($sql);
                 
-                header("Location: edit.php");
+               echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
             }
         ?>
     </div>

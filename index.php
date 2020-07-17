@@ -53,12 +53,16 @@
                                             <?php
                                                 $sql = "SELECT id, name FROM breweries";
                                                 $result = $conn->query($sql);
+                                                if ($result->num_rows == 0 ) {
+                                                    echo  "<option>empty</option>";
+                                                }
                                                 if ($result->num_rows > 0) {
                                                     while($row = $result->fetch_assoc()) {
                                                         $name = str_replace('_',' ',ucfirst($row['name']));
                                                         echo  "<option onclick=brewerySet({$row["id"]}) value={$row["id"]}>{$name}</option>";
                                                     }
                                                 } 
+                                                
                                             ?>
                                         </select>
                                     </div>
@@ -214,20 +218,45 @@
         }
         else {
             if ($result->num_rows > 0) {
+                 $max = $result->num_rows;
+                echo "<div id=\"carouselExampleCaptions\" class=\"carousel slide\" data-ride=\"carousel\">";
+                echo "<ol class=\"carousel-indicators\">";
+                if ($max > 1) {
+                    for ($i=0; $i<$max; $i++) {
+                        if ($i==0) {
+                            echo "<li data-target=\"#carouselExampleCaptions\" data-slide-to=\"{$i}\" class=\"active\"></li>";
+                        }
+                        else {
+                            echo "<li data-target=\"#carouselExampleCaptions\" data-slide-to=\"{$i}\" class=\"\"></li>";
+                        }
+                    }
+                }
+                echo "</ol>";
+                echo "  <div class=\"carousel-inner\">";
+                $counter=0;
                 while($row = $result->fetch_assoc()) {
                     //var_dump($row);
                     $name = ucfirst(str_replace('_',' ',$row['beer_name']));
                     $brewery = ucfirst(str_replace('_',' ',$row['brewery']));
                     
-                    echo "<div class='item'>";
+                    
+                    if ($counter==0) {
+                        echo "    <div class=\"carousel-item active\">";
+                        $counter++;
+                    }
+                    else {
+                        echo "    <div class=\"carousel-item\">";
+                    }
                     echo "    <h2>{$name}</h2>";
-                    echo "    <p>Brewery: {$brewery}</p>";
-                    echo "    <p>Country of origin: {$row["country"]}</p>";
-                    echo "    <p>Date of production: {$row["production_date"]}</p>";
-                    echo "    <img src={$row["img_src"]} width=480 height=640}>";
-                    echo "</div>";
-                   
+                    echo "    <a>Brewery: {$brewery}<br>";
+                    echo "    Country of origin: {$row["country"]}<br>";
+                    echo "    Date of production: {$row["production_date"]}</a>";
+                    echo "    <img src={$row["img_src"]} width='640' height='360'>";    
+                    echo "    </div>";   
+                    
                 }
+                echo "  </div>";
+                echo "</div>";
             } 
         }
         

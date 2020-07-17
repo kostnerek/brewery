@@ -1,6 +1,6 @@
 <?php 
 
-include('config.php');
+include('../config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 class edit 
@@ -213,4 +213,4 @@ class edit
 }
 
 $editor = new edit($conn);
-header("Location: edit.php");
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";

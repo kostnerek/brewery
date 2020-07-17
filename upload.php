@@ -23,9 +23,10 @@
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="center">
-        <form action="post.php" method="POST" id="main-form" enctype="multipart/form-data">
+        <form action="post/addPost.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
+                <button type="button" class="btn" onclick="window.location.href='import.php'">Import</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
             </div>
 

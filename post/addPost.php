@@ -50,18 +50,12 @@ class postBeer
 
     public function checkStatus()
     {
-        
-        /* echo "Beer: ".$this->status->beerExist."<br>";
-        echo "Brewery: ".$this->status->breweryExist."<br>";
-        echo "Folder: ".$this->status->folderExist; */
         $checkData = array(
             'beer'    => $this->status->beerExist, 
             'brewery' => $this->status->breweryExist,
             'folder'  => $this->status->folderExist
         );
         $this->checkData = $checkData;
-        var_dump($this->checkData);
-        echo "<br>";
     }
 
     public function addEntites()
@@ -80,30 +74,6 @@ class postBeer
             $this->creator->addFolder();
         }
     }
-
-    public function printData()
-    {
-
-        echo "<br>Check status:<br>";
-        if($this->checkData["beer"]==true) {
-            echo "Beer: exists<br>";
-        }
-        else {
-            echo "Beer: doesn't exist<br>";
-        }
-        if($this->checkData["brewery"]==true) {
-            echo "Brewery: exists<br>";
-        }
-        else {
-            echo "Brewery: doesn't exist<br>";
-        }
-        if($this->checkData["folder"]==true) {
-            echo "Folder: exists<br>";
-        }
-        else {
-            echo "Folder: doesn't exist<br>";
-        }
-    }
 }
 /**
  * checks if exist beer, brewery and folder with given params
@@ -113,8 +83,6 @@ class postBeer
 
 class checkAll extends postBeer 
 {
-    /* public $beerName;
-    public $breweryName; */
 
     public  $beerExist, 
             $breweryExist, 
@@ -168,7 +136,6 @@ class checkAll extends postBeer
         $sql = "SELECT * FROM `breweries` 
                 WHERE `name`= '{$this->breweryName}'";
 
-        echo "{$sql}";
         $result = $this->conn->query($sql);
         if (!$result) {
             return false;
@@ -207,31 +174,20 @@ class creator extends postBeer
     {
         $sql = "INSERT INTO `beers`(`beer_name`, `country`, `brewery`, `production_date`, `img_src`) 
                 VALUES ('{$this->beerName}','{$this->country}','{$this->breweryName}','{$this->prodDate}','{$this->imgPath}')";
-
-        if (!$this->conn->query($sql)) {
-            echo "Error: ". $this->conn->error;
-        } 
-        else {
-            echo "Beer added!<br>";
-        }
+                $this->conn->query($sql);
     }
+
     public function addBrewery()
     {
         $sql = "INSERT INTO `breweries`(`name`) 
                 VALUES ('{$this->breweryName}')";
-
-        if (!$this->conn->query($sql)) {
-            echo "Error: ". $this->conn->error;
-        } 
-        else { 
-            echo "Brewery added!<br>";
-        }
+                $this->conn->query($sql);
     }
+
     public function addFolder()
     {
-        mkdir('resources/img/'.$this->breweryName);
+        mkdir('../resources/img/'.$this->breweryName);
         $this->imgHandler();
-        echo "Folder added!<br>";
     }
 
     public function imgHandler()
@@ -241,17 +197,17 @@ class creator extends postBeer
         if(isset($_POST["submit"])) {
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         }
-        rename($target_file, 'resources/img/'.$this->breweryName."/".$this->beerName.".jpg");
+        rename($target_file, '../resources/img/'.$this->breweryName."/".$this->beerName.".jpg");
     }
 }
 
 
-include('config.php');
+include('../config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 $submitPostAction = new postBeer($conn);
 
 $submitPostAction->checkStatus();
 $submitPostAction->addEntites();
-$submitPostAction->printData();
-header("Location: edit.php");
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
+exit();

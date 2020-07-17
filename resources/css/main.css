@@ -5,12 +5,17 @@ body{
 .main{
     border-radius: .25rem;
     width: 50%;
-    height: 400px;
-    margin-top: 15%;
+    height: 100%;
+    margin-top: 5%;
     margin-left: 25%;
     background: linear-gradient( #DB2B39, #29335c);
     text-align: center;
 }
 #override div{
     background-color: transparent;
+}
+.item{
+    border: 1px black solid;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }

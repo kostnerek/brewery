@@ -15,7 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/upload.css">
     <title>Edit</title>
 </head>
 
@@ -28,7 +28,7 @@
     </script>
 
     <?php 
-        include('config.php');
+        include('../config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
@@ -41,18 +41,47 @@
                 }
             } 
             echo "<script>window.onload=setId({$id})</script>";
+
         }
     ?>
     
 
     <div class="center">
-        <form action="editPost.php" method="POST" id="main-form" enctype="multipart/form-data">
+        <form action="../post/editPost.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
-                <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='../upload.php'">Upload</button>
+                <button type="button" class="btn" onclick="window.location.href='../edit.php'">Edit</button>
             </div>
 
-            
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>BEER NAME</th>
+                    <th>BREWERY NAME</th>
+                    <th>COUNTRY OF ORIGIN</th>
+                    <th>PRODUCTION DATE</th>
+                    <th>IMG SRC</th>
+                </tr>
+                <tr>
+                    <?php 
+                        $sql = "SELECT * FROM `beers` WHERE id='{$id}'";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo  "<td>{$row['id']}</td>";
+                                echo  "<td>{$row['beer_name']}</td>";
+                                echo  "<td>{$row['brewery']}</td>";
+                                echo  "<td>{$row['country']}</td>";
+                                echo  "<td>{$row['production_date']}</td>";
+                                $stSlice = substr($row['img_src'],0,14);
+                                $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
+                                echo "<td>{$stSlice}<br>{$ndSlice}</td>";
+                            }
+                        } 
+
+                    ?>
+                </tr>
+            </table>
             
             <input class="form-control" type="text" name="beer_name" placeholder="<?php echo $beerName?>">
             <select id="country" class="custom-select" name="country">

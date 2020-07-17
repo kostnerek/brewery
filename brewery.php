@@ -99,59 +99,13 @@
             </div>
             <table id='main'>
                 <tr>
-                    <?php 
-                    echo "<form method='post' action='edit.php'>";
-
-                    echo "<th><button class='sort' value='id' type='submit'        name='sort'>ID</button></th>";
-                    echo "<th><button class='sort' value='beer_name' type='submit' name='sort'>BEER NAME</button></th>";
-                    echo "<th><button class='sort' value='brewery' type='submit'   name='sort'>BREWERY NAME</button></th>";
-                    echo "<th><button class='sort' value='country' type='submit'   name='sort'>COUNTRY OF ORIGIN</button></th>";
-                    echo "<th><button class='sort' value='prodDate' type='submit'  name='sort'>PRODUCTION DATE</button></th>";
-                    echo "<th>IMG SRC</th>";
-
-                    echo "</form>";
-                    echo "<th colspan='2'>ACTION</th>";
-                    ?>
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td colspan='2'>ACTION</td>
                 </tr>
                 <?php
-                    if (isset($_POST['sort'])) {
-                        switch($_POST['sort']) {
-                            case 'id':
-                                {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `id` ASC";
-                                    break;
-                                }
-                            case 'beer_name':
-                                {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `beer_name` ASC";
-                                    break;
-                                }
-                            case 'country':
-                                {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `country` ASC";
-                                    break;
-                                }
-                            case 'brewery':
-                                {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `brewery` ASC";
-                                    break;
-                                }
-                            case 'prodDate':
-                                {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `production_date` DESC";
-                                    break;
-                                }
-                            default:
-                                {
-                                    $sql = "SELECT * FROM `beers`";
-                                    break;
-                                }
-                        }
-                    }
-                   
-                    
                     if (!isset($_POST['sort'])) {
-                        $sql = "SELECT * FROM `beers`";
+                        $sql = "SELECT * FROM `breweries`";
                     }
 
                     $result = $conn->query($sql);
@@ -159,22 +113,20 @@
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td name='{$row['id']}'>{$row['id']}</td>";
-                            echo "<td>{$row['beer_name']}</td>";
-                            echo "<td>{$row['brewery']}</td>";
-                            echo "<td>{$row['country']}</td>";
-                            echo "<td>{$row['production_date']}</td>";
-                            $stSlice = substr($row['img_src'],0,14);
-                            $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
-                            echo "<td>{$stSlice}<br>{$ndSlice}</td>";
-
                             echo "<td>
-                                    <form action='actions/editAction.php' method='post'>
+                                    <form action='breweryaction/actions/showAction.php' method='post'>
+                                        <button class='action' value='{$row['name']} type='submit' name='id'>{$row['name']}</button>
+                                    </form>
+                                  </td>";
+                        
+                            echo "<td>
+                                    <form action='breweryaction/actions/editAction.php' method='post'>
                                         <button class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
                                     </form>
                                 </td>";
 
                             echo "<td>
-                                    <form action='actions/deleteAction.php' method='post'>
+                                    <form action='breweryaction/actions/deleteAction.php' method='post'>
                                         <button class='action' value='{$row['id']}' type='submit' name='id'>DELETE</button>
                                     </form>
                                 </td>";

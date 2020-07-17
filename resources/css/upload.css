@@ -1,6 +1,10 @@
 body{
-    /* background-color: #29335c; */
-    background-color: thistle;
+    background-color: #29335c;
+}
+
+td.img_src{
+
+    width: 60px;
 }
 
 
@@ -23,7 +27,6 @@ div.btn-secondary:active{
 
 table th{
     border-collapse: collapse;
-    border: 2px solid black;
 }
 table{
     width: 100%;
@@ -42,7 +45,7 @@ td{
 .action{
     background-color: #DB2B39;
     border: transparent;
-    margin-bottom: 4%;
+    color: #212529;
 }
 div#yesno{
     background-color: #a1212c;
@@ -64,4 +67,15 @@ div#yesno{
 
 button#yesno-btn{
     width: 100%;
+}
+
+.import{
+    margin-bottom: 5px;
+}
+
+.sort{
+    background-color: #DB2B39;
+    border: transparent;
+    font-weight: 700;
+    color: #212529;
 }
