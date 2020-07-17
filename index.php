@@ -30,6 +30,7 @@
 
     <div class="main">
         <div class="search">
+            
             <div class="input-group">
                 <input type="text" class="form-control" id="search"
                     onblur="searchFunction(document.getElementById('search').value)">
@@ -261,6 +262,7 @@
         }
         
     ?>
+    <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki@gate-software.com</footer>
 </body>
 
 </html>

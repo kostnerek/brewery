@@ -120,7 +120,7 @@
                         switch($_POST['sort']) {
                             case 'id':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `id` ASC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `id` DESC";
                                     break;
                                 }
                             case 'beer_name':

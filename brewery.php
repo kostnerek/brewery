@@ -106,39 +106,41 @@
             <td colspan='2'>ACTION</td>
         </tr>
         <?php
-                    if (!isset($_POST['sort'])) {
-                        $sql = "SELECT * FROM `breweries`";
-                    }
-
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td name='{$row['id']}'>{$row['id']}</td>";
-                            echo "<td>
-                                    <form action='breweryaction/actions/showAction.php' method='post'>
-                                        <button class='action' value='{$row['name']}' type='submit' name='id'>{$row['name']}</button>
-                                    </form>
-                                  </td>";
-                        
-                            echo "<td>
-                                    <form action='breweryaction/actions/editAction.php' method='post'>
-                                        <button class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
-                                    </form>
-                                </td>";
-
-                            echo "<td>
-                                    <form action='breweryaction/actions/deleteAction.php' method='post'>
-                                        <button class='action' value='{$row['id']}' type='submit' name='id'>DELETE</button>
-                                    </form>
-                                </td>";
-
-                            echo "</tr>";
-                            echo "</form>";
-                        }
-                    } 
-                ?>
+            if (!isset($_POST['sort'])) {
+                $sql = "SELECT * FROM `breweries`";
+            }
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td name='{$row['id']}'>{$row['id']}</td>";
+                    echo "<td>
+                            <form action='breweryaction/actions/showAction.php' method='post'>
+                                <button class='action' value='{$row['name']}' type='submit' name='id'>{$row['name']}</button>
+                            </form>
+                          </td>";
+                
+                    echo "<td>
+                            <form action='breweryaction/actions/editAction.php' method='post'>
+                                <button class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
+                            </form>
+                        </td>";
+                    echo "<td>
+                            <form action='breweryaction/actions/deleteAction.php' method='post'>
+                                <button class='action' value='{$row['id']}' type='submit' name='id'>DELETE</button>
+                            </form>
+                        </td>";
+                    echo "</tr>";
+                    echo "</form>";
+                }
+            } 
+        ?>
     </table>
+        <?php 
+            if (isset($_GET['error'])) {
+                echo "<h4>Can't edit because brewery already exist</h4>";
+            }
+        ?>
     </form>
     </div>
 </body>

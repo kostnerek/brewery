@@ -21,3 +21,9 @@ body {
     margin-top: 2px;
     margin-bottom: 2px;
 }
+.stamp{
+    color: black;
+    font-size: 10px;
+    background-color: #29335c;
+    text-align: left;
+}

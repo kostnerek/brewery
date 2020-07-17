@@ -22,11 +22,27 @@ class editBrewery
 
         $this->getBreweryName();
 
+        $this->checkIfBreweryAlreadyExist();
+
         $this->renameFolder();
         $this->updateDb();
         
 
         $this->updatePaths();
+    }
+    
+    function checkIfBreweryAlreadyExist()
+    {
+        $sql = "SELECT * FROM `breweries`";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {//brewery array
+            while($row = $result->fetch_assoc()) {
+                if ($this->newBreweryName == $row['name']) {
+                    echo "<meta http-equiv=\"refresh\" content=\"0;url=../../brewery.php?error=exist\">";
+                    exit();
+                }
+            }
+        }
     }
 
     function getBreweryName()
@@ -73,4 +89,4 @@ class editBrewery
 
 $edit = new editBrewery($conn);
 
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../../edit.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../../brewery.php\">";
