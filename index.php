@@ -210,7 +210,7 @@
 
         $result = $conn->query($sql);
         if ($breweryId=="undefined" && $countryId=="undefined" && $year=="undefined" && $search=="undefined") { //all
-            echo "Provide more info!";
+            echo "<div class='nodata'><h1>Provide more info!</h1></div>";
             exit;
         }
        
