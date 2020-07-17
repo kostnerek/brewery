@@ -30,8 +30,38 @@
                 <button type="button" class="btn" onclick="window.location.href='../../edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
             </div>
-        </form>    
-
+        </form>  
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>BEER NAME</th>
+                <th>BREWERY NAME</th>
+                <th>COUNTRY OF ORIGIN</th>
+                <th>PRODUCTION DATE</th>
+                <th>IMG SRC</th>
+            </tr>
+        <?php 
+           
+            $sql = "SELECT * FROM `beers` WHERE brewery = '{$_POST['id']}'";
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "  <td>{$row['id']}</td>";
+                    echo "  <td>{$row['beer_name']}</td>";
+                    echo "  <td>{$row['brewery']}</td>";
+                    echo "  <td>{$row['country']}</td>";
+                    echo "  <td>{$row['production_date']}</td>";
+                    $stSlice = substr($row['img_src'],0,14);
+                    $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
+                    echo "<td>{$stSlice}<br>{$ndSlice}</td>";
+                    echo "</tr>";
+                }
+            }
+            
+        ?>
+        </table>
             
     </div>
 </body>

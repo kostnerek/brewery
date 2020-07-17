@@ -115,7 +115,7 @@
                             echo "<td name='{$row['id']}'>{$row['id']}</td>";
                             echo "<td>
                                     <form action='breweryaction/actions/showAction.php' method='post'>
-                                        <button class='action' value='{$row['name']} type='submit' name='id'>{$row['name']}</button>
+                                        <button class='action' value='{$row['name']}' type='submit' name='id'>{$row['name']}</button>
                                     </form>
                                   </td>";
                         
