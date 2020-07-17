@@ -83,7 +83,7 @@
                 </tr>
             </table>
 
-            <input class="form-control" type="text" name="beer_name" placeholder="<?php echo $beerName?>">
+            <input class="form-control" type="text" name="beer_name" value="<?php echo $beerName?>" onclick="this.value=''">
             <select id="country" class="custom-select" name="country">
                 <?php
                     $sql = "SELECT id, name FROM countries";

@@ -37,11 +37,23 @@ class postBeer
 
         $this->allDataArray = array($this->beerName, $this->breweryName, $this->country, $this->prodDate);
 
+        $this->checkIfAllSet();
+
         $this->formatData();
 
         $this->status = new checkAll($this->beerName, $this->breweryName, $this->conn);
         $this->creator = new creator ($this->beerName, $this->breweryName, $this->country, $this->prodDate, $this->conn);
     }
+
+
+    public function checkIfAllSet()
+    {
+        if ($this->allDataArray[0]== "") {
+            echo "<meta http-equiv=\"refresh\" content=\"0;url=../upload.php?error=unset\">";
+            exit();
+        }
+    }
+
     public function formatData()
     {
         $this->beerName    = str_replace(' ','_',strtolower($this->beerName));

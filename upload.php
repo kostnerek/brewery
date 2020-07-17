@@ -31,6 +31,13 @@
                 <button type="button" class="btn" onclick="window.location.href='import.php'">Import</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
             </div>
+            <?php
+                if (isset($_GET['error'])) {
+                    if($_GET['error']=='unset') {
+                        echo "<h4>Provide all data</h4>";
+                    }
+                }
+            ?>
 
             <input class="form-control" type="text" name="beer_name" placeholder="Beer name">
             <select id="country" class="custom-select" name="country">
