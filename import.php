@@ -19,20 +19,21 @@
     <title>Import</title>
 </head>
 
-    <body>
-        <div class="center">
-            <form action="actions/importAction.php" method="POST" id="main-form" enctype="multipart/form-data">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn" onclick="window.location.href='./upload.php'">Upload</button>
-                    <button type="button" class="btn" onclick="window.location.href='./edit.php'">Edit</button>
-                </div>
-                    <form action="actions/importAction.php" method='POST'enctype="multipart/form-data">
-                        <h2>Mass import of items</h2>
-                        <input type="file" name="file">
-                        <input type="submit" value="Send" name="submit" class='import'>
-                    </form>
+<body>
+    <div class="center">
+        <form action="actions/importAction.php" method="POST" id="main-form" enctype="multipart/form-data">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn" onclick="window.location.href='./upload.php'">Upload</button>
+                <button type="button" class="btn" onclick="window.location.href='./edit.php'">Edit</button>
+            </div>
+            <form action="actions/importAction.php" method='POST' enctype="multipart/form-data">
+                <h2>Mass import of items</h2>
+                <input type="file" name="file">
+                <input type="submit" value="Send" name="submit" class='import'>
             </form>
-        </div>
+        </form>
+    </div>
 
-    </body>
+</body>
+
 </html>

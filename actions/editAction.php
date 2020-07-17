@@ -22,7 +22,7 @@
 <body>
 
     <script>
-        function setId(id){
+        function setId(id) {
             idValue = id;
         }
     </script>
@@ -44,7 +44,7 @@
 
         }
     ?>
-    
+
 
     <div class="center">
         <form action="../post/editPost.php" method="POST" id="main-form" enctype="multipart/form-data">
@@ -82,7 +82,7 @@
                     ?>
                 </tr>
             </table>
-            
+
             <input class="form-control" type="text" name="beer_name" placeholder="<?php echo $beerName?>">
             <select id="country" class="custom-select" name="country">
                 <?php
@@ -135,11 +135,13 @@
             <label>Change photo?</label>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="photo" id="exampleRadios1" value="1" onclick="photoSet(1)" >
+                <input class="form-check-input" type="radio" name="photo" id="exampleRadios1" value="1"
+                    onclick="photoSet(1)">
                 <label class="form-check-label" for="exampleRadios1">Yes</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="photo"id="exampleRadios2" value="0" onclick="photoSet(0)"checked>
+                <input class="form-check-input" type="radio" name="photo" id="exampleRadios2" value="0"
+                    onclick="photoSet(0)" checked>
                 <label class="form-check-label" for="exampleRadios2">No</label>
             </div>
 
@@ -152,14 +154,13 @@
 
 </html>
 <script>
-    
+
 </script>
 <script>
-
     idContainer = document.getElementById("idContainer");
     console.log(idContainer.getAttribute("type"));
     idContainer.setAttribute('value', idValue);
-    
+
 
     function brewerySet(check) {
         var list = document.getElementById('breweries');
@@ -178,10 +179,9 @@
     function photoSet(check) {
         var file = document.getElementById('file');
         console.log(check);
-        if (check==1) {
+        if (check == 1) {
             file.setAttribute('style', 'display:block')
-        }
-        else {
+        } else {
             file.setAttribute('style', 'display:none')
         }
     }

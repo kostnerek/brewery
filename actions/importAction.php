@@ -19,15 +19,15 @@
     <title>Import</title>
 </head>
 
-    <body>
-        <div class="center">
-            <form action="../post/importPost.php" method="POST" id="main-form" enctype="multipart/form-data">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn" onclick="window.location.href='../upload.php'">Upload</button>
-                    <button type="button" class="btn" onclick="window.location.href='../edit.php'">Edit</button>
-                </div>
+<body>
+    <div class="center">
+        <form action="../post/importPost.php" method="POST" id="main-form" enctype="multipart/form-data">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn" onclick="window.location.href='../upload.php'">Upload</button>
+                <button type="button" class="btn" onclick="window.location.href='../edit.php'">Edit</button>
+            </div>
 
-                <?php 
+            <?php 
                     $filename = $_FILES["file"]["tmp_name"];
                     if (($h = fopen("{$filename}", "r")) !== FALSE) {
                         while (($data = fgetcsv($h, 1000, ",")) !== FALSE) {
@@ -38,15 +38,16 @@
                     }
                 ?>
 
-                <h3>Import <?php echo count($csvData)-1 ?> elements?</h3>
-                <div class='btn-group' id='yesno' role='group' aria-label='Basic example'>
+            <h3>Import <?php echo count($csvData)-1 ?> elements?</h3>
+            <div class='btn-group' id='yesno' role='group' aria-label='Basic example'>
                 <form action='deleteAction.php' method='post'>
-                   <button class='btn' id='yesno-btn' type='submit' value='yes' name='doIt'>YES</button>
+                    <button class='btn' id='yesno-btn' type='submit' value='yes' name='doIt'>YES</button>
                 </form>
                 <button type="button" class="btn" onclick="window.location.href='../edit.php'">NO</button>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
 
-    </body>
+</body>
+
 </html>

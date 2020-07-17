@@ -100,5 +100,3 @@ class importAction
 $importer = new importAction($conn);
 $importer->parseData();
 echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
-
-

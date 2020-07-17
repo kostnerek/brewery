@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="resources/css/upload.css">
     <title>Edit</title>
 </head>
+
 <body>
     <?php 
         include('config.php');
@@ -90,20 +92,20 @@
     ?>
 
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data"> 
+        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
-            </form>
-            </div>
-            <table id='main'>
-                <tr>
-                    <td>ID</td>
-                    <td>NAME</td>
-                    <td colspan='2'>ACTION</td>
-                </tr>
-                <?php
+        </form>
+    </div>
+    <table id='main'>
+        <tr>
+            <td>ID</td>
+            <td>NAME</td>
+            <td colspan='2'>ACTION</td>
+        </tr>
+        <?php
                     if (!isset($_POST['sort'])) {
                         $sql = "SELECT * FROM `breweries`";
                     }
@@ -136,8 +138,9 @@
                         }
                     } 
                 ?>
-            </table>
-        </form>
+    </table>
+    </form>
     </div>
 </body>
+
 </html>

@@ -27,7 +27,7 @@
         include('config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
-    
+
     <div class="main">
         <div class="search">
             <div class="input-group">

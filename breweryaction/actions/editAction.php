@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="../../resources/css/upload.css">
     <title>Edit brewery</title>
 </head>
+
 <body>
     <?php 
         include('../../config.php');
@@ -24,19 +26,19 @@
     ?>
 
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data"> 
+        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='../../upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='../../edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
             </div>
-        </form>    
+        </form>
         <table>
             <tr>
                 <th>ID</th>
                 <th>NAME</th>
             </tr>
-        <?php 
+            <?php 
             $sql = "SELECT * FROM `breweries` WHERE id='{$_POST['id']}'";
             $result = $conn->query($sql);
             $breweryName;
@@ -52,14 +54,15 @@
         ?>
         </table>
         <form action="../post/editPost.php" method="post">
-            <input type='text' style="opacity: 0" name='id'        value="<?php echo $_POST['id'] ?>">
+            <input type='text' style="opacity: 0" name='id' value="<?php echo $_POST['id'] ?>">
             <input class="form-control" type="text" name="brewery" value="<?php echo $breweryName ?>">
             <input type='submit' value='EDIT'>
         </form>
-        
+
 
 
 
     </div>
 </body>
+
 </html>

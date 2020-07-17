@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="../../resources/css/upload.css">
     <title>Show beers</title>
 </head>
+
 <body>
     <?php 
         include('../../config.php');
@@ -24,13 +26,13 @@
     ?>
 
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data"> 
+        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='../../upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='../../edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
             </div>
-        </form>  
+        </form>
         <table>
             <tr>
                 <th>ID</th>
@@ -40,7 +42,7 @@
                 <th>PRODUCTION DATE</th>
                 <th>IMG SRC</th>
             </tr>
-        <?php 
+            <?php 
            
             $sql = "SELECT * FROM `beers` WHERE brewery = '{$_POST['id']}'";
             $result = $conn->query($sql);
@@ -62,7 +64,8 @@
             
         ?>
         </table>
-            
+
     </div>
 </body>
+
 </html>

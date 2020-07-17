@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="resources/css/upload.css">
     <title>Edit</title>
 </head>
+
 <body>
     <?php 
         include('config.php');
@@ -90,16 +92,16 @@
     ?>
 
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data"> 
+        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
-            </form>
-            </div>
-            <table id='main'>
-                <tr>
-                    <?php 
+        </form>
+    </div>
+    <table id='main'>
+        <tr>
+            <?php 
                     echo "<form method='post' action='edit.php'>";
 
                     echo "<th><button class='sort' value='id' type='submit'        name='sort'>ID</button></th>";
@@ -112,8 +114,8 @@
                     echo "</form>";
                     echo "<th colspan='2'>ACTION</th>";
                     ?>
-                </tr>
-                <?php
+        </tr>
+        <?php
                     if (isset($_POST['sort'])) {
                         switch($_POST['sort']) {
                             case 'id':
@@ -184,8 +186,9 @@
                         }
                     } 
                 ?>
-            </table>
-        </form>
+    </table>
+    </form>
     </div>
 </body>
+
 </html>

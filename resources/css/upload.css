@@ -1,61 +1,68 @@
-body{
+body {
     background-color: #29335c;
 }
 
-td.img_src{
+td.img_src {
 
     width: 60px;
 }
 
 
-input.form-check-input{
+input.form-check-input {
     text-align: center;
-    
+
 }
-div.btn-group{
-    width:100%;
+
+div.btn-group {
+    width: 100%;
 }
-div.btn-secondary{
+
+div.btn-secondary {
     background-color: #DB2B39;
     border-radius: 0px;
 }
-div.btn-secondary:active{
+
+div.btn-secondary:active {
     background-color: #381013;
     border-radius: 0px;
 }
 
 
-table th{
+table th {
     border-collapse: collapse;
 }
-table{
+
+table {
     width: 100%;
 }
-td{
+
+td {
     border: 2px solid black;
 }
 
-.hide{
+.hide {
     display: flex;
     opacity: 0;
     width: 0px;
     height: 0px;
 }
 
-.action{
+.action {
     background-color: #DB2B39;
     border: transparent;
     color: #212529;
 }
-div#yesno{
+
+div#yesno {
     background-color: #a1212c;
     width: 12%;
     border-radius: 10px;
     border: 2px black solid;
     margin-bottom: 10px;
-    
+
 }
-.center{
+
+.center {
     text-align: center;
     background-color: #DB2B39;
     margin-left: 15%;
@@ -65,15 +72,15 @@ div#yesno{
     border: 5px solid black;
 }
 
-button#yesno-btn{
+button#yesno-btn {
     width: 100%;
 }
 
-.import{
+.import {
     margin-bottom: 5px;
 }
 
-.sort{
+.sort {
     background-color: #DB2B39;
     border: transparent;
     font-weight: 700;
