@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
     <?php 
         include('config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
