@@ -99,7 +99,7 @@
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='stats.php'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
         </form>
     </div>
     <h3>List of all beers</h3>
@@ -169,8 +169,9 @@
                             echo "<td>{$row['brewery']}</td>";
                             echo "<td>{$row['country']}</td>";
                             echo "<td>{$row['production_date']}</td>";
-                            $stSlice = substr($row['img_src'],0,14);
-                            $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
+                            $breweryLength = strlen($row['brewery']);
+                            $stSlice = substr($row['img_src'],0,15+$breweryLength);
+                            $ndSlice = substr($row['img_src'],15+$breweryLength,strlen($row['img_src']));
                             echo "<td class='smallerSrc'>
                                     <form method='post' action='actions/imgShowAction.php'>
                                      <button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$stSlice}<br>{$ndSlice}</button>

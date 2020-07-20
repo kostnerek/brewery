@@ -32,11 +32,21 @@
                 <button type="button" class="btn" onclick="window.location.href='../../upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='../../edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../../stats.php'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='../../stats.php?select=beers'">Stats</button>
             </div>
         </form>
         <table>
-            <h3>Beers from <?php echo ucfirst($_POST['id'])?></h3>
+            <?php
+                if (isset($_POST['id'])) {
+                    $breweryName = ucfirst(str_replace("_"," ",$_POST['id']));
+                    echo "<h3>Beers from {$breweryName}</h3>";
+                }
+                else {
+                    $breweryName = ucfirst(str_replace("_"," ",$_GET['id']));
+                    echo "<h3>Beers from {$breweryName}</h3>";
+                }
+            ?>
+            
             <tr>
                 <th>ID</th>
                 <th>BEER NAME</th>
@@ -47,7 +57,13 @@
             </tr>
             <?php 
            
-            $sql = "SELECT * FROM `beers` WHERE brewery = '{$_POST['id']}'";
+            if (isset($_POST['id'])) {
+                $sql = "SELECT * FROM `beers` WHERE brewery = '{$_POST['id']}'";
+            }
+            else {
+                $sql = "SELECT * FROM `beers` WHERE brewery = '{$_GET['id']}'";
+            }
+           
             $result = $conn->query($sql);
             
             if ($result->num_rows > 0) {

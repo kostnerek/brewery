@@ -90,3 +90,9 @@ button#yesno-btn {
 .smallerSrc{
     font-size: 12px;
 }
+
+div#stat.btn
+{
+    border-top: black 1px solid;
+}
+

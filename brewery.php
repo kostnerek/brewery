@@ -99,7 +99,7 @@
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='stats.php'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
         </form>
     </div>
     <h3>List of all breweries</h3>
