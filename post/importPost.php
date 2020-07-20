@@ -36,8 +36,10 @@ class importAction
         for ($i = 0; $i < 3; $i++ ) {
             if ($correctData[$i] != $this->csvData[0][$i]) {
                 unlink('../data.csv');
+            
                 echo "<meta http-equiv=\"refresh\" content=\"0;url=../import.php?error=badcsv\">";
                 exit();
+                die();
             }
             else {
                 continue;
@@ -118,4 +120,4 @@ class importAction
 $importer = new importAction($conn);
 $importer->parseData();
 unlink('../data.csv');
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../list.php\">";

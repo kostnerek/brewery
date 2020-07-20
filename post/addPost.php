@@ -49,7 +49,7 @@ class postBeer
     public function checkIfAllSet()
     {
         if ($this->allDataArray[0]== "") {
-            echo "<meta http-equiv=\"refresh\" content=\"0;url=../upload.php?error=unset\">";
+            echo "<meta http-equiv=\"refresh\" content=\"0;url=../system.php?error=unset\">";
             exit();
         }
     }
@@ -221,5 +221,5 @@ $submitPostAction = new postBeer($conn);
 
 $submitPostAction->checkStatus();
 $submitPostAction->addEntites();
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../list.php\">";
 exit();

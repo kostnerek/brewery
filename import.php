@@ -25,8 +25,8 @@
     <div class="center">
         <form action="actions/importAction.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='./upload.php'">Upload</button>
-                <button type="button" class="btn" onclick="window.location.href='./edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
                 <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
             </div>

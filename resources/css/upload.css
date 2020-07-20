@@ -96,3 +96,10 @@ div#stat.btn
     border-top: black 1px solid;
 }
 
+.export{
+    table-layout: fixed;
+}
+
+.export.firstCol{
+    width: 250px;
+}

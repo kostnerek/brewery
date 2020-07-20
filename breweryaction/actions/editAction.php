@@ -17,7 +17,7 @@
     </script>
     <link rel="stylesheet" href="../../resources/css/upload.css">
     <link rel="icon" type="image/ico" href="../../resources/img/favicon.ico">
-    <title>Edit brewery</title>
+    <title>List brewery</title>
 </head>
 
 <body>
@@ -27,10 +27,10 @@
     ?>
 
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data">
+        <form action="list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../../upload.php'">Upload</button>
-                <button type="button" class="btn" onclick="window.location.href='../../edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='../../system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../../list.php'">List</button>
                 <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
                 <button type="button" class="btn" onclick="window.location.href='../../stats.php?select=beers'">Stats</button>
             </div>
@@ -58,7 +58,7 @@
         <form action="../post/editPost.php" method="post">
             <input type='text' style="opacity: 0" name='id' value="<?php echo $_POST['id'] ?>">
             <input class="form-control" type="text" name="brewery" value="<?php echo $breweryName ?>">
-            <input type='submit' value='EDIT'>
+            <input type='submit' value='LIST'>
         </form>
 
 

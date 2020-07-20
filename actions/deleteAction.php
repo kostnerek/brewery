@@ -17,7 +17,7 @@
     </script>
     <link rel="stylesheet" href="../resources/css/upload.css">
     <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
-    <title>Edit</title>
+    <title>List</title>
 </head>
 
 <body>
@@ -26,10 +26,10 @@
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="center">
-        <form action="../edit.php" method="POST" id="main-form" enctype="multipart/form-data">
+        <form action="../list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../upload.php'">Upload</button>
-                <button type="button" class="btn" onclick="window.location.href='../edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='../system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../list.php'">List</button>
                 <button type="button" class="btn" onclick="window.location.href='../brewery.php'">Brewery</button>
                 <button type="button" class="btn" onclick="window.location.href='../stats.php?select=beers'">Stats</button>
             </div>
@@ -43,7 +43,7 @@
                 echo "<form action='deleteAction.php' method='post'>";
                 echo "   <button class='btn' id='yesno-btn' type='submit' value='{$id}'name='delId'>YES</button>";
                 echo "</form>";
-                echo "<button type=\"button\" class=\"btn\" onclick=\"window.location.href='../edit.php'\">NO</button>";
+                echo "<button type=\"button\" class=\"btn\" onclick=\"window.location.href='../list.php'\">NO</button>";
                 echo "</div>";
             }
             
@@ -65,7 +65,7 @@
                 $sql = "DELETE FROM `beers` WHERE id='{$delId}'";
                 $conn->query($sql);
                 
-               echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
+               echo "<meta http-equiv=\"refresh\" content=\"0;url=../list.php\">";
             }
         ?>
     </div>

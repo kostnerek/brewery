@@ -18,7 +18,7 @@
     </script>
     <link rel="stylesheet" href="resources/css/upload.css">
     <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
-    <title>Edit</title>
+    <title>List</title>
 </head>
 
 <body>
@@ -94,10 +94,10 @@
     ?>
 
     <div class="center">
-        <form action="edit.php" method="POST" id="main-form" enctype="multipart/form-data">
+        <form action="list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
-                <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
                 <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
         </form>
@@ -106,7 +106,7 @@
     <table id='main'>
         <tr>
             <?php 
-                    echo "<form method='post' action='edit.php'>";
+                    echo "<form method='post' action='list.php'>";
 
                     echo "<th><button class='sort' value='id' type='submit'        name='sort'>ID</button></th>";
                     echo "<th><button class='sort' value='beer_name' type='submit' name='sort'>BEER NAME</button></th>";
@@ -180,7 +180,7 @@
 
                             echo "<td>
                                     <form action='actions/editAction.php' method='post'>
-                                        <button class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
+                                        <button class='action' value='{$row['id']}' type='submit' name='id'>LIST</button>
                                     </form>
                                 </td>";
 
