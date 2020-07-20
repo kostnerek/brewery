@@ -32,6 +32,7 @@
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='import.php'">Import</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
+                <button type="button" class="btn" onclick="window.location.href='stats.php'">Stats</button>
             </div>
             <h3>Add new beer</h3>
             <?php

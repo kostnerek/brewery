@@ -99,6 +99,7 @@
                 <button type="button" class="btn" onclick="window.location.href='upload.php'">Upload</button>
                 <button type="button" class="btn" onclick="window.location.href='edit.php'">Edit</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
+                <button type="button" class="btn" onclick="window.location.href='stats.php'">Stats</button>
         </form>
     </div>
     <h3>List of all breweries</h3>
@@ -106,6 +107,7 @@
         <tr>
             <td>ID</td>
             <td>NAME</td>
+            <td>NUMBER OF BEERS</td>
             <td colspan='2'>ACTION</td>
         </tr>
         <?php
@@ -122,7 +124,11 @@
                                 <button class='action' value='{$row['name']}' type='submit' name='id'>{$row['name']}</button>
                             </form>
                           </td>";
-                
+
+                    echo "<td>";
+                    echo countBeers($row['name'], $conn);
+                    echo "</td>";
+
                     echo "<td>
                             <form action='breweryaction/actions/editAction.php' method='post'>
                                 <button class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
@@ -137,6 +143,13 @@
                     echo "</form>";
                 }
             } 
+
+            function countBeers($name, $conn) {
+                $sql = "SELECT * FROM `beers` WHERE brewery='{$name}'";
+                $result = $conn->query($sql);
+                return $result->num_rows;
+            }
+
         ?>
     </table>
         <?php 
