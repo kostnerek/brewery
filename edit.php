@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -167,7 +168,11 @@
                             echo "<td>{$row['production_date']}</td>";
                             $stSlice = substr($row['img_src'],0,14);
                             $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
-                            echo "<td class='smallerSrc'>{$stSlice}<br>{$ndSlice}</td>";
+                            echo "<td class='smallerSrc'>
+                                    <form method='post' action='actions/imgShowAction.php'>
+                                     <button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$stSlice}<br>{$ndSlice}</button>
+                                    </form>
+                                    </td>";
 
                             echo "<td>
                                     <form action='actions/editAction.php' method='post'>

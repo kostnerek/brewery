@@ -262,7 +262,7 @@
         }
         
     ?>
-    <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki@gate-software.com</footer>
+    <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
 </body>
 
 </html>
