@@ -27,7 +27,17 @@
                 <button type="button" class="btn" onclick="window.location.href='./edit.php'">Edit</button>
             </div>
             <form action="actions/importAction.php" method='POST' enctype="multipart/form-data">
-                <h2>Mass import of items</h2>
+            <?php 
+                if (isset($_GET['error'])) {
+                    if ($_GET['error'] == "badcsv") {
+                        echo "<h3>Wrong CSV file</h3>";
+                    }
+                }
+                else {
+                   echo "<h2>Mass import of items</h2>";
+                }
+            ?>
+                
                 <input type="file" name="file">
                 <input type="submit" value="Send" name="submit" class='import'>
             </form>

@@ -21,12 +21,30 @@ class importAction
                 $this->csvData[] = $data;
             }
             fclose($h);
-            unlink($filename);
         }
+        $this->checkIfCorrectFile();
+
         array_shift($this->csvData);
+
         $this->elementCount = count($this->csvData);
     }
     
+    function checkIfCorrectFile()
+    {
+        $correctData = array('beer_name', 'brewery', 'country', 'production_date');
+
+        for ($i = 0; $i < 3; $i++ ) {
+            if ($correctData[$i] != $this->csvData[0][$i]) {
+                unlink('../data.csv');
+                echo "<meta http-equiv=\"refresh\" content=\"0;url=../import.php?error=badcsv\">";
+                exit();
+            }
+            else {
+                continue;
+            }
+        }
+    }
+
     function parseData()
     {
         for ($i=0; $i<$this->elementCount;$i++) {
@@ -99,4 +117,5 @@ class importAction
 
 $importer = new importAction($conn);
 $importer->parseData();
+unlink('../data.csv');
 echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";

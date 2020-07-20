@@ -167,7 +167,7 @@
                             echo "<td>{$row['production_date']}</td>";
                             $stSlice = substr($row['img_src'],0,14);
                             $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
-                            echo "<td>{$stSlice}<br>{$ndSlice}</td>";
+                            echo "<td class='smallerSrc'>{$stSlice}<br>{$ndSlice}</td>";
 
                             echo "<td>
                                     <form action='actions/editAction.php' method='post'>

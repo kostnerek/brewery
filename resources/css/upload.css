@@ -86,3 +86,7 @@ button#yesno-btn {
     font-weight: 700;
     color: #212529;
 }
+
+.smallerSrc{
+    font-size: 12px;
+}
