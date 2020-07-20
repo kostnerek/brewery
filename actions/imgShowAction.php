@@ -16,6 +16,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
     <title>Image</title>
 </head>
 
@@ -35,7 +36,7 @@
                         <th>PRODUCTION DATE</th>
                         <th>IMG SRC</th>
                     </tr>
-                    
+
                     <?php
                         include('../config.php');
                         $conn = mysqli_connect($server, $user, $password, $db);

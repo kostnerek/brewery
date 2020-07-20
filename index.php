@@ -16,12 +16,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
+    <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
     <link rel="stylesheet" href="resources/css/main.css">
-    <title>Emson Labels</title>
+    <title>Brewery</title>
 </head>
 
 <body>
+
     <?php 
         include('config.php');
         $conn = mysqli_connect($server, $user, $password, $db);

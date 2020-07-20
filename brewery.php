@@ -17,6 +17,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
     <title>Edit</title>
 </head>
 
@@ -100,6 +101,7 @@
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
         </form>
     </div>
+    <h3>List of all breweries</h3>
     <table id='main'>
         <tr>
             <td>ID</td>

@@ -16,6 +16,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
     <title>Edit</title>
 </head>
 
