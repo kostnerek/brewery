@@ -18,7 +18,7 @@
     </script>
 
     <link rel="stylesheet" href="resources/css/main.css">
-    <title>Brewery</title>
+    <title>Emson Labels</title>
 </head>
 
 <body>
