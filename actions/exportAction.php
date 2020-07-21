@@ -9,6 +9,7 @@ class export
 
     public $postData,
            $beerData=[];
+    public $filename;
 
     function __construct($conn)
     {
@@ -19,6 +20,8 @@ class export
         for ($i=0; $i<count($this->postData); $i++) {
             $this->getBeersData($this->postData [$i]);
         }
+
+        $this->filename = 'export-'.date('Y-m-d').'.csv';
 
         $this->insertDataIntoCsv();
         $this->outputData();
@@ -38,7 +41,8 @@ class export
 
     function insertDataIntoCsv()
     {
-        $fp = fopen('../export.csv', 'w');
+
+        $fp = fopen('../'.$this->filename, 'w');
         fputcsv($fp, array('beer_name','brewery','country','production_date'));
         for ($i=0; $i<count($this->beerData); $i++) {
             fputcsv($fp, $this->beerData[$i]);
@@ -48,7 +52,7 @@ class export
 
     function outputData()
     {
-        $file = '../export.csv';
+        $file = '../'.$this->filename;
 
         if (file_exists($file)) {
             header('Content-Description: File Transfer');
@@ -59,7 +63,7 @@ class export
             header('Pragma: public');
             header('Content-Length: ' . filesize($file));
             readfile($file);
-            unlink('../export.csv');
+            unlink('../'.$this->filename);
             exit;
         }
     }
