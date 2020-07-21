@@ -16,6 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="resources/css/upload.css">
     <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
     <title>List</title>
@@ -131,12 +132,12 @@
 
                     echo "<td>
                             <form action='breweryaction/actions/editAction.php' method='post'>
-                                <button style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
+                                <button style='color: black; font-size: 36px;' class='action fa' value='{$row['id']}' type='submit' name='id'>&#xf044;</button>
                             </form>
                         </td>";
                     echo "<td>
                             <form action='breweryaction/actions/deleteAction.php' method='post'>
-                                <button style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' class='action' value='{$row['id']}' type='submit' name='id'>DELETE</button>
+                                <button style='color: black; font-size: 36px;' class='action fa'  value='{$row['id']}' type='submit' name='id'>&#xf00d;</button>
                             </form>
                         </td>";
                     echo "</tr>";

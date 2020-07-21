@@ -148,7 +148,7 @@
                 <label class="form-check-label" for="exampleRadios2">No</label>
             </div>
 
-            <input id='file' style="display: none" type="file" name="file"><br>
+            <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px; display: none' id='file'  type="file" name="file"><br>
             <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' type="submit" value="Send" name="submit">
         </form>
     </div>

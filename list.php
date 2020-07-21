@@ -109,11 +109,26 @@
             <?php 
                     echo "<form method='post' action='list.php'>";
 
-                    echo "<th><button class='sort' value='id' type='submit'        name='sort'>ID</button></th>";
-                    echo "<th><button class='sort' value='beer_name' type='submit' name='sort'>BEER NAME</button></th>";
-                    echo "<th><button class='sort' value='brewery' type='submit'   name='sort'>BREWERY NAME</button></th>";
-                    echo "<th><button class='sort' value='country' type='submit'   name='sort'>COUNTRY OF ORIGIN</button></th>";
-                    echo "<th><button class='sort' value='prodDate' type='submit'  name='sort'>PRODUCTION DATE</button></th>";
+                    echo "<th>           
+                            <button value='id_up'   type='submit' name='sort'class='fa sort fa-arrow-up'></button>
+                            <button value='id_down' type='submit' name='sort'class='fa sort fa-arrow-down'></button></th>";
+
+                    echo "<th>BEER 
+                            <button value='beer_name_up'    type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                            <button value='beer_name_down'  type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
+
+                    echo "<th>BREWERY
+                            <button value='brewery_up'      type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                            <button value='brewery_down'    type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
+
+                    echo "<th>COUNTRY 
+                            <button value='country_up'      type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                            <button value='country_down'    type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
+
+                    echo "<th>DATE        
+                            <button value='prodDate_up'     type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                            <button value='prodDate_down'   type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
+
                     echo "<th>IMG SRC</th>";
 
                     echo "</form>";
@@ -123,27 +138,52 @@
         <?php
                     if (isset($_POST['sort'])) {
                         switch($_POST['sort']) {
-                            case 'id':
+                            case 'id_up':
+                                {
+                                    $sql = "SELECT * FROM `beers` ORDER BY `id` ASC";
+                                    break;
+                                }
+                            case 'id_down':
                                 {
                                     $sql = "SELECT * FROM `beers` ORDER BY `id` DESC";
                                     break;
                                 }
-                            case 'beer_name':
+                            case 'beer_name_up':
                                 {
                                     $sql = "SELECT * FROM `beers` ORDER BY `beer_name` ASC";
                                     break;
                                 }
-                            case 'country':
+                            case 'beer_name_down':
+                                {
+                                    $sql = "SELECT * FROM `beers` ORDER BY `beer_name` DESC";
+                                    break;
+                                }
+                            case 'country_up':
                                 {
                                     $sql = "SELECT * FROM `beers` ORDER BY `country` ASC";
                                     break;
                                 }
-                            case 'brewery':
+                            case 'country_down':
+                                {
+                                    $sql = "SELECT * FROM `beers` ORDER BY `country` DESC";
+                                    break;
+                                }
+                            case 'brewery_up':
                                 {
                                     $sql = "SELECT * FROM `beers` ORDER BY `brewery` ASC";
                                     break;
                                 }
-                            case 'prodDate':
+                            case 'brewery_down':
+                                {
+                                    $sql = "SELECT * FROM `beers` ORDER BY `brewery` DeSC";
+                                    break;
+                                }
+                            case 'prodDate_up':
+                                {
+                                    $sql = "SELECT * FROM `beers` ORDER BY `production_date` ASC";
+                                    break;
+                                }
+                            case 'prodDate_down':
                                 {
                                     $sql = "SELECT * FROM `beers` ORDER BY `production_date` DESC";
                                     break;
