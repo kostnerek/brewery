@@ -221,7 +221,7 @@
         else {
             if ($result->num_rows > 0) {
                  $max = $result->num_rows;
-                echo "<div id=\"carouselExampleCaptions\" class=\"carousel slide\" data-ride=\"carousel\">";
+                echo "<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">";
                 echo "<ol class=\"carousel-indicators\">";
                 if ($max > 1) {
                     for ($i=0; $i<$max; $i++) {
@@ -252,20 +252,23 @@
                     echo "    <h2>{$name}</h2>";
                     echo "    <a>Brewery: {$brewery}<br>";
                     echo "    Country of origin: {$row["country"]}<br>";
-                    echo "    Date of production: {$row["production_date"]}</a>";
+                    echo "    Date of production: {$row["production_date"]}</a><br>";
                     echo "    <img src={$row["img_src"]} width='640' height='360'>";    
                     echo "    </div>";   
                     
                 }
-                echo "  </div>";
-                echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
-                echo "    <span class='carousel-control-prev-icon' aria-hidden='true'></span>";
-                echo "    <span class='sr-only'>Previous</span>";
-                echo "</a>";
-                echo "<a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>";
-                echo "    <span class='carousel-control-next-icon' aria-hidden='true'></span>";
-                echo "    <span class='sr-only'>Next</span>";
-                echo "</a>";
+                if ($result->num_rows>1) {
+                    echo "  </div>";
+                    echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
+                    echo "    <span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                    echo "    <span class='sr-only'>Previous</span>";
+                    echo "</a>";
+                    echo "<a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>";
+                    echo "    <span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                    echo "    <span class='sr-only'>Next</span>";
+                    echo "</a>";
+                    
+                }
                 echo "</div>";
             } 
         }
