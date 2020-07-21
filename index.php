@@ -258,6 +258,14 @@
                     
                 }
                 echo "  </div>";
+                echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
+                echo "    <span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                echo "    <span class='sr-only'>Previous</span>";
+                echo "</a>";
+                echo "<a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>";
+                echo "    <span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                echo "    <span class='sr-only'>Next</span>";
+                echo "</a>";
                 echo "</div>";
             } 
         }

@@ -28,6 +28,7 @@
             <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
             <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
         </div>
+        <h3>Export data</h3>
         <table class="export">
             <tr>
                 <th style="width: 85%; border: 2px black solid">Brewery</th>
@@ -56,7 +57,7 @@
                 
             </form>    
         <table>
-        <button onclick="document.getElementById('form').submit()">Send</button>
+        <button style="border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px" onclick="document.getElementById('form').submit()"><h4>Download backup</h4></button>
         <br>
     </div>
 

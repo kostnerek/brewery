@@ -131,12 +131,12 @@
 
                     echo "<td>
                             <form action='breweryaction/actions/editAction.php' method='post'>
-                                <button class='action' value='{$row['id']}' type='submit' name='id'>LIST</button>
+                                <button style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' class='action' value='{$row['id']}' type='submit' name='id'>EDIT</button>
                             </form>
                         </td>";
                     echo "<td>
                             <form action='breweryaction/actions/deleteAction.php' method='post'>
-                                <button class='action' value='{$row['id']}' type='submit' name='id'>DELETE</button>
+                                <button style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' class='action' value='{$row['id']}' type='submit' name='id'>DELETE</button>
                             </form>
                         </td>";
                     echo "</tr>";

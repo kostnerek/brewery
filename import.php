@@ -43,7 +43,7 @@
             ?>
                 
                 <input type="file" name="file">
-                <input type="submit" value="Send" name="submit" class='import'>
+                <input style="border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px" type="submit" value="Send" name="submit" class='import'>
             </form>
         </form>
     </div>
