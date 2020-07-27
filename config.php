@@ -1,11 +1,11 @@
 <?php
 
-/* $server   = 'localhost';
-$db       = 'id14338006_brewery';
-$user     = 'id14338006_user';
-$password = 'Pieczarka-123'; */
+$server   = 'hosting2024247.online.pro';
+$db       = '00388586_brewery';
+$user     = '00388586_brewery';
+$password = '!Pastwisko37';
 
-$server   = 'localhost';
+/* $server   = 'localhost';
 $db       = 'brewery';
 $user     = 'root';
-$password = '';
+$password = ''; */
