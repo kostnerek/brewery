@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +30,7 @@
                 <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
             </div>
             <form action="actions/importAction.php" method='POST' enctype="multipart/form-data">
-            <?php 
+                <?php 
                 if (isset($_GET['error'])) {
                     if ($_GET['error'] == "badcsv") {
                         echo "<h3>Wrong CSV file</h3>";
@@ -41,9 +40,13 @@
                    echo "<h3>Mass import of items</h3>";
                 }
             ?>
-                
-                <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' type="file" name="file">
-                <input style="border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px" type="submit" value="Send" name="submit" class='import'>
+
+                <input
+                    style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px'
+                    type="file" name="file">
+                <input
+                    style="border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px"
+                    type="submit" value="Send" name="submit" class='import'>
             </form>
         </form>
     </div>
