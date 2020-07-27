@@ -28,7 +28,7 @@
         include('config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
-
+<h1>Zażółć gęślą jaźń</h1>
     <div class="main">
         <div class="search">
             
