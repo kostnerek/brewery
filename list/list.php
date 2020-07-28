@@ -206,7 +206,11 @@
                             echo "<tr>";
                             echo "<td name='{$row['id']}'>{$row['id']}</td>";
                             echo "<td style='font-size:12px;'>{$row['beer_name']}</td>";
-                            echo "<td>{$row['brewery']}</td>";
+                            echo "<td>
+                                      <form action='../brewery/action/showAction.php' method='post'>
+                                          <button class='action' value='{$row['brewery']}' type='submit' name='id'>{$row['brewery']}</button>
+                                      </form>
+                                  </td>";
                             echo "<td>{$row['country']}</td>";
                             echo "<td>{$row['production_date']}</td>";
                             $breweryLength = strlen($row['brewery']);
