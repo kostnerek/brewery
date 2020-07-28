@@ -22,7 +22,6 @@
 
 <body>
     <div class="center">
-        <form action="../post/importPost.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='../../system/system.php'">System</button>
                 <button type="button" class="btn" onclick="window.location.href='../list.php'">List</button>
@@ -52,7 +51,11 @@
                                 echo "<tr>";
                                     echo "<td name='{$row['id']}'>{$row['id']}</td>";
                                     echo "<td>{$row['beer_name']}</td>";
-                                    echo "<td>{$row['brewery']}</td>";
+                                    echo "<td>
+                                            <form action='../../brewery/action/showAction.php' method='post'>
+                                                <button class='action' value='{$row['brewery']}' type='submit' name='id'>{$row['brewery']}</button>
+                                            </form>
+                                        </td>";
                                     echo "<td>{$row['country']}</td>";
                                     echo "<td>{$row['production_date']}</td>";
                                     $stSlice = substr($row['img_src'],0,14);

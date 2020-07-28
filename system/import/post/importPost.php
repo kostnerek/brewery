@@ -14,7 +14,7 @@ class importAction
     function __construct($conn)
     {
         $this->conn = $conn;
-        $filename = '../data.csv';//TODO CHECK PATHS TO DATA.CSV
+        $filename = '../data.csv';
  
         if (($h = fopen("{$filename}", "r")) !== FALSE) {
             while (($data = fgetcsv($h, 1000, ",")) !== FALSE) {

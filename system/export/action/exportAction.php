@@ -69,6 +69,5 @@ class export
     }
 
 }
-//TODO PATHS OF EXPORT FILE - NEED TO CHECK WHERE IT IS CREATED
 $export = new export($conn);
 
