@@ -219,5 +219,5 @@ $submitPostAction = new postBeer($conn);
 
 $submitPostAction->checkStatus();
 $submitPostAction->addEntites();
-//echo "<meta http-equiv=\"refresh\" content=\"0;url=../../list/list.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../../list/list.php\">";
 exit();
