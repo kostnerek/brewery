@@ -16,23 +16,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="resources/css/upload.css">
-    <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
+    <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
     <title>System</title>
 </head>
 
 <body>
-    <?php 
-        include('config.php');
+<?php 
+        include('../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="center">
         <form action="post/addPost.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn" onclick="window.location.href='system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='import.php'">Import</button>
-                <button type="button" class="btn" onclick="window.location.href='export.php'">Export</button>
-                <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
+                <button type="button" class="btn" onclick="window.location.href='import/import.php'">Import</button>
+                <button type="button" class="btn" onclick="window.location.href='export/export.php'">Export</button>
+                <button type="button" class="btn" onclick="window.location.href='../list/list.php'">List</button>
                 
             </div>
             <h3>Add new beer</h3>

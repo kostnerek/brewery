@@ -1,5 +1,5 @@
 <?php 
-include('../config.php');
+include('../../../etc/config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 
@@ -14,7 +14,7 @@ class importAction
     function __construct($conn)
     {
         $this->conn = $conn;
-        $filename = '../data.csv';
+        $filename = '../data.csv';//TODO CHECK PATHS TO DATA.CSV
  
         if (($h = fopen("{$filename}", "r")) !== FALSE) {
             while (($data = fgetcsv($h, 1000, ",")) !== FALSE) {
@@ -108,11 +108,11 @@ class importAction
     }
     function folderAction($breweryName)
     {
-        if (is_dir("../resources/img/{$breweryName}")==true) {
+        if (is_dir("../../../resources/img/{$breweryName}")==true) {
             return false;
         }
         else {
-            mkdir("../resources/img/{$breweryName}");
+            mkdir("../../../resources/img/{$breweryName}");
         }
     }
 }
@@ -120,4 +120,4 @@ class importAction
 $importer = new importAction($conn);
 $importer->parseData();
 unlink('../data.csv');
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../list.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../../../list/list.php\">";

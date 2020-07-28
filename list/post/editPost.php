@@ -1,6 +1,6 @@
 <?php 
 
-include('../config.php');
+include('../../etc/config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 class edit 
@@ -12,9 +12,6 @@ class edit
             $photo;
 
     public $id;
-    
-    /* public $oldBeerName,
-           $oldBreweryName; */
 
     public $conn;//connection with db
 
@@ -96,15 +93,13 @@ class edit
                 }
                 if ($this->photo == 1) {
                     $this->imgCheck = $this->checkLink($row['img_src']);
-                    //$this->oldImgSrc="resources/img/".$row["brewery"]."/".$row["beer_name"].".jpg";
-
-                    //unlink($this->oldImgSrc);
+                    
                 }
                 $this->oldDataArray = array('beer_name'       => $row['beer_name'], 
-                                            'country'         =>$row['country'], 
-                                            'brewery'         =>$row['brewery'], 
-                                            'production_date' =>$row['production_date'], 
-                                            'img_src'         =>$row['img_src']);
+                                            'country'         => $row['country'], 
+                                            'brewery'         => $row['brewery'], 
+                                            'production_date' => $row['production_date'], 
+                                            'img_src'         => $row['img_src']);
             }
         }
         echo "<pre>";
@@ -112,7 +107,7 @@ class edit
         echo "<br>";
         var_dump($this->newDataArray);
         echo "<br>";
-        $this->checkArray = array('beer_name'       => $this->breweryNameCheck,
+        $this->checkArray = array('beer_name'       => $this->beerNameCheck,
                                   'country'         => $this->countryCheck,
                                   'brewery'         => $this->breweryNameCheck,
                                   'production_date' => $this->prodDateCheck,
@@ -173,17 +168,13 @@ class edit
 
     function postEditDb()
     {
-        /* if ( !is_dir("resources/img/".$this->newDataArray['brewery'])) {
-            mkdir("resources/img/".$this->newDataArray['brewery']);
-            rename($this->oldDataArray['img_src'], $this->newDataArray['img_src']);
-        } */
         if ( !$this->checkArray['beer_name']) {
             rename($this->oldDataArray['img_src'], $this->newDataArray['img_src']);
         }
         if ( !$this->checkArray['brewery']) {
 
-            if ( !is_dir("resources/img/".$this->newDataArray['brewery'])) {
-                mkdir("resources/img/".$this->newDataArray['brewery']);
+            if ( !is_dir("../../resources/img/".$this->newDataArray['brewery'])) {
+                mkdir("../../resources/img/".$this->newDataArray['brewery']);
             }
 
             rename($this->oldDataArray['img_src'], $this->newDataArray['img_src']);
@@ -192,7 +183,6 @@ class edit
 
     function checkLink($link)
     {
-        //$newImgSrc= "resources/img/".$this->breweryName."/".$this->beerName.".jpg";
         if ($link == $this->newImgSrc) {
             return true;
         }
@@ -211,6 +201,6 @@ class edit
         rename($target_file, $this->newImgSrc);
     }
 }
-
+    
 $editor = new edit($conn);
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../edit.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../list.php\">";

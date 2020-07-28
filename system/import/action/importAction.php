@@ -15,8 +15,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="../resources/css/upload.css">
-    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
+    <link rel="stylesheet" href="../../../resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="../../../resources/img/favicon.ico">
     <title>Import</title>
 </head>
 
@@ -24,10 +24,10 @@
     <div class="center">
         <form action="../post/importPost.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='../list.php'">List</button>
-                <button type="button" class="btn" onclick="window.location.href='../brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../stats.php?select=beers'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='../../system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../../../list/list.php'">List</button>
+                <button type="button" class="btn" onclick="window.location.href='../../../brewery/brewery.php'">Brewery</button>
+                <button type="button" class="btn" onclick="window.location.href='../../../stats/stats.php?select=beers'">Stats</button>
             </div>
 
             <?php 
@@ -46,7 +46,7 @@
                 <form action='deleteAction.php' method='post'>
                     <button class='btn' id='yesno-btn' type='submit' value='yes' name='doIt'>YES</button>
                 </form>
-                <button type="button" class="btn" onclick="window.location.href='../list.php'">NO</button>
+                <button type="button" class="btn" onclick="window.location.href='../../../list/list.php'">NO</button>
             </div>
         </form>
     </div>

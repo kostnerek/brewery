@@ -2,7 +2,7 @@
 
 
 
-include('../../config.php');
+include('../../etc/config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 
@@ -38,7 +38,7 @@ class editBrewery
         if ($result->num_rows > 0) {//brewery array
             while($row = $result->fetch_assoc()) {
                 if ($this->newBreweryName == $row['name']) {
-                    echo "<meta http-equiv=\"refresh\" content=\"0;url=../../brewery.php?error=exist\">";
+                    echo "<meta http-equiv=\"refresh\" content=\"0;url=../brewery.php?error=exist\">";
                     exit();
                 }
             }
@@ -89,4 +89,4 @@ class editBrewery
 
 $edit = new editBrewery($conn);
 
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../../brewery.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../brewery.php\">";

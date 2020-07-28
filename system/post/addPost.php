@@ -17,8 +17,6 @@ class postBeer
 
     function __construct($conn)
     {
-        /* var_dump($_POST);
-        die(); */
         $this->conn = $conn;
         $this->beerName = $_POST['beer_name'];
         $this->country = $_POST['country'];
@@ -119,7 +117,7 @@ class checkAll extends postBeer
 
     function checkIfFolderExist()
     {
-        if (is_dir("resources/img/{$this->breweryName}")==true) {
+        if (is_dir("../../resources/img/{$this->breweryName}")==true) {
             return true;
         }
         else {
@@ -209,17 +207,17 @@ class creator extends postBeer
         if(isset($_POST["submit"])) {
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         }
-        rename($target_file, '../resources/img/'.$this->breweryName."/".$this->beerName.".jpg");
+        rename($target_file, '../../resources/img/'.$this->breweryName."/".$this->beerName.".jpg");
     }
 }
 
 
-include('../config.php');
+include('../../etc/config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 $submitPostAction = new postBeer($conn);
 
 $submitPostAction->checkStatus();
 $submitPostAction->addEntites();
-echo "<meta http-equiv=\"refresh\" content=\"0;url=../list.php\">";
+echo "<meta http-equiv=\"refresh\" content=\"0;url=../../list/list.php\">";
 exit();

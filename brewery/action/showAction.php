@@ -22,19 +22,17 @@
 
 <body>
     <?php 
-        include('../../config.php');
+        include('../../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
 
     <div class="center">
-        <form action="list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../../system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='../../list.php'">List</button>
-                <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../../stats.php?select=beers'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='../../system/system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../../list/list.php'">List</button>
+                <button type="button" class="btn" onclick="window.location.href='../../brewery/brewery.php'">Brewery</button>
+                <button type="button" class="btn" onclick="window.location.href='../../stats/stats.php?select=beers'">Stats</button>
             </div>
-        </form>
         <table>
             <?php
                 if (isset($_POST['id'])) {
@@ -69,7 +67,7 @@
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<form method='post' action='../../actions/imgShowAction.php'>";
+                    echo "<form method='post' action='../../list/action/imgShowAction.php'>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['id']}</td>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['beer_name']}</td>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['brewery']}</td>";

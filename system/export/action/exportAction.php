@@ -1,6 +1,6 @@
 <?php 
 
-include('../config.php');
+include('../../../etc/config.php');
 $conn = mysqli_connect($server, $user, $password, $db);
 
 class export 
@@ -69,6 +69,6 @@ class export
     }
 
 }
-
+//TODO PATHS OF EXPORT FILE - NEED TO CHECK WHERE IT IS CREATED
 $export = new export($conn);
 

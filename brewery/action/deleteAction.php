@@ -22,19 +22,17 @@
 
 <body>
     <?php 
-        include('../../config.php');
+        include('../../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
 
     <div class="center">
-        <form action="list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../../system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='../../list.php'">List</button>
-                <button type="button" class="btn" onclick="window.location.href='../../brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../../stats.php?select=beers'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='../../system/system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../../list/list.php'">List</button>
+                <button type="button" class="btn" onclick="window.location.href='../brewery.php'">Brewery</button>
+                <button type="button" class="btn" onclick="window.location.href='../../stats/stats.php?select=beers'">Stats</button>
             </div>
-        </form>
         <?php 
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
@@ -85,7 +83,7 @@
             $sql = "DELETE FROM `breweries` WHERE id='{$delId}'";
             $conn->query($sql);
             
-            echo "<meta http-equiv=\"refresh\" content=\"0;url=../../brewery.php\">";
+            echo "<meta http-equiv=\"refresh\" content=\"0;url=../brewery.php\">";
         }
 
         function delete_files($target) {

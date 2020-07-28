@@ -15,30 +15,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="../resources/css/upload.css">
-    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
+    <link rel="stylesheet" href="../../resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="../../resources/img/favicon.ico">
     <title>List</title>
 </head>
 
 <body>
     <?php 
-        include('../config.php');
+        include('../../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="center">
-        <form action="../list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../../system/system.php'">System</button>
                 <button type="button" class="btn" onclick="window.location.href='../list.php'">List</button>
-                <button type="button" class="btn" onclick="window.location.href='../brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../stats.php?select=beers'">Stats</button>
+                <button type="button" class="btn" onclick="window.location.href='../../brewery/brewery.php'">Brewery</button>
+                <button type="button" class="btn" onclick="window.location.href='../../stats/stats.php?select=beers'">Stats</button>
             </div>
-        </form>
 
         <?php 
 
             if (isset($_POST['id'])) {
                 $id = $_POST['id'];
+                echo "<h3>Delete element?</h3><br>";
                 echo "<div class='btn-group' id='yesno' role='group' aria-label='Basic example'>";
                 echo "<form action='deleteAction.php' method='post'>";
                 echo "   <button class='btn' id='yesno-btn' type='submit' value='{$id}'name='delId'>YES</button>";

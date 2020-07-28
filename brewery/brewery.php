@@ -17,14 +17,14 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="resources/css/upload.css">
-    <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
+    <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
     <title>List</title>
 </head>
 
 <body>
     <?php 
-        include('config.php');
+        include('../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
 
         $sql = "SELECT * FROM `beers`";
@@ -53,9 +53,9 @@
 
         if (!empty($breweriesArray)) {
             for ( $i = 0; $i < count($breweriesArray); $i++) {
-                if (is_dir('resources/img/'.$breweriesArray[$i])) {
-                    if (is_dir_empty('resources/img/'.$breweriesArray[$i])) {
-                        rmdir('resources/img/'.$breweriesArray[$i]);
+                if (is_dir('../resources/img/'.$breweriesArray[$i])) {
+                    if (is_dir_empty('../resources/img/'.$breweriesArray[$i])) {
+                        rmdir('../resources/img/'.$breweriesArray[$i]);
                     }
                     else {
                         deleteDir('resources/img/'.$breweriesArray[$i]);
@@ -95,14 +95,12 @@
     ?>
 
     <div class="center">
-        <form action="list.php" method="POST" id="main-form" enctype="multipart/form-data">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
+                <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
+                <button type="button" class="btn" onclick="window.location.href='../list/list.php'">List</button>
                 <button type="button" class="btn" onclick="window.location.href='brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
-        </form>
-    </div>
+                <button type="button" class="btn" onclick="window.location.href='../stats/stats.php?select=beers'">Stats</button>
+            </div>
     <h3>List of all breweries</h3>
     <table id='main'>
         <tr>
@@ -121,7 +119,7 @@
                     echo "<tr>";
                     echo "<td name='{$row['id']}'>{$row['id']}</td>";
                     echo "<td>
-                            <form action='breweryaction/actions/showAction.php' method='post'>
+                            <form action='action/showAction.php' method='post'>
                                 <button class='action' value='{$row['name']}' type='submit' name='id'>{$row['name']}</button>
                             </form>
                           </td>";
@@ -131,12 +129,12 @@
                     echo "</td>";
 
                     echo "<td>
-                            <form action='breweryaction/actions/editAction.php' method='post'>
+                            <form action='action/editAction.php' method='post'>
                                 <button style='color: black; font-size: 36px;' class='action fa' value='{$row['id']}' type='submit' name='id'>&#xf044;</button>
                             </form>
                         </td>";
                     echo "<td>
-                            <form action='breweryaction/actions/deleteAction.php' method='post'>
+                            <form action='action/deleteAction.php' method='post'>
                                 <button style='color: black; font-size: 36px;' class='action fa'  value='{$row['id']}' type='submit' name='id'>&#xf00d;</button>
                             </form>
                         </td>";

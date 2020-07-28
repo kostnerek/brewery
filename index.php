@@ -25,7 +25,7 @@
 
     <?php 
     
-        include('config.php');
+        include('etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     
