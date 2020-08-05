@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +17,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
-    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
+    <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>List</title>
 </head>
 
@@ -95,17 +94,18 @@
     ?>
 
     <div class="center">
-        
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
-                <button type="button" class="btn" onclick="window.location.href='../brewery/brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../stats/stats.php?select=beers'">Stats</button>
-    </div>
-    <h3>List of all beers</h3>
-    <table id='main'>
-        <tr>
-            <?php 
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
+            <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
+            <button type="button" class="btn" onclick="window.location.href='../brewery/brewery.php'">Brewery</button>
+            <button type="button" class="btn"
+                onclick="window.location.href='../stats/stats.php?select=beers'">Stats</button>
+        </div>
+        <h3>List of all beers</h3>
+        <table id='main'>
+            <tr>
+                <?php 
                     echo "<form method='post' action='list.php'>";
 
                     echo "<th>           
@@ -133,8 +133,8 @@
                     echo "</form>";
                     echo "<th colspan='2'>ACTION</th>";
                     ?>
-        </tr>
-        <?php
+            </tr>
+            <?php
                     if (isset($_POST['sort'])) {
                         switch($_POST['sort']) {
                             case 'id_up':
@@ -243,8 +243,8 @@
                         }
                     } 
                 ?>
-    </table>
-    </form>
+        </table>
+        </form>
     </div>
 </body>
 

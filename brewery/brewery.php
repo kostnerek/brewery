@@ -18,7 +18,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
-    <link rel="icon" type="image/ico" href="../resources/img/favicon.ico">
+    <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>List</title>
 </head>
 

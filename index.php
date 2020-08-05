@@ -16,7 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link rel="icon" type="image/ico" href="resources/img/favicon.ico">
+    <link rel="icon" type="image/ico" href="etc/favicon.ico">
     <link rel="stylesheet" href="resources/css/main.css">
     <title>Brewery</title>
 </head>
@@ -24,7 +24,6 @@
 <body>
 
     <?php 
-    
         include('etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
@@ -155,6 +154,8 @@
                     countryFilter + "&year=" + yearFilter;
             }
             search = "undefined";
+
+            
         </script>
 
         <?php 
@@ -165,52 +166,57 @@
         $countryId = $_GET["country"];
         $year = $_GET["year"];
 
-        if ($breweryId!="undefined" && $countryId=="undefined" && $year=="undefined") { //brewery
+        if (isset($breweryId) && !isset($countryId) && !isset($year)) { //brewery
             $sql = "SELECT * FROM beers 
             LEFT JOIN breweries ON breweries.name = beers.brewery 
-            WHERE breweries.id = {$breweryId} ";
+            WHERE breweries.id = {$breweryId} 
+            ORDER BY RAND()";
         }
-        if ($breweryId=="undefined" && $countryId!="undefined" && $year=="undefined") { //country    
+        if (!isset($breweryId) && isset($countryId) && !isset($year)) { //country    
             $sql = "SELECT * FROM beers 
             LEFT JOIN countries ON countries.name = beers.country 
             WHERE countries.id = {$countryId}";
         }
-        if ($breweryId=="undefined" && $countryId=="undefined" && $year!="undefined") { //year
+        if (!isset($breweryId) && !isset($countryId) && isset($year)) { //year
             $sql = "SELECT * FROM beers 
             WHERE beers.production_date = {$year}";
         }
-        if ($breweryId!="undefined" && $countryId!="undefined" && $year=="undefined") { //brewery country
+        if (isset($breweryId) && isset($countryId) && !isset($year)) { //brewery country
             $sql = "SELECT * FROM beers 
             LEFT JOIN countries ON countries.name = beers.country 
             LEFT JOIN breweries ON breweries.name = beers.brewery 
             WHERE countries.id = {$countryId} AND breweries.id = {$breweryId}";
         }
-        if ($breweryId!="undefined" && $countryId=="undefined" && $year!="undefined") { //brewery year
+        if (isset($breweryId) && !isset($countryId) && isset($year)) { //brewery year
             $sql = "SELECT * FROM beers 
             LEFT JOIN breweries ON breweries.name = beers.brewery 
             WHERE beers.production_date='{$year}' AND breweries.id = {$breweryId}";
         }
-        if ($breweryId=="undefined" && $countryId!="undefined" && $year!="undefined") { //country year
+        if (!isset($breweryId) && isset($countryId) && isset($year)) { //country year
             $sql = "SELECT * FROM beers 
             LEFT JOIN countries ON countries.name = beers.country 
             WHERE countries.id = {$countryId} AND beers.production_date = {$year}";
         }
-        if ($breweryId!="undefined" && $countryId!="undefined" && $year!="undefined") { //all
+        if (isset($breweryId) && isset($countryId) && isset($year)) { //all
             $sql = "SELECT * FROM beers 
             LEFT JOIN countries ON countries.name = beers.country 
             LEFT JOIN breweries ON breweries.name = beers.brewery 
             WHERE countries.id = {$countryId} AND breweries.id = {$breweryId} AND beers.production_date = {$year}";
         }
 
-        if($search!="undefined")
+        if(!isset($search))
         {
+            $sql = "SELECT * FROM `beers` ORDER BY RAND()";
+        }
+        if (isset($_GET['search'])){
             $sql = "SELECT * FROM beers 
             WHERE beers.beer_name 
             LIKE '%{$search}%'";
         }
 
+
         $result = $conn->query($sql);
-        if ($breweryId=="undefined" && $countryId=="undefined" && $year=="undefined" && $search=="undefined") { //all
+        if (!isset($breweryId) && !isset($countryId) && !isset($year) && $search=="undefined") { //all
             echo "<div class='nodata'><h1>Provide more info!</h1></div>";
             exit;
         }
