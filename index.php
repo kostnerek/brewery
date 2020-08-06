@@ -280,12 +280,10 @@
             }
             
         ?>
-        
-    
-    <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
+            <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
         </div>
-    <div class="arrow fa fa-angle-right"></div>
-</div>
+        <div class="arrow fa fa-angle-right"></div>
+    </div>
 </body>
 
 </html>
