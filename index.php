@@ -60,6 +60,9 @@
                 var chart = new CanvasJS.Chart("chartContainerBeer", {
                     animationEnabled: true,
                     backgroundColor: "transparent",
+                    title:{
+                        text: "Brewery stats"
+                    },
                     data: [{
                         type: "pie",
                         click: onClick,
@@ -230,14 +233,8 @@
             ?>
             <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
         </div>
-    </div>
-    <!--    $search = $_GET["search"];
-            $breweryId = $_GET["brewery"];
-            $countryId = $_GET["country"];
-            $year = $_GET["year"]; -->
-    <div class="arrow-container ">
-        <button class="arrow fa fa-angle-right" onclick="showFilter()"></button>
-        <div class='filter-bar' style='opacity:1' id='filterBar' >
+        <div class="search-container ">
+            <div class='filter-bar'>
             <form action="index.php" method='get'>
                 <input type='text' placeholder="Search" class='form-input search' name='search'/><br>
                 <select name='brewery' class='form-input brewery'>
@@ -291,21 +288,13 @@
                 </select>
                 <input type='submit' value='search' class='form-input submit'/>
             </form>
+            </div>
         </div>
     </div>
-    </div>
+    <!--    $search = $_GET["search"];
+            $breweryId = $_GET["brewery"];
+            $countryId = $_GET["country"];
+            $year = $_GET["year"]; -->
+    
 </body>
-<!-- <script>
-    function showFilter()
-    {
-        var filterbar = document.getElementById('filterBar');
-        filterbar.style.opacity = 1;
-    }
-    function hide()
-    {
-        var filterbar = document.getElementById('filterBar');
-        filterbar.style.opacity = 0;
-    }
-</script> -->
-
 </html>
