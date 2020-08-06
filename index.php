@@ -65,11 +65,14 @@
                     },
                     data: [{
                         type: "pie",
-                        click: onClick,
+                        indexLabel: "{y}",
                         yValueFormatString: "#,##0.00\"%\"",
-                        indexLabel: "{label} - {count}",
+                        indexLabelPlacement: "inside",
+                        indexLabelFontColor: "#36454F",
+                        indexLabelFontSize: 18,
+                        indexLabelFontWeight: "bolder",
                         dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                        }]
+                    }]
                 });
                 chart.render();
             }
@@ -212,7 +215,7 @@
                         echo "    <a>Brewery: {$brewery}<br>";
                         echo "    Country of origin: {$row["country"]}<br>";
                         echo "    Date of production: {$row["production_date"]}</a><br>";
-                        echo "    <img src={$row["img_src"]} width='640' height='360'onerror=\"this.onerror=null; this.src='resources/error.png'; style=' filter: brightness(0%)'\">";
+                        echo "    <img src={$row["img_src"]} width='480' height='360'onerror=\"this.onerror=null; this.src='resources/error.png'; style=' filter: brightness(0%)'\">";
                         echo "    </div>";
                     }
                     if ($result->num_rows > 1) {
