@@ -315,7 +315,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         border-top-right-radius: 0.25em;
     }
 }
-@media screen and (max-width: 470px), (min-height: 750px) {
+@media screen and (max-width: 470px) {
     img{
         width: 300px;
         height: 250px;
@@ -330,10 +330,3 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         var resSmallest = [750, 750]; 
 */
 
-@media screen and (min-height: 750) {
-    div.cloned-stat-container{
-        display: block;
-        
-    }
-    
-}
