@@ -27,6 +27,7 @@ body {
     font-size: 10px;
     background-color: #29335c;
     text-align: left;
+    text-align: center;
 }
 .nodata{
     margin-top: 20%;
@@ -38,6 +39,7 @@ body {
     display: inline-flex;
     margin-left: 12%;
     margin-right: auto;
+    height: 500px;
 }
 
 .stat-container{
@@ -46,7 +48,6 @@ body {
     font-size: 60px;
     height: 500px;
     width: 250px;
-    margin-top: auto;
     margin-bottom: auto;
     margin-right: auto;
     display: inline-flex;
@@ -65,6 +66,35 @@ body {
     position: relative;
     z-index: 100;
 }
+
+.check {
+    position: relative;
+    height: 27px;
+    width: 27px;
+
+    top: -2px;
+    left: -15px;
+}
+.search-checkbox{    
+
+}
+.brewery-checkbox{    
+    top: -47px;
+}
+.country-checkbox{    
+    top: -93px;
+}
+.year-checkbox{    
+    top: -134px;
+}
+
+table{
+    border: solid 1px black
+}
+tr td{
+    border: 1px solid black;
+}
+
 
 @keyframes slide-left {
     
@@ -114,12 +144,13 @@ body {
 }
 .form-input{
     font-size: 1rem;
-    width: 90%;
+    width: 70%;
     position: relative;
 }
 
 .search{
-    top:80px
+    top:80px;
+    left: 42px;
 }
 .brewery{
     top:35px
