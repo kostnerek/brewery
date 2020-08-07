@@ -2,6 +2,9 @@ body {
     background-color: #29335c;
     overflow: hidden;
 }
+.cloned-stat-container{
+    display: none;
+}
 
 .main {
     border-radius: .25rem;
@@ -26,7 +29,7 @@ body {
 .stamp{
     color: black;
     font-size: 10px;
-    background-color: #29335c;
+    background-color: transparent;
     text-align: left;
     text-align: center;
 }
@@ -76,17 +79,19 @@ body {
     width: 27px;
 
     top: -2px;
-    left: -15px;
+    left: -5px;
 }
-
+.search-checkbox{
+    top:86px;
+}
 .brewery-checkbox{    
-    top: -47px;
+    top: 42px;
 }
 .country-checkbox{    
-    top: -93px;
+    top: -3px;
 }
 .year-checkbox{    
-    top: -134px;
+    top: -43px;
 }
 
 
@@ -145,7 +150,6 @@ body {
 
 .search{
     top:80px;
-    left: 42px;
 }
 .brewery{
     top:35px
@@ -182,7 +186,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 
 
 @media screen and (max-width: 1240px){
-    html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active br {
+    .stamp{
         display: none;
     }
     body{
@@ -198,6 +202,8 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         height: 900px;
         width: 90%;
         margin-left: 5%;
+        border-top-left-radius: 0.25em;
+        border-top-right-radius: 0.25em;
     }
     .outer{
         margin-top: 5%;
@@ -234,6 +240,9 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     img{
         width: 600px;
         height: 400px;
+        -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
     }
    
     input.check{
@@ -280,9 +289,6 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         border-bottom-right-radius: 0.5em;
     }
 
-    /* .search{
-
-    } */
     .brewery{
         top:0px;
     }
@@ -298,16 +304,30 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         width: 400px;
         height: 300px;
     }
-    html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active br {
-        display: none;
+    .main{
+        border-top-left-radius: 0.25em;
+        border-top-right-radius: 0.25em;
     }
 }
-@media screen and (max-width: 470px){
+@media screen and (max-width: 470px), (min-height: 750px) {
     img{
         width: 300px;
         height: 250px;
     }
-    html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active br {
-        display: none;
+    div.cloned-stat-container{
+        display: block;
+        opacity: 1;
     }
+}
+/*      var resBig      = [1240,750];
+        var resSmall    = [1000, 750];
+        var resSmallest = [750, 750]; 
+*/
+
+@media screen and (min-height: 750) {
+    div.cloned-stat-container{
+        display: block;
+        
+    }
+    
 }

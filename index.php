@@ -21,52 +21,55 @@
 <body>
 
     <?php
-    include('etc/config.php');
-    $conn = mysqli_connect($server, $user, $password, $db);
+        include('etc/config.php');
+        $conn = mysqli_connect($server, $user, $password, $db);
+        
+        $sql = "SELECT * FROM `beers`";
+        $result = $conn->query($sql);
+        $allElementCount = $result->num_rows;
+        function getAllBreweries($conn)
+        {
+            $data = array();
+            $sql = "SELECT * FROM `breweries`";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    array_push($data, $row['name']);
+                }
+            } 
+            return $data;
+        }
+        $allBrewieres = getAllBreweries($conn);
+        $dataPoints = array();
+        $allBeerArray=array();
+        for ($i=0; $i<count($allBrewieres); $i++){
+            $sql = "SELECT * FROM `beers` WHERE brewery='{$allBrewieres[$i]}'";
+            $result = $conn->query($sql);
+            $beerCount = $result->num_rows;
+            $percentageBeer = $beerCount / $allElementCount * 100; 
+            $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
+            array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
+        }
     ?>
+
     <div class="outer">
         <div class='container' >
             <div class='stat-container' id="stat-cont">
                 <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
-                <?php
-                    $sql = "SELECT * FROM `beers`";
-                    $result = $conn->query($sql);
-                    $allElementCount = $result->num_rows;
-                    function getAllBreweries($conn)
-                    {
-                        $data = array();
-                        $sql = "SELECT * FROM `breweries`";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                array_push($data, $row['name']);
-                            }
-                        } 
-                        return $data;
-                    }
-                    $allBrewieres = getAllBreweries($conn);
-                    $dataPoints = array();
-                    $allBeerArray=array();
-                    for ($i=0; $i<count($allBrewieres); $i++){
-                        $sql = "SELECT * FROM `beers` WHERE brewery='{$allBrewieres[$i]}'";
-                        $result = $conn->query($sql);
-                        $beerCount = $result->num_rows;
-                        $percentageBeer = $beerCount / $allElementCount * 100; 
-                        $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
-                        array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
-                    }
-                ?>
                 <script>
                     window.onload = function beer() {
                     var chart = new CanvasJS.Chart("chartContainerBeer", {
                         animationEnabled: true,
                         backgroundColor: "transparent",
-                        title:{
+                        /* title:{
                             text: "Brewery stats"
-                        },
+                        }, */
                         data: [{
                             type: "pie",
-                            indexLabel: "{y}",
+                            exploded: false,
+                            explodeOnClick: false,
+                            indexLabel: "{label} - {y}",
+                            toolTipContent: "{label} - {count}",
                             yValueFormatString: "#,##0.00\"%\"",
                             indexLabelPlacement: "inside",
                             indexLabelFontColor: "#FFFFFFFF",
@@ -223,6 +226,10 @@
                 if (!$result = $conn->query($sql)) {
                     echo "Error: " . $conn->error;
                 } else {
+                    if ($result->num_rows==0) {
+                        echo "<div><img src='resources/error.png' style='filter: brightness(0%)'\"></div>";
+                        echo "    ";
+                    }
                     if ($result->num_rows > 0) {
                         echo "<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">";
                         $counter = 0;
@@ -273,10 +280,49 @@
                 <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
             
             </div>
+            <div class='cloned-stat-container' id="stat-cont-cloned">
+                <div id="chartContainerBeer-cloned" style="height: 370px; width: 70%;margin-left: 15%;margin-top: -45px;"></div>
+                <script>
+                    window.onload = function beer() {
+                    var chart = new CanvasJS.Chart("chartContainerBeer-cloned", {
+                        animationEnabled: true,
+                        backgroundColor: "transparent",
+                        /* title:{
+                            text: "Brewery stats"
+                        }, */
+                        data: [{
+                            type: "pie",
+                            exploded: false,
+                            explodeOnClick: false,
+                            indexLabel: "{label} - {y}",
+                            toolTipContent: "{label} - {count}",
+                            yValueFormatString: "#,##0.00\"%\"",
+                            indexLabelPlacement: "inside",
+                            indexLabelFontColor: "#FFFFFFFF",
+                        
+                            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                        }]
+                    });
+                    chart.render();
+                }
+                function onClick(e) {
+                    var data = e.dataPoint.label.toLowerCase().replace(' ', '_');
+                    data.toLowerCase();
+                    data.replace(' ', '_');
+                    console.log(typeof(data));
+                    console.log(data);
+
+                    /* if (e.dataPoint.type=="beer") {
+                        window.location.href='../brewery/action/showAction.php?id='+data;
+                    } */
+                }
+                </script>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            </div>
             <div class="search-container" id="search-cont">
                 <div class='filter-bar'>
                 <form action="index.php" method='get'>
-                    <input type='text' placeholder="Search" class='form-input search' name='search' onclick="searchSet()"/><br>
+                    <input type='text' placeholder="Search" class='form-input search' name='search' onclick="searchSet()"/>
                     <input class="check search-checkbox" type="checkbox" name="search-checkbox" />
                     
                     <select name='brewery' class='form-input brewery' onclick="brewerySet()">
@@ -347,6 +393,15 @@
         document.getElementById('stat-cont').style.opacity = 1;
         document.getElementById('search-cont').style.opacity = 1;
         }
+        var res = [window.screen.availHeight,
+        window.screen.availWidth];
+        console.log(res);
+        //width x height
+        var resBig      = [1240,750];
+        var resSmall    = [1000, 750];
+        var resSmallest = [750, 750];
+
+
     </script>
     
 </body>
