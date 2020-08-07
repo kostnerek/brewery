@@ -131,7 +131,8 @@ body {
     background: linear-gradient(#DB2B39, #29335c);
     border-radius: .25rem;
     height: 500px;
-    margin-left: -50px;
+    margin-left: -37px;
+    z-index:-9999;
 }
 .filter-bar>form{
     margin-left: 10%;
@@ -158,7 +159,13 @@ body {
 .submit{
     bottom: 90px;
 }
-
+html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active img {
+    position: inherit;
+    z-index: 90000123;
+    -webkit-box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
+}
 @keyframes slide-right {
     0%  {margin-left: -30px;}
     10% {margin-left: -25px;}
@@ -175,6 +182,9 @@ body {
 
 
 @media screen and (max-width: 1240px){
+    html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active br {
+        display: none;
+    }
     body{
         overflow: visible;
     }
@@ -288,10 +298,16 @@ body {
         width: 400px;
         height: 300px;
     }
+    html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active br {
+        display: none;
+    }
 }
 @media screen and (max-width: 470px){
     img{
         width: 300px;
         height: 250px;
+    }
+    html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active br {
+        display: none;
     }
 }
