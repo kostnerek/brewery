@@ -21,7 +21,17 @@ body {
     text-align: center;
 }
 
+html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide a.carousel-control-prev span.fa.fa-angle-left.arrow{
+    font-size: 70px; 
+    color:black;
+    z-index: 9000220;
 
+}html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide a.carousel-control-next{
+    font-size: 70px; 
+    color:black;
+    z-index: 9000220;
+
+}
 
 #override div {
     background-color: transparent;
@@ -142,7 +152,7 @@ body {
     background: linear-gradient(#DB2B39, #29335c);
     border-radius: .25rem;
     height: 500px;
-    margin-left: -37px;
+    margin-left: -5px;
     z-index:-9999;
 }
 .filter-bar>form{
@@ -154,6 +164,9 @@ body {
     position: relative;
 }
 
+.carousel-indicators li{
+    background-color: black;
+}
 .search{
     top:80px;
 }
@@ -171,7 +184,6 @@ body {
 }
 html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active img {
     position: inherit;
-    z-index: 90000123;
     -webkit-box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);

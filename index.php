@@ -237,7 +237,6 @@
                         $counter = 0;
                         echo "<ol class='carousel-indicators'>";
                         echo "<li data-target='#carouselExampleIndicators' data-slide-to='0' class='active'></li>";
-                        //echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"{$i}\"></li>";
                         for ($i=1; $i<$result->num_rows; $i++) {
                             echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"{$i}\"></li>";
                         }
@@ -264,11 +263,11 @@
                             echo "  </div>";
                         if ($result->num_rows > 1) {
                             echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
-                            echo "    <span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                            echo "    <span class='fa fa-angle-left arrow'  aria-hidden='true'></span>";
                             echo "    <span class='sr-only'>Previous</span>";
                             echo "</a>";
                             echo "<a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>";
-                            echo "    <span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                            echo "    <span class='fa fa-angle-right arrow'  aria-hidden='true'></span>";
                             echo "    <span class='sr-only'>Next</span>";
                             echo "</a>";
                         }
