@@ -24,304 +24,328 @@
     include('etc/config.php');
     $conn = mysqli_connect($server, $user, $password, $db);
     ?>
-    <div class='container'>
-        <div class='stat-container'>
-            <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
-            <?php
-                $sql = "SELECT * FROM `beers`";
-                $result = $conn->query($sql);
-                $allElementCount = $result->num_rows;
-                function getAllBreweries($conn)
-                {
-                    $data = array();
-                    $sql = "SELECT * FROM `breweries`";
+    <div class="outer">
+        <div class='container'>
+            <div class='stat-container'>
+                <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
+                <?php
+                    $sql = "SELECT * FROM `beers`";
                     $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            array_push($data, $row['name']);
-                        }
-                    } 
-                    return $data;
-                }
-                $allBrewieres = getAllBreweries($conn);
-                $dataPoints = array();
-                $allBeerArray=array();
-                for ($i=0; $i<count($allBrewieres); $i++){
-                    $sql = "SELECT * FROM `beers` WHERE brewery='{$allBrewieres[$i]}'";
-                    $result = $conn->query($sql);
-                    $beerCount = $result->num_rows;
-                    $percentageBeer = $beerCount / $allElementCount * 100; 
-                    $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
-                    array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
-                }
-            ?>
-            <script>
-                window.onload = function beer() {
-                var chart = new CanvasJS.Chart("chartContainerBeer", {
-                    animationEnabled: true,
-                    backgroundColor: "transparent",
-                    title:{
-                        text: "Brewery stats"
-                    },
-                    data: [{
-                        type: "pie",
-                        indexLabel: "{y}",
-                        yValueFormatString: "#,##0.00\"%\"",
-                        indexLabelPlacement: "inside",
-                        indexLabelFontColor: "#FFFFFFFF",
-                       
-                        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-                chart.render();
-            }
-            function onClick(e) {
-                var data = e.dataPoint.label.toLowerCase().replace(' ', '_');
-                data.toLowerCase();
-                data.replace(' ', '_');
-                console.log(typeof(data));
-                console.log(data);
-
-                /* if (e.dataPoint.type=="beer") {
-                    window.location.href='../brewery/action/showAction.php?id='+data;
-                } */
-            }
-            </script>
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        </div>
-        <div class="main">
-            
-            <script>
-                var breweryFilter;
-                var countryFilter;
-                var yearFilter;
-                var search;
-
-                function brewerySet(breweryFilter) {
-                    this.breweryFilter = breweryFilter;
-                }
-
-                function countrySet(countryFilter) {
-                    this.countryFilter = countryFilter;
-                }
-
-                function yearSet(yearFilter) {
-                    this.yearFilter = yearFilter;
-                }
-
-                function searchFunction(search) {
-                    this.search = search
-                }
-
-                function submit() {
-                    window.location.href = "index.php?search=" + search + "&brewery=" + breweryFilter + "&country=" +
-                        countryFilter + "&year=" + yearFilter;
-                }
-                search = "undefined";
-            </script>
-
-            <?php
-
-            error_reporting(0);
-            $search    = $_GET["search"];
-            $breweryId = $_GET["brewery"];
-            $countryId = $_GET["country"];
-            $year      = $_GET["year"];
-
-            $searchCheck  = $_GET['search-checkbox'];
-            $breweryCheck = $_GET['brewery-checkbox'];
-            $countryCheck = $_GET['country-checkbox'];
-            $yearCheck    = $_GET['year-checkbox'];
-
-            /* echo "<pre>";
-            var_dump(array( "searchbox"  => $_GET['search-checkbox'],
-                            "brewerybox" => $_GET['brewery-checkbox'], 
-                            "countrybox" => $_GET['country-checkbox'],
-                            "yearbox"    => $_GET['year-checkbox']));
-            echo "</pre>"; */
-
-            if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on") {
-                $sql = "SELECT * FROM `beers` ORDER BY RAND()";
-            }
-
-             if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck != "on") { //brewery
-                $sql = "SELECT * FROM beers 
-                LEFT JOIN breweries ON breweries.name = beers.brewery 
-                WHERE breweries.id = {$breweryId}";
-            }
-            if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck == "on") { //country   
-                $sql = "SELECT * FROM beers 
-                LEFT JOIN countries ON countries.name = beers.country 
-                WHERE countries.id = {$countryId}";
-            }
-            if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck == "on") { //year
-               
-                $sql = "SELECT * FROM beers 
-                WHERE beers.production_date = {$year}";
-            }
-            if ($breweryCheck == "on" && $countryCheck == "on" && $yearCheck != "on") { //brewery country
-               
-                $sql = "SELECT * FROM beers 
-                LEFT JOIN countries ON countries.name = beers.country 
-                LEFT JOIN breweries ON breweries.name = beers.brewery 
-                WHERE countries.id = {$countryId} AND breweries.id = {$breweryId}";
-            }
-            if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck == "on") { //brewery year
-                
-                $sql = "SELECT * FROM beers 
-                LEFT JOIN breweries ON breweries.name = beers.brewery 
-                WHERE beers.production_date='{$year}' AND breweries.id = {$breweryId}";
-            }
-            if ($breweryCheck != "on" && $countryCheck == "on" && $yearCheck == "on") { //country year
-                
-                $sql = "SELECT * FROM beers 
-                LEFT JOIN countries ON countries.name = beers.country 
-                WHERE countries.id = {$countryId} AND beers.production_date = {$year}";
-            }
-            if ($breweryCheck == "on" && $countryCheck == "on" && $yearCheck == "on") { //all
-                
-                $sql = "SELECT * FROM beers 
-                LEFT JOIN countries ON countries.name = beers.country 
-                LEFT JOIN breweries ON breweries.name = beers.brewery 
-                WHERE countries.id = {$countryId} AND breweries.id = {$breweryId} AND beers.production_date = {$year}";
-            }
-
-            if ($searchCheck == "on") {
-                
-                $sql = "SELECT * FROM beers 
-                WHERE beers.beer_name 
-                LIKE '%{$search}%'";
-            } 
-            /* if (!isset($searchCheck)) {
-                $sql = "SELECT * FROM `beers` ORDER BY RAND()";
-            } */
-
-            if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on" && $searchCheck != "on") { //all
-                
-                $sql = "SELECT * FROM `beers` ORDER BY RAND() LIMIT 1";
-            }
-            $result = $conn->query($sql);
-            
-
-            if (!$result = $conn->query($sql)) {
-                echo "Error: " . $conn->error;
-            } else {
-                if ($result->num_rows > 0) {
-                    echo "<div id=\"carouselExampleControls\" class=\"carousel slide\" data-ride=\"carousel\">";
-                    echo "  <div class=\"carousel-inner\">";
-                    $counter = 0;
-                    while ($row = $result->fetch_assoc()) {
-                        $name = ucfirst(str_replace('_', ' ', $row['beer_name']));
-                        $brewery = ucfirst(str_replace('_', ' ', $row['brewery']));
-                        if ($counter == 0) {
-                            echo "    <div class=\"carousel-item active\">";
-                            $counter++;
-                        } else {
-                            echo "    <div class=\"carousel-item\">";
-                        }
-                        echo "    <h2>{$name}</h2>";
-                        echo "    <a>Brewery: {$brewery}<br>";
-                        echo "    Country of origin: {$row["country"]}<br>";
-                        echo "    Date of production: {$row["production_date"]}</a><br>";
-                        echo "    <img src={$row["img_src"]} width='480' height='360'onerror=\"this.onerror=null; this.src='resources/error.png'; style=' filter: brightness(0%)'\">";
-                        echo "    </div>";
+                    $allElementCount = $result->num_rows;
+                    function getAllBreweries($conn)
+                    {
+                        $data = array();
+                        $sql = "SELECT * FROM `breweries`";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                array_push($data, $row['name']);
+                            }
+                        } 
+                        return $data;
                     }
-                   /*   */
-                        echo "  </div>";
-                    if ($result->num_rows > 1) {
-                        echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
-                        echo "    <span class='carousel-control-prev-icon' aria-hidden='true'></span>";
-                        echo "    <span class='sr-only'>Previous</span>";
-                        echo "</a>";
-                        echo "<a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>";
-                        echo "    <span class='carousel-control-next-icon' aria-hidden='true'></span>";
-                        echo "    <span class='sr-only'>Next</span>";
-                        echo "</a>";
+                    $allBrewieres = getAllBreweries($conn);
+                    $dataPoints = array();
+                    $allBeerArray=array();
+                    for ($i=0; $i<count($allBrewieres); $i++){
+                        $sql = "SELECT * FROM `beers` WHERE brewery='{$allBrewieres[$i]}'";
+                        $result = $conn->query($sql);
+                        $beerCount = $result->num_rows;
+                        $percentageBeer = $beerCount / $allElementCount * 100; 
+                        $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
+                        array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
                     }
-                        echo "</div>";
-                    /*  */
+                ?>
+                <script>
+                    window.onload = function beer() {
+                    var chart = new CanvasJS.Chart("chartContainerBeer", {
+                        animationEnabled: true,
+                        backgroundColor: "transparent",
+                        title:{
+                            text: "Brewery stats"
+                        },
+                        data: [{
+                            type: "pie",
+                            indexLabel: "{y}",
+                            yValueFormatString: "#,##0.00\"%\"",
+                            indexLabelPlacement: "inside",
+                            indexLabelFontColor: "#FFFFFFFF",
+                        
+                            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                        }]
+                    });
+                    chart.render();
+                }
+                function onClick(e) {
+                    var data = e.dataPoint.label.toLowerCase().replace(' ', '_');
+                    data.toLowerCase();
+                    data.replace(' ', '_');
+                    console.log(typeof(data));
+                    console.log(data);
+
+                    /* if (e.dataPoint.type=="beer") {
+                        window.location.href='../brewery/action/showAction.php?id='+data;
+                    } */
+                }
+                </script>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            </div>
+            <div class="main">
+                
+                <script>
+                    var breweryFilter;
+                    var countryFilter;
+                    var yearFilter;
+                    var search;
+
+                    function brewerySet(breweryFilter) {
+                        this.breweryFilter = breweryFilter;
+                    }
+
+                    function countrySet(countryFilter) {
+                        this.countryFilter = countryFilter;
+                    }
+
+                    function yearSet(yearFilter) {
+                        this.yearFilter = yearFilter;
+                    }
+
+                    function searchFunction(search) {
+                        this.search = search
+                    }
+
+                    function submit() {
+                        window.location.href = "index.php?search=" + search + "&brewery=" + breweryFilter + "&country=" +
+                            countryFilter + "&year=" + yearFilter;
+                    }
+                    search = "undefined";
+                    function searchSet()
+                    {
+                        document.querySelector("body > div > div > div.search-container > div > form > input.check.search-checkbox").checked = true
+                    }
+                    function brewerySet()
+                    {
+                        document.querySelector("body > div > div > div.search-container > div > form > input.check.brewery-checkbox").checked = true
+                    }
+                    function countrySet()
+                    {
+                        document.querySelector("body > div > div > div.search-container > div > form > input.check.country-checkbox").checked = true
+                    }
+                    function yearSet()
+                    {
+                        document.querySelector("body > div > div > div.search-container > div > form > input.check.year-checkbox").checked = true
+                    }
+                </script>
+
+                <?php
+
+                error_reporting(0);
+                $search    = $_GET["search"];
+                $breweryId = $_GET["brewery"];
+                $countryId = $_GET["country"];
+                $year      = $_GET["year"];
+
+                $searchCheck  = $_GET['search-checkbox'];
+                $breweryCheck = $_GET['brewery-checkbox'];
+                $countryCheck = $_GET['country-checkbox'];
+                $yearCheck    = $_GET['year-checkbox'];
+
+                /* echo "<pre>";
+                var_dump(array( "searchbox"  => $_GET['search-checkbox'],
+                                "brewerybox" => $_GET['brewery-checkbox'], 
+                                "countrybox" => $_GET['country-checkbox'],
+                                "yearbox"    => $_GET['year-checkbox']));
+                echo "</pre>"; */
+
+                if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on") {
+                    $sql = "SELECT * FROM `beers` ORDER BY RAND()";
+                }
+
+                if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck != "on") { //brewery
+                    $sql = "SELECT * FROM beers 
+                    LEFT JOIN breweries ON breweries.name = beers.brewery 
+                    WHERE breweries.id = {$breweryId}";
+                }
+                if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck == "on") { //country   
+                    $sql = "SELECT * FROM beers 
+                    LEFT JOIN countries ON countries.name = beers.country 
+                    WHERE countries.id = {$countryId}";
+                }
+                if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck == "on") { //year
+                
+                    $sql = "SELECT * FROM beers 
+                    WHERE beers.production_date = {$year}";
+                }
+                if ($breweryCheck == "on" && $countryCheck == "on" && $yearCheck != "on") { //brewery country
+                
+                    $sql = "SELECT * FROM beers 
+                    LEFT JOIN countries ON countries.name = beers.country 
+                    LEFT JOIN breweries ON breweries.name = beers.brewery 
+                    WHERE countries.id = {$countryId} AND breweries.id = {$breweryId}";
+                }
+                if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck == "on") { //brewery year
                     
+                    $sql = "SELECT * FROM beers 
+                    LEFT JOIN breweries ON breweries.name = beers.brewery 
+                    WHERE beers.production_date='{$year}' AND breweries.id = {$breweryId}";
+                }
+                if ($breweryCheck != "on" && $countryCheck == "on" && $yearCheck == "on") { //country year
+                    
+                    $sql = "SELECT * FROM beers 
+                    LEFT JOIN countries ON countries.name = beers.country 
+                    WHERE countries.id = {$countryId} AND beers.production_date = {$year}";
+                }
+                if ($breweryCheck == "on" && $countryCheck == "on" && $yearCheck == "on") { //all
+                    
+                    $sql = "SELECT * FROM beers 
+                    LEFT JOIN countries ON countries.name = beers.country 
+                    LEFT JOIN breweries ON breweries.name = beers.brewery 
+                    WHERE countries.id = {$countryId} AND breweries.id = {$breweryId} AND beers.production_date = {$year}";
+                }
+
+                if ($searchCheck == "on") {
+                    
+                    $sql = "SELECT * FROM beers 
+                    WHERE beers.beer_name 
+                    LIKE '%{$search}%'";
                 } 
-            }
-            
-            ?>
-            <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
-        
-        </div>
-        <div class="search-container ">
-            <div class='filter-bar'>
-            <form action="index.php" method='get'>
-                <input type='text' placeholder="Search" class='form-input search' name='search'/><br>
-                <input class="check search-checkbox" type="checkbox" name="search-checkbox" />
+                /* if (!isset($searchCheck)) {
+                    $sql = "SELECT * FROM `beers` ORDER BY RAND()";
+                } */
+
+                if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on" && $searchCheck != "on") { //all
+                    
+                    $sql = "SELECT * FROM `beers` ORDER BY RAND() LIMIT 1";
+                }
+                $result = $conn->query($sql);
                 
-                <select name='brewery' class='form-input brewery'>
-                        <?php 
-                            $sql = "SELECT id, name FROM breweries";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows == 0) {
-                                echo  "<option>empty</option>";
+
+                if (!$result = $conn->query($sql)) {
+                    echo "Error: " . $conn->error;
+                } else {
+                    if ($result->num_rows > 0) {
+                        echo "<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">";
+                        $counter = 0;
+                        echo "<ol class='carousel-indicators'>";
+                        echo "<li data-target='#carouselExampleIndicators' data-slide-to='0' class='active'></li>";
+                        //echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"{$i}\"></li>";
+                        for ($i=1; $i<2; $i++) {
+                            echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"{$i}\"></li>";
+                        }
+                        echo "</ol><br>"; 
+                        echo "  <div class=\"carousel-inner\">";
+                        
+                        while ($row = $result->fetch_assoc()) {
+                            $name = ucfirst(str_replace('_', ' ', $row['beer_name']));
+                            $brewery = ucfirst(str_replace('_', ' ', $row['brewery']));
+                            if ($counter == 0) {
+                                echo "    <div class=\"carousel-item active\">";
+                                $counter++;
+                            } else {
+                                echo "    <div class=\"carousel-item\">";
                             }
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    $name = str_replace('_', ' ', ucfirst($row['name']));
-                                    echo  "<option onclick=brewerySet({$row["id"]}) value={$row["id"]}>{$name}</option>";
+                            echo "    <h2>{$name}</h2>";
+                            echo "    <a>Brewery: {$brewery}<br>";
+                            echo "    Country of origin: {$row["country"]}<br>";
+                            echo "    Date of production: {$row["production_date"]}</a><br>";
+                            echo "    <img src={$row["img_src"]} width='480' height='350'onerror=\"this.onerror=null; this.src='resources/error.png'; style=' filter: brightness(0%)'\">";
+                            echo "    </div>";
+                        }
+                    /*   */
+                            echo "  </div>";
+                        if ($result->num_rows > 1) {
+                            echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
+                            echo "    <span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                            echo "    <span class='sr-only'>Previous</span>";
+                            echo "</a>";
+                            echo "<a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>";
+                            echo "    <span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                            echo "    <span class='sr-only'>Next</span>";
+                            echo "</a>";
+                        }
+                            echo "</div>";
+                        /*  */
+                        
+                    } 
+                }
+                
+                ?>
+                <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
+            
+            </div>
+            <div class="search-container ">
+                <div class='filter-bar'>
+                <form action="index.php" method='get'>
+                    <input type='text' placeholder="Search" class='form-input search' name='search' onclick="searchSet()"/><br>
+                    <input class="check search-checkbox" type="checkbox" name="search-checkbox" />
+                    
+                    <select name='brewery' class='form-input brewery' onclick="brewerySet()">
+                            <?php 
+                                $sql = "SELECT id, name FROM breweries";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows == 0) {
+                                    echo  "<option>empty</option>";
                                 }
-                            }
-                        ?>
-                </select>
-                <input class="check brewery-checkbox" type="checkbox" name="brewery-checkbox" />
-                                        
-                <select name='country' class='form-input country'>
-                                <?php 
-                                    $sql = "SELECT country FROM `beers`";
-                                    $result = $conn->query($sql);
-                                    $coutryArray=array();
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            array_push($coutryArray, $row['country']);
-                                        }
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $name = str_replace('_', ' ', ucfirst($row['name']));
+                                        echo  "<option onclick=brewerySet({$row["id"]}) value={$row["id"]}>{$name}</option>";
                                     }
-                                    $uniqueCountries = array_unique($coutryArray);
-                                    $sql = "SELECT id, name FROM countries";
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            for ($i=0; $i<count($uniqueCountries); $i++) {
-                                                if ($row['name'] == $uniqueCountries[$i]) {
-                                                    echo  "<option onclick=countrySet({$row["id"]}) value={$row["id"]}>{$row["name"]}</option>";
+                                }
+                            ?>
+                    </select>
+                    <input class="check brewery-checkbox" type="checkbox" name="brewery-checkbox" />
+                                            
+                    <select name='country' class='form-input country' onclick="countrySet()">
+                                    <?php 
+                                        $sql = "SELECT country FROM `beers`";
+                                        $result = $conn->query($sql);
+                                        $coutryArray=array();
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                array_push($coutryArray, $row['country']);
+                                            }
+                                        }
+                                        $uniqueCountries = array_unique($coutryArray);
+                                        $sql = "SELECT id, name FROM countries";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                for ($i=0; $i<count($uniqueCountries); $i++) {
+                                                    if ($row['name'] == $uniqueCountries[$i]) {
+                                                        echo  "<option onclick=countrySet({$row["id"]}) value={$row["id"]}>{$row["name"]}</option>";
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
-                                ?>
-                </select>
-                <input class="check country-checkbox" type="checkbox" name="country-checkbox" />
+                                    ?>
+                    </select>
+                    <input class="check country-checkbox" type="checkbox" name="country-checkbox" />
 
-                <select name='year' class='form-input year'>
-                        <?php
-                            $idCounter = 1;
-                            for ($i = 2020; $i >= 1950; $i--) {
-                                echo "<option onclick=yearSet({$i}) value={$idCounter}>{$i}</option>";
-                            }
-                        ?>
-                </select>
-                <input class="check year-checkbox" type="checkbox" name="year-checkbox" />
-                            
-        
-                
-                
-               
-                
-                <input type='submit' value='search' class='form-input submit'/>
-            </form>
+                    <select name='year' class='form-input year' onclick="yearSet()">
+                            <?php
+                                $idCounter = 1;
+                                for ($i = 2020; $i >= 1970; $i--) {
+                                    echo "<option onclick=yearSet({$i}) value={$idCounter}>{$i}</option>";
+                                }
+                            ?>
+                    </select>
+                    <input class="check year-checkbox" type="checkbox" name="year-checkbox" />
+                    
+                    <input type='submit' value='SEARCH' class='form-input submit'/>
+                </form>
+                </div>
             </div>
         </div>
-        
     </div>
     <!--    $search = $_GET["search"];
             $breweryId = $_GET["brewery"];
             $countryId = $_GET["country"];
             $year = $_GET["year"]; -->
+    <script>
+        
+        
+    </script>
     
 </body>
 </html>

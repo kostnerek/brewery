@@ -7,10 +7,11 @@ body {
     border-radius: .25rem;
     width: 50%;
     height: 100%;
-    margin-left: 10%;
+    /* margin-left: 10%; */
     background: linear-gradient(#DB2B39, #29335c);
     text-align: center;
 }
+
 
 
 #override div {
@@ -34,30 +35,29 @@ body {
     margin-bottom: 50%;
 }
 
+.outer{
+    width: 100%;
+    display:flex;
+    margin-top: 10%;
+}
+
 .container{
-    margin-top: 5%;
     display: inline-flex;
-    margin-left: 12%;
     margin-right: auto;
     height: 500px;
 }
 
 .stat-container{
-    opacity: 0;
+    opacity: 0; 
     color: black;
     font-size: 60px;
     height: 500px;
     width: 250px;
     margin-bottom: auto;
-    margin-right: auto;
     display: inline-flex;
-
     background: linear-gradient(#DB2B39, #29335c);
     border-radius: .25rem;
-    
-    
-    margin-right: -15%;
-
+    border-top-right-radius: 0px;
 }
 .stat-container:hover{
     opacity:1;
@@ -65,6 +65,9 @@ body {
     animation-duration: 0.2s;
     position: relative;
     z-index: 100;
+}
+.stat-container:hover + .main{
+    border-top-left-radius: 0px;
 }
 
 .check {
@@ -75,9 +78,7 @@ body {
     top: -2px;
     left: -15px;
 }
-.search-checkbox{    
 
-}
 .brewery-checkbox{    
     top: -47px;
 }
@@ -88,12 +89,6 @@ body {
     top: -134px;
 }
 
-table{
-    border: solid 1px black
-}
-tr td{
-    border: 1px solid black;
-}
 
 
 @keyframes slide-left {
@@ -102,13 +97,13 @@ tr td{
     10% {left: 25px;}
     20% {left: 20px;}
     30% {left: 15px;}
-    40% {left: 10px;}
-    50% {left: 5px;}
-    60% {left: 4px;}
-    70% {left: 3px;}
-    80% {left: 2px;}
-    90% {left: 1px;}
-    100%{left: 0px;}
+    40% {left: 13px;}
+    50% {left: 7px;}
+    60% {left: 6px;}
+    70% {left: 5px;}
+    80% {left: 4px;}
+    90% {left: 3px;}
+    100%{left: 2px;}
 }
 
 .search-container {
@@ -119,7 +114,7 @@ tr td{
     width: 250px;
     margin-top: auto;
     margin-bottom: auto;
-    margin-right: auto;
+    /* margin-right: auto; */
     display: inline-flex;
     
 }
@@ -135,7 +130,6 @@ tr td{
 .filter-bar{
     background: linear-gradient(#DB2B39, #29335c);
     border-radius: .25rem;
-    /*border: 2px solid BLACK;*/
     height: 500px;
     margin-left: -50px;
 }
@@ -180,18 +174,113 @@ tr td{
 }
 
 
-@media screen and (max-width: 1220px){
+@media screen and (max-width: 1240px){
+    body{
+        overflow: visible;
+    }
     .container{
-        display: inline-flex;
+        display: flex;
+        flex-direction: column;
         margin-left: auto;
-        width: 90%;
-        margin-left: 10%;
+        width: 100%;
     }
     .main{
+        height: 900px;
         width: 90%;
+        margin-left: 5%;
     }
-    .arrow{
-        width: 10%;
+    .outer{
+        margin-top: 5%;
+    }
+    .stat-container{
+        display: none;
+    }
+    .stat-container:hover{
+        display: none;
+    }
+
+    .container>.search-container{
+        opacity:1;
+        width: 100%;
+        margin-top: -5px;
+        /* background: linear-gradient( transparent,#DB2B39); */
+    }
+    .filter-bar {
+        background: linear-gradient( transparent,#DB2B39);
+        margin: 0;
+        margin-left: 0px;
+        width: 90%;
+        margin-left: 5%;
+    }
+    .filter-bar > form {
+        margin-left: 18%;
+        margin-top: 20%;
+    }
+    .container>.search-container:hover{
+        opacity: 1;
+        animation-name: none;
+        /* background: linear-gradient( transparent,#DB2B39); */
+    }
+    img{
+        width: 600px;
+        height: 400px;
+    }
+   
+    input.check{
+        display: none;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        line-height: 60px;
+        width:90%;
+        
+    }
+    input.form-input,  select.form-input{
+        /* margin-bottom: 10px; */
+        position: inherit;
+        background-color: #DB2B39;
+        border: 0px;
+        border: 2px solid black;
+        /* border-radius: 0.5em; */
+    }
+
+    select.form-input{
+        border-top: 0px;
+        height: 60px;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: 5px;
+        
+    }
+    input.search{
+        left: 0px;
+        border-top-left-radius: 0.5em;
+        border-top-right-radius: 0.5em;
+    }
+    input.submit{
+        border-top: 0px;
+        left: 0px;
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+    }
+
+    /* .search{
+
+    } */
+    .brewery{
+        top:0px;
+    }
+    .country{
+        bottom: 0px;
+    }
+    .year{
+        bottom: 0px;
     }
 }
 @media screen and (max-width: 720px){
