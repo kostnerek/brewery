@@ -25,8 +25,8 @@
     $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="outer">
-        <div class='container'>
-            <div class='stat-container'>
+        <div class='container' >
+            <div class='stat-container' id="stat-cont">
                 <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
                 <?php
                     $sql = "SELECT * FROM `beers`";
@@ -229,7 +229,7 @@
                         echo "<ol class='carousel-indicators'>";
                         echo "<li data-target='#carouselExampleIndicators' data-slide-to='0' class='active'></li>";
                         //echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"{$i}\"></li>";
-                        for ($i=1; $i<2; $i++) {
+                        for ($i=1; $i<$result->num_rows; $i++) {
                             echo "<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"{$i}\"></li>";
                         }
                         echo "</ol><br>"; 
@@ -273,7 +273,7 @@
                 <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
             
             </div>
-            <div class="search-container ">
+            <div class="search-container" id="search-cont">
                 <div class='filter-bar'>
                 <form action="index.php" method='get'>
                     <input type='text' placeholder="Search" class='form-input search' name='search' onclick="searchSet()"/><br>
@@ -343,8 +343,10 @@
             $countryId = $_GET["country"];
             $year = $_GET["year"]; -->
     <script>
-        
-        
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        document.getElementById('stat-cont').style.opacity = 1;
+        document.getElementById('search-cont').style.opacity = 1;
+        }
     </script>
     
 </body>

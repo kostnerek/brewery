@@ -283,6 +283,15 @@ body {
         bottom: 0px;
     }
 }
-@media screen and (max-width: 720px){
-
+@media screen and (max-width: 770px){
+    img{
+        width: 400px;
+        height: 300px;
+    }
+}
+@media screen and (max-width: 470px){
+    img{
+        width: 300px;
+        height: 250px;
+    }
 }
