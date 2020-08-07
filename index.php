@@ -12,6 +12,7 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/ico" href="etc/favicon.ico">
     <link rel="stylesheet" href="resources/css/main.css">
@@ -57,7 +58,8 @@
             <div class='stat-container' id="stat-cont">
                 <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
                 <script>
-                    window.onload = function beer() {
+                    
+                    /* window.onload = */ function beer() {
                     var chart = new CanvasJS.Chart("chartContainerBeer", {
                         animationEnabled: true,
                         backgroundColor: "transparent",
@@ -91,7 +93,7 @@
                     } */
                 }
                 </script>
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                
             </div>
             <div class="main">
                 
@@ -283,7 +285,10 @@
             <div class='cloned-stat-container' id="stat-cont-cloned">
                 <div id="chartContainerBeer-cloned" style="height: 370px; width: 70%;margin-left: 15%;margin-top: -45px;"></div>
                 <script>
-                    window.onload = function beer() {
+                    if (window.screen.height < 720 && window.screen.width < 1220) {
+                        beers()
+                    }
+                    function beers() {
                     var chart = new CanvasJS.Chart("chartContainerBeer-cloned", {
                         animationEnabled: true,
                         backgroundColor: "transparent",
@@ -317,7 +322,7 @@
                     } */
                 }
                 </script>
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                
             </div>
             <div class="search-container" id="search-cont">
                 <div class='filter-bar'>
@@ -384,24 +389,18 @@
             </div>
         </div>
     </div>
-    <!--    $search = $_GET["search"];
-            $breweryId = $_GET["brewery"];
-            $countryId = $_GET["country"];
-            $year = $_GET["year"]; -->
     <script>
+
+        if (window.screen.height > 720 && window.screen.width > 1220) {
+            beer()
+        }
+        else {
+            beers();
+        }
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         document.getElementById('stat-cont').style.opacity = 1;
         document.getElementById('search-cont').style.opacity = 1;
         }
-        var res = [window.screen.availHeight,
-        window.screen.availWidth];
-        console.log(res);
-        //width x height
-        var resBig      = [1240,750];
-        var resSmall    = [1000, 750];
-        var resSmallest = [750, 750];
-
-
     </script>
     
 </body>

@@ -5,12 +5,18 @@ body {
 .cloned-stat-container{
     display: none;
 }
+.canvasjs-chart-credit{
+    display: none;
+}
+/* div#chartContainerBeer-cloned{
+    display: none;
+} */
+
 
 .main {
     border-radius: .25rem;
     width: 50%;
     height: 100%;
-    /* margin-left: 10%; */
     background: linear-gradient(#DB2B39, #29335c);
     text-align: center;
 }
