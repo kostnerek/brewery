@@ -1,7 +1,7 @@
 <?php 
 /* session_start(); */
 if ($_SESSION['logged']!=true) {
-    header("Location: ../admin.php");
+    echo "<meta http-equiv=\"refresh\" content=\"0;url=../admin.php\">";
 }
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
 <?php 
-/* session_start(); */
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
                                     $_SESSION['logged'] = true;
                                     $_SESSION['username'] = $username;
                                     $_SESSION['group'] = $row['group'];
-                                    header('Location: list/list.php');
+                                    echo "<meta http-equiv=\"refresh\" content=\"0;url=list/list.php\">";
                                     exit();
                                 }
                             }
