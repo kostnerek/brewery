@@ -49,8 +49,14 @@
             $beerCount = $result->num_rows;
             $percentageBeer = $beerCount / $allElementCount * 100; 
             $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
-            array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
+
+            $beerArray = array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer");
+            
+            array_push($dataPoints, $beerArray);
         }
+        usort($dataPoints, function ($item1, $item2) {
+            return $item1['count'] <=> $item2['count'];
+        });
     ?>
 
     <div class="outer">
@@ -59,7 +65,7 @@
                 <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
                 <script>
                     
-                    /* window.onload = */ function beer() {
+                    function beer() {
                     var chart = new CanvasJS.Chart("chartContainerBeer", {
                         animationEnabled: true,
                         backgroundColor: "transparent",
@@ -70,27 +76,16 @@
                             type: "pie",
                             exploded: false,
                             explodeOnClick: false,
-                            indexLabel: "{label} - {y}",
-                            toolTipContent: "{label} - {count}",
+                            indexLabel: "{label} - {y} - {count}", 
+                            toolTipContent: "{label} - {count} - {y}",
                             yValueFormatString: "#,##0.00\"%\"",
-                            indexLabelPlacement: "inside",
+                            indexLabelPlacement: "inside", 
                             indexLabelFontColor: "#FFFFFFFF",
-                        
+                            indexLabelFontSize: 0,
                             dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
                         }]
                     });
                     chart.render();
-                }
-                function onClick(e) {
-                    var data = e.dataPoint.label.toLowerCase().replace(' ', '_');
-                    data.toLowerCase();
-                    data.replace(' ', '_');
-                    console.log(typeof(data));
-                    console.log(data);
-
-                    /* if (e.dataPoint.type=="beer") {
-                        window.location.href='../brewery/action/showAction.php?id='+data;
-                    } */
                 }
                 </script>
                 
@@ -155,15 +150,9 @@
                 $countryCheck = $_GET['country-checkbox'];
                 $yearCheck    = $_GET['year-checkbox'];
 
-                /* echo "<pre>";
-                var_dump(array( "searchbox"  => $_GET['search-checkbox'],
-                                "brewerybox" => $_GET['brewery-checkbox'], 
-                                "countrybox" => $_GET['country-checkbox'],
-                                "yearbox"    => $_GET['year-checkbox']));
-                echo "</pre>"; */
-
                 if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on") {
                     $sql = "SELECT * FROM `beers` ORDER BY RAND()";
+                    
                 }
 
                 if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck != "on") { //brewery
@@ -171,7 +160,8 @@
                     LEFT JOIN breweries ON breweries.name = beers.brewery 
                     WHERE breweries.id = {$breweryId}";
                 }
-                if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck == "on") { //country   
+                if ($breweryCheck != "on" && $countryCheck == "on" && $yearCheck != "on") { //country   
+                    
                     $sql = "SELECT * FROM beers 
                     LEFT JOIN countries ON countries.name = beers.country 
                     WHERE countries.id = {$countryId}";
@@ -214,9 +204,6 @@
                     WHERE beers.beer_name 
                     LIKE '%{$search}%'";
                 } 
-                /* if (!isset($searchCheck)) {
-                    $sql = "SELECT * FROM `beers` ORDER BY RAND()";
-                } */
 
                 if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on" && $searchCheck != "on") { //all
                     
@@ -224,7 +211,6 @@
                 }
                 $result = $conn->query($sql);
                 
-
                 if (!$result = $conn->query($sql)) {
                     echo "Error: " . $conn->error;
                 } else {
@@ -259,7 +245,6 @@
                             echo "    <img src={$row["img_src"]} width='480' height='350'onerror=\"this.onerror=null; this.src='resources/error.png'; style=' filter: brightness(0%)'\">";
                             echo "    </div>";
                         }
-                    /*   */
                             echo "  </div>";
                         if ($result->num_rows > 1) {
                             echo "<a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>";
@@ -298,27 +283,16 @@
                             type: "pie",
                             exploded: false,
                             explodeOnClick: false,
-                            indexLabel: "{label} - {y}",
-                            toolTipContent: "{label} - {count}",
+                            indexLabel: "{label} - {y} - {count}", 
+                            toolTipContent: "{label} - {count} - {y}",
                             yValueFormatString: "#,##0.00\"%\"",
-                            indexLabelPlacement: "inside",
+                            indexLabelPlacement: "inside", 
                             indexLabelFontColor: "#FFFFFFFF",
-                        
+                            indexLabelFontSize: 0,
                             dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
                         }]
                     });
                     chart.render();
-                }
-                function onClick(e) {
-                    var data = e.dataPoint.label.toLowerCase().replace(' ', '_');
-                    data.toLowerCase();
-                    data.replace(' ', '_');
-                    console.log(typeof(data));
-                    console.log(data);
-
-                    /* if (e.dataPoint.type=="beer") {
-                        window.location.href='../brewery/action/showAction.php?id='+data;
-                    } */
                 }
                 </script>
                 
@@ -356,20 +330,26 @@
                                                 array_push($coutryArray, $row['country']);
                                             }
                                         }
-                                        $uniqueCountries = array_unique($coutryArray);
-                                        $sql = "SELECT id, name FROM countries";
-                                        $result = $conn->query($sql);
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                for ($i=0; $i<count($uniqueCountries); $i++) {
-                                                    if ($row['name'] == $uniqueCountries[$i]) {
-                                                        echo  "<option onclick=countrySet({$row["id"]}) value={$row["id"]}>{$row["name"]}</option>";
-                                                    }
+                                        $uniqueCountries = array_values(array_unique($coutryArray));
+
+                                        
+                                        for ($i=0; $i<count($uniqueCountries); $i++) {
+                                        
+                                            $sql = "SELECT id, name FROM countries WHERE name='{$uniqueCountries[$i]}'";
+                                            $result = $conn->query($sql);
+                                               
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo  "<option onclick=countrySet({$row["id"]}) value={$row["id"]}>{$row["name"]}</option>";
                                                 }
                                             }
                                         }
+
+                                        
+                                        
                                     ?>
                     </select>
+                    
                     <input class="check country-checkbox" type="checkbox" name="country-checkbox" />
 
                     <select name='year' class='form-input year' onclick="yearSet()">

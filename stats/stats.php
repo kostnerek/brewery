@@ -72,6 +72,9 @@
                             $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
                             array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
                         }
+                        usort($dataPoints, function ($item1, $item2) {
+                            return $item1['count'] <=> $item2['count'];
+                        });
                     break;
                     }
                 case "country":
@@ -99,7 +102,9 @@
                             $percentageCountry = $value / $allEntriesCount * 100;
                             array_push($dataPoints, array("label"=>"{$key}", "y"=>"{$percentageCountry}", "count"=>"{$value}", "type"=>"country"));
                         }
-
+                        usort($dataPoints, function ($item1, $item2) {
+                            return $item1['count'] <=> $item2['count'];
+                        });
                     break;
                     }
             }
@@ -138,9 +143,6 @@
             if (e.dataPoint.type=="beer") {
                 window.location.href='../brewery/action/showAction.php?id='+data;
             }
-
-            
-           // alert(data);
 	    }
 
     </script>
