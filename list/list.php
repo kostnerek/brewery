@@ -1,5 +1,5 @@
 <?php 
-session_start();
+/* session_start(); */
 if ($_SESSION['logged']!=true) {
     header("Location: ../admin.php");
 }
