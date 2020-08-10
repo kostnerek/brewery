@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -44,9 +44,12 @@ session_start();
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 if ($username == $row['username'] && md5($password) == $row['password']) {
-                                    $_COOKIE['logged'] = true;
+                                    setcookie('logged', true);
+                                    setcookie('username', md5($username));
+                                    setcookie('group', $row['group']);
+                                    /* $_COOKIE['logged'] = true;
                                     $_COOKIE['username'] = $username;
-                                    $_COOKIE['group'] = $row['group'];
+                                    $_COOKIE['group'] = $row['group']; */
                                     echo "<meta http-equiv=\"refresh\" content=\"0;url=list/list.php\">";
                                     exit();
                                 }
