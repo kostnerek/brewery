@@ -1,4 +1,9 @@
-
+<?php 
+session_start();
+if ($_SESSION['logged']!=true) {
+    header("Location: ../admin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +22,9 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/system.css">
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>System</title>
 </head>
 
@@ -27,13 +34,14 @@
         $conn = mysqli_connect($server, $user, $password, $db);
     ?>
     <div class="center">
-        <form action="post/addPost.php" method="POST" id="main-form" enctype="multipart/form-data">
+       
             <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn" onclick="window.location.href='system.php'">System</button>
                 <button type="button" class="btn" onclick="window.location.href='import/import.php'">Import</button>
                 <button type="button" class="btn" onclick="window.location.href='export/export.php'">Export</button>
+                <button type="button" class="btn" onclick="window.location.href='settings/settings.php'">Settings</button>
                 <button type="button" class="btn" onclick="window.location.href='../list/list.php'">List</button>
-                
+                <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"></button>
             </div>
             <h3>Add new beer</h3>
             <?php
@@ -43,57 +51,59 @@
                     }
                 }
             ?>
-
-            <input class="form-control" type="text" name="beer_name" placeholder="Beer name">
-            <select id="country" class="custom-select" name="country">
-                <?php
-                    $sql = "SELECT id, name FROM countries";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            echo  "<option value={$row["name"]}>{$row["name"]}</option>";
-                        }
-                    } 
-                ?>
-            </select></br>
-            <label>New brewery?</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="option" onclick="brewerySet(1)" id="exampleRadios1"
-                    value="1" checked>
-                <label class="form-check-label" for="exampleRadios1">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="option" onclick="brewerySet(0)" id="exampleRadios2"
-                    value="0">
-                <label class="form-check-label" for="exampleRadios2">No</label>
-            </div>
-            <div class="input-group">
-                <input style="display:block" type="text" class="form-control" name="breweriesOne" id="newBrewery"
-                    value="Enter new brewery" onclick="this.value=''">
-                <select style="display:none" id="breweries" class="custom-select" name="breweries">
+        <div class='system'> 
+            <form action="post/addPost.php" method="POST" id="main-form" enctype="multipart/form-data">
+                <input class="form-control" type="text" name="beer_name" placeholder="Beer name">
+                <select id="country" class="custom-select" name="country">
                     <?php
-                        $sql = "SELECT id, name FROM breweries";
+                        $sql = "SELECT id, name FROM countries";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                $name = str_replace('_',' ',ucfirst($row['name']));
-                                echo  "<option value={$row["name"]}>{$name}</option>";
+                                echo  "<option value={$row["name"]}>{$row["name"]}</option>";
                             }
                         } 
                     ?>
-                </select>
-                <select name="date" class="custom-select">
-                    <?php 
-                    $idCounter=1;
-                    for ($i=2020; $i>=1950; $i--) {
-                        echo "<option onclick=yearSet({$i}) value={$i}>{$i}</option>"; 
-                    }
-                ?>
-                </select>
-            </div>
-            <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' type="file" name="file">
-            <input style="border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px" type="submit" value="Send" name="submit">
-        </form>
+                </select></br>
+                <label>New brewery?</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="option" onclick="brewerySet(1)" id="exampleRadios1"
+                        value="1" checked>
+                    <label class="form-check-label" for="exampleRadios1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="option" onclick="brewerySet(0)" id="exampleRadios2"
+                        value="0">
+                    <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+                <div class="input-group">
+                    <input style="display:block" type="text" class="form-control" name="breweriesOne" id="newBrewery"
+                        value="Enter new brewery" onclick="this.value=''">
+                    <select style="display:none" id="breweries" class="custom-select" name="breweries">
+                        <?php
+                            $sql = "SELECT id, name FROM breweries";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    $name = str_replace('_',' ',ucfirst($row['name']));
+                                    echo  "<option value={$row["name"]}>{$name}</option>";
+                                }
+                            } 
+                        ?>
+                    </select>
+                    <select name="date" class="custom-select">
+                        <?php 
+                        $idCounter=1;
+                        for ($i=2020; $i>=1950; $i--) {
+                            echo "<option onclick=yearSet({$i}) value={$i}>{$i}</option>"; 
+                        }
+                    ?>
+                    </select>
+                </div>
+                <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' type="file" name="file">
+                <input style="border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px" type="submit" value="Send" name="submit">
+            </form>
+        </div>
     </div>
     <script>
         window.onload = brewerySet(1);

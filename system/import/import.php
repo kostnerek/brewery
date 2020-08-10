@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if ($_SESSION['logged']!=true) {
+    header("Location: ../../admin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +23,7 @@
     </script>
     <link rel="stylesheet" href="../../resources/css/upload.css">
     <link rel="icon" type="image/ico" href="../../etc/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Import</title>
 </head>
 
@@ -28,6 +35,7 @@
                 <button type="button" class="btn" onclick="window.location.href='../../list/list.php'">List</button>
                 <button type="button" class="btn" onclick="window.location.href='../../brewery/brewery.php'">Brewery</button>
                 <button type="button" class="btn" onclick="window.location.href='../../stats/stats.php?select=beers'">Stats</button>
+                <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../../logout.php'"></button>
             </div>
             <form action="action/importAction.php" method='POST' enctype="multipart/form-data">
                 <?php 
