@@ -44,9 +44,9 @@ session_start();
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 if ($username == $row['username'] && md5($password) == $row['password']) {
-                                    $_SESSION['logged'] = true;
-                                    $_SESSION['username'] = $username;
-                                    $_SESSION['group'] = $row['group'];
+                                    $_COOKIE['logged'] = true;
+                                    $_COOKIE['username'] = $username;
+                                    $_COOKIE['group'] = $row['group'];
                                     echo "<meta http-equiv=\"refresh\" content=\"0;url=list/list.php\">";
                                     exit();
                                 }

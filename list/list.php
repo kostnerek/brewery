@@ -1,6 +1,6 @@
 <?php 
 /* session_start(); */
-if ($_SESSION['logged']!=true) {
+if ($_COOKIE['logged']!=true) {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=../admin.php\">";
 }
 ?>
