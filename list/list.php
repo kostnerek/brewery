@@ -41,7 +41,7 @@ if ($_COOKIE['logged']!=true) {
             <button type="button" class="btn" onclick="window.location.href='../brewery/brewery.php'">Brewery</button>
             <button type="button" class="btn"
                 onclick="window.location.href='../stats/stats.php?select=beers'">Stats</button>
-            <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"></button>
+            <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"><?php echo $_COOKIE['username']?></button>
         </div>
         <h3>List of all beers</h3>
         <table id='main'>

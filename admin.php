@@ -29,7 +29,7 @@
     <div class="center">
         <form action="admin.php" method="post" >
             <input type='text' name='username' placeholder="username" required>
-            <input type='password' name='password' placeholder="password" required><br>
+            <input style='border-bottom: 1px solid black' type='password' name='password' placeholder="password" required><br>
             <?php 
                 //error_reporting(0);
                 include('etc/config.php');
@@ -44,10 +44,10 @@
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 if ($username == $row['username'] && md5($password) == $row['password']) {
-
-                                    echo "<meta http-equiv=\"refresh\" content=\"0;url=login.php\">";
-                                    
-                                    exit();
+                                    $v1=$username;
+                                    $v2=$row['group'];
+                                
+                                    echo "<meta http-equiv=\"refresh\" content=\"0;url=login.php?u={$v1}&g={$v2}\">";
                                 }
                             }
                         } 
@@ -55,7 +55,7 @@
                     }
                 }
             ?>
-            <input type='submit' value='login'>
+            <input type='submit' value='login' style='z-index: -10; position: inherit;'>
         </form>
     </div>
 </body>

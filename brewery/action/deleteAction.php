@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_COOKIE['logged']!=true) {
+if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
     header("Location: ../../admin.php");
 }
 ?>
