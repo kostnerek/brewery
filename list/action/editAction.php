@@ -55,7 +55,7 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
 
 
     <div class="center">
-        <form action="../post/editPost.php" method="POST" id="main-form" enctype="multipart/form-data">
+        
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn" onclick="window.location.href='../../system/system.php'">System</button>
                 <button type="button" class="btn" onclick="window.location.href='../list.php'">List</button>
@@ -81,6 +81,8 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
                             while($row = $result->fetch_assoc()) {
                                 $countryOption = $row['country'];
                                 $breweryOption = $row['brewery'];
+                                $imgSrc = $row['img_src'];
+                                $idOption = $row['id'];
                                 echo  "<td>{$row['id']}</td>";
                                 echo  "<td>{$row['beer_name']}</td>";
                                 echo  "<td>{$row['brewery']}</td>";
@@ -88,14 +90,19 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
                                 echo  "<td>{$row['production_date']}</td>";
                                 $stSlice = substr($row['img_src'],0,14);
                                 $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
-                                echo "<td>{$stSlice}<br>{$ndSlice}</td>";
+                                 
+                                echo "<form method='post' action='imgShowAction.php'>";
+                                echo "  <td><button class='action' name='img_src' type='submit' value='{$imgSrc}'>{$stSlice}<br>{$ndSlice}</td>";
+                                echo "</form>";
+            
+                                
                             }
                         } 
 
                     ?>
                 </tr>
             </table>
-
+            <form action="../post/editPost.php" method="POST" id="main-form" enctype="multipart/form-data">
             <input class="form-control" type="text" name="beer_name" value="<?php echo $beerName?>" onclick="this.value=''">
             <select id="country" class="custom-select" name="country">
                 <?php
@@ -165,7 +172,8 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
                 <label class="form-check-label" for="exampleRadios2">No</label>
             </div>
 
-            <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px; display: none' id='file'  type="file" name="file"><br>
+            
+          <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px; display: none' id='file'  type="file" name="file"><br>
             <input style='color: black; border: 2px black solid; background-color: #861821; margin-top:1%; margin-bottom:1%; border-radius:10px' type="submit" value="Send" name="submit">
         </form>
     </div>
