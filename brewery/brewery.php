@@ -31,72 +31,6 @@ if ($_COOKIE['logged']!=true) {
     <?php 
         include('../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
-
-        $sql = "SELECT * FROM `beers`";
-        $result = $conn->query($sql);
-
-        $sql = "SELECT * FROM `breweries`";
-        $breweries = $conn->query($sql);
-
-        $beerArray=[];
-        $breweriesArray=[];
-        
-        if ($breweries->num_rows > 0) {//brewery array
-            while($row = $breweries->fetch_assoc()) {
-                array_push($breweriesArray, $row['name']);
-            }
-        }
-        if ($result->num_rows > 0) {//beer array
-            while($row = $result->fetch_assoc()) {
-                if (in_array($row['brewery'], $breweriesArray)) {
-                    unset($breweriesArray[array_search($row['brewery'], $breweriesArray)]);
-                }
-            }
-        }
-
-        $breweriesArray = array_merge($breweriesArray);
-
-        if (!empty($breweriesArray)) {
-            for ( $i = 0; $i < count($breweriesArray); $i++) {
-                if (is_dir('../resources/img/'.$breweriesArray[$i])) {
-                    if (is_dir_empty('../resources/img/'.$breweriesArray[$i])) {
-                        rmdir('../resources/img/'.$breweriesArray[$i]);
-                    }
-                    else {
-                        deleteDir('resources/img/'.$breweriesArray[$i]);
-                    }
-                }
-                $sql = "DELETE FROM `breweries` WHERE name='{$breweriesArray[$i]}'";
-                $conn->query($sql);
-            }
-        }
-
-        function deleteDir($dirPath) {
-            if (! is_dir($dirPath)) {
-                throw new InvalidArgumentException("$dirPath must be a directory");
-            }
-            if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
-                $dirPath .= '/';
-            }
-            $files = glob($dirPath . '*', GLOB_MARK);
-            foreach ($files as $file) {
-                if (is_dir($file)) {
-                    deleteDir($file);
-                } else {
-                    unlink($file);
-                }
-            }
-            rmdir($dirPath);
-        }
-
-        function is_dir_empty($dir) {
-            if (!is_readable($dir)) {
-                return NULL;
-            }
-            else {
-                return (count(scandir($dir)) == 2);
-            }
-        }
     ?>
 
     <div class="center">
@@ -110,49 +44,117 @@ if ($_COOKIE['logged']!=true) {
     <h3>List of all breweries</h3>
     <table id='main'>
         <tr>
-            <td>ID</td>
-            <td>NAME</td>
-            <td>NUMBER OF BEERS</td>
-            <td colspan='2'>ACTION</td>
+            <?php 
+                echo "<form method='post' action='brewery.php'>";
+
+                echo "<th>           
+                        <button value='id_up'   type='submit' name='sort'class='fa sort fa-arrow-up'></button>
+                        <button value='id_down' type='submit' name='sort'class='fa sort fa-arrow-down'></button></th>";
+                echo "<th>NAME       
+                        <button value='name_up'   type='submit' name='sort'class='fa sort fa-arrow-up'></button>
+                        <button value='name_down' type='submit' name='sort'class='fa sort fa-arrow-down'></button></th>";
+                echo "<th>NUMBER OF BEERS      
+                        <button value='number_up'   type='submit' name='sort'class='fa sort fa-arrow-up'></button>
+                        <button value='number_down' type='submit' name='sort'class='fa sort fa-arrow-down'></button></th>";
+                echo "</form>";
+            ?>
+            <th colspan='2' style='border:0;'>ACTION</th>
         </tr>
         <?php
-            if (!isset($_POST['sort'])) {
-                $sql = "SELECT * FROM `breweries`";
-            }
+            
+            $sql = "SELECT * FROM `breweries`";
+            
             $result = $conn->query($sql);
+            $resultArray = array();
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td name='{$row['id']}'>{$row['id']}</td>";
-                    echo "<td>
-                            <form action='action/showAction.php' method='post'>
-                                <button class='action' value='{$row['name']}' type='submit' name='id'>{$row['name']}</button>
-                            </form>
-                          </td>";
-
-                    echo "<td>";
-                    echo countBeers($row['name'], $conn);
-                    echo "</td>";
-
-                    echo "<td>
-                            <form action='action/editAction.php' method='post'>
-                                <button style='color: black; font-size: 36px;' class='action fa' value='{$row['id']}' type='submit' name='id'>&#xf044;</button>
-                            </form>
-                        </td>";
-                    echo "<td>
-                            <form action='action/deleteAction.php' method='post'>
-                                <button style='color: black; font-size: 36px;' class='action fa'  value='{$row['id']}' type='submit' name='id'>&#xf00d;</button>
-                            </form>
-                        </td>";
-                    echo "</tr>";
-                    echo "</form>";
+                    array_push($resultArray, array(
+                                'id'=>$row['id'],
+                                'name'=>$row['name'],
+                                'number'=>countBeers($row['name'], $conn)));
                 }
             } 
-
             function countBeers($name, $conn) {
                 $sql = "SELECT * FROM `beers` WHERE brewery='{$name}'";
                 $result = $conn->query($sql);
                 return $result->num_rows;
+            }
+
+            if (isset($_POST['sort'])) {
+                switch($_POST['sort']){
+                    case 'id_up':
+                        {
+                            usort($resultArray, function ($item1, $item2) {
+                                return $item1['id'] <=> $item2['id'];
+                            });
+                            break;
+                        }
+                    case 'id_down':
+                        {
+                            usort($resultArray, function ($item1, $item2) {
+                                return $item2['id'] <=> $item1['id'];
+                            });
+                            break;
+                        }
+                    case 'name_up':
+                        {
+                            usort($resultArray, function ($item1, $item2) {
+                                return $item1['name'] <=> $item2['name'];
+                            });
+                            break;
+                        }
+                    case 'name_down':
+                        {
+                            usort($resultArray, function ($item1, $item2) {
+                                return $item2['name'] <=> $item1['name'];
+                            });
+                            break;
+                        }
+                    case 'number_up':
+                        {
+                            usort($resultArray, function ($item1, $item2) {
+                                return $item1['number'] <=> $item2['number'];
+                            });
+                            break;
+                        }
+                    case 'number_down':
+                        {
+                            usort($resultArray, function ($item1, $item2) {
+                                return $item2['number'] <=> $item1['number'];
+                            });
+                            break;
+                        }
+                }
+            }
+            
+            /* echo "<pre>";
+            var_dump($resultArray[0]['id']);
+            die(); */
+
+            for ($i=0; $i<count($resultArray); $i++) {
+                    echo "<tr>";
+                    echo "<td name='{$resultArray[$i]['id']}'>{$resultArray[$i]['id']}</td>";
+                    echo "<td>
+                            <form action='action/showAction.php' method='post'>
+                                <button class='action' value='{$resultArray[$i]['name']}' type='submit' name='id'>{$resultArray[$i]['name']}</button>
+                            </form>
+                          </td>";
+
+                    echo "<td>";
+                    echo countBeers($resultArray[$i]['name'], $conn);
+                    echo "</td>";
+
+                    echo "<td>
+                            <form action='action/editAction.php' method='post'>
+                                <button style='color: black; font-size: 36px;' class='action fa' value='{$resultArray[$i]['id']}' type='submit' name='id'>&#xf044;</button>
+                            </form>
+                        </td>";
+                    echo "<td>
+                            <form action='action/deleteAction.php' method='post'>
+                                <button style='color: black; font-size: 36px;' class='action fa'  value='{$resultArray[$i]['id']}' type='submit' name='id'>&#xf00d;</button>
+                            </form>
+                        </td>";
+                    echo "</tr>";
             }
 
         ?>

@@ -36,6 +36,8 @@ table th {
 
 table {
     width: 100%;
+    border-left: 0;
+    border-right:0;
 }
 
 td {

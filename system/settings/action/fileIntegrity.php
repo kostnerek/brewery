@@ -42,21 +42,24 @@
         </div>
     <table>
         <tr>
-            <td><b>BEER NAME</b></td>
-            <td><b>BREWERY</b></td>
-            <td><b>IMAGE ERROR</b></td>
-            <td><b class='fa fa-photo' style="font-size: 25px;"></b></td>
+            <th colspan="3"><h3>BEERS WITHOUT PHOTO</h3></th>
+        </tr>
+        <tr>
+            <th>BEER NAME</th>
+            <th>BREWERY</th>
+            <th><b class='fa fa-photo' style="font-size: 25px; color:black;"></b></th>
         </tr>
         <?php 
+            $counter=0;
             $sql = "SELECT * FROM beers";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                while($row = $result->fetch_assoc()) {
                    echo "<tr>";
                    if(!file_exists('../../../'.$row['img_src'])) {
+                       $counter++;
                        echo "<td>{$row['beer_name']}</td>";
                        echo "<td>{$row['brewery']}</td>";
-                       echo "<td>error</td>";
                        echo "<td>";
                        echo "<form action='../../../list/action/editAction.php' method='post'/>";
                        echo "<button style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
@@ -68,6 +71,9 @@
                    echo "</tr>";
                }
             } 
+            if ($counter==0) {
+                echo "<tr><td colspan='3' style='font-size:25px'><B>Everything ok</B></td></tr>";
+            }
         ?>
     </table>
 
