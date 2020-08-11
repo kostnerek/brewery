@@ -79,6 +79,8 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
+                                $countryOption = $row['country'];
+                                $breweryOption = $row['brewery'];
                                 echo  "<td>{$row['id']}</td>";
                                 echo  "<td>{$row['beer_name']}</td>";
                                 echo  "<td>{$row['brewery']}</td>";
@@ -101,7 +103,11 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            echo  "<option value={$row["name"]}>{$row["name"]}</option>";
+                            if( $row['name'] = $countryOption) {
+                                echo  "<option value={$row["name"]} selected='selected'>{$row["name"]}</option>";
+                                continue;
+                            }
+                            echo  "<option value={$row["name"]}>{$row["name"]}</option>"; 
                         }
                     } 
                 ?>
@@ -110,24 +116,27 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
             <label>New brewery?</label>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="option" onclick="brewerySet(1)" id="exampleRadios1"
-                    value="1" checked>
+                    value="1" >
                 <label class="form-check-label" for="exampleRadios1">Yes</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="option" onclick="brewerySet(0)" id="exampleRadios2"
-                    value="0">
+                    value="0" checked>
                 <label class="form-check-label" for="exampleRadios2">No</label>
             </div>
             <div class="input-group">
-                <input style="display:block" type="text" class="form-control" name="breweriesOne" id="newBrewery"
+                <input style="display:none" type="text" class="form-control" name="breweriesOne" id="newBrewery"
                     value="Enter new brewery" onclick="this.value=''">
-                <select style="display:none" id="breweries" class="custom-select" name="breweries">
+                <select style="display:block" id="breweries" class="custom-select" name="breweries">
                     <?php
                         $sql = "SELECT id, name FROM breweries";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 $name = str_replace('_',' ',ucfirst($row['name']));
+                                if ($row['name'] == $breweryOption) {
+                                    echo  "<option value={$row["name"]} selected='selected'>{$name}</option>";
+                                }
                                 echo  "<option value={$row["name"]}>{$name}</option>";
                             }
                         } 
