@@ -15,9 +15,56 @@ input.form-check-input {
 
 }
 
-div.btn-group {
-    width: 100%;
+html body div.center div.btn-group:hover{
+    -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    border: 1px solid black;
+    border-top:0;
+    animation-name: shadow;
+    animation-duration: 0.25s;
+    z-index: 9999999999999;
 }
+
+@keyframes shadow{
+    0%   {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.25);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.25);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.25);
+    }
+    25%  {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.40);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.40);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.40);
+    }
+    50%  {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.70);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.70);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.70);
+    }
+    100% {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    }
+}
+.btn-group > .btn:hover{
+    border: 1px solid black;
+    
+
+    -webkit-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    -moz-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+}
+
+
+div.btn-group {
+    width: 90%;
+    margin-left: 5%;
+    
+    border-bottom: 1px solid black;
+}
+
 
 div.btn-secondary {
     background-color: #DB2B39;

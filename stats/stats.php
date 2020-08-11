@@ -23,6 +23,7 @@ if ($_COOKIE['logged']!=true) {
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/stats.css">
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>Stats</title>
 </head>
@@ -42,9 +43,9 @@ if ($_COOKIE['logged']!=true) {
             <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"></button>
         </div>
         
-        <div class="btn-group statbar" id="stat" role="group" aria-label="Basic example">
-            <button type="button" class="btn" style="border-top: 2px solid black" onclick="window.location.href='stats.php?select=beers'"><b>BEERS</b></button>
-            <button type="button" class="btn" style="border-top: 2px solid black"onclick="window.location.href='stats.php?select=country'"><b>COUNTRIES</b></button>
+        <div class="btn-toolbar stat-bar" role="toolbar" aria-label="Toolbar with button groups">
+            <button type="button" class="btn"  style='width:50%'onclick="window.location.href='stats.php?select=beers'"><b>BEERS</b></button>
+            <button type="button" class="btn"  style='width:50%'onclick="window.location.href='stats.php?select=country'"><b>COUNTRIES</b></button>
         </div>
         <?php
         if (isset($_GET['select'])) {

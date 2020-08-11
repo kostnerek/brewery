@@ -1,0 +1,11 @@
+.stat-bar:hover{
+    -webkit-box-shadow: inset 0px -1px 82px -53px rgba(0,0,0,0);
+    -moz-box-shadow: inset 0px -1px 82px -53px rgba(0,0,0,0);
+    box-shadow: inset 0px -1px 82px -53px rgba(0,0,0,0);
+}
+.stat-bar{
+    width: 50%;
+    margin-left: 25%;
+    border: 0;
+    text-align: center;
+}

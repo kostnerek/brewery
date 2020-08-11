@@ -26,3 +26,8 @@ div.options{
 div.options:last-child{
     border-bottom: 2px black solid ;
 }
+div.options>*:hover{
+    -webkit-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    -moz-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+}
