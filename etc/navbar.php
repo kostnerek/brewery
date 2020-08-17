@@ -35,6 +35,7 @@
     <div class="navbar" role="group" aria-label="Basic example"> 
         <div class="nav-btn system" id="el" href="<?php echo $depth?>system/system.php">System
             <ol class="list">
+                <li id="li1" class="list-element"><a href="<?php echo $depth?>system/system.php">Add</a></li>
                 <li id="li1" class="list-element"><a href="<?php echo $depth?>system/import/import.php">Import</a></li>
                 <li id="li1" class="list-element"><a href="<?php echo $depth?>system/export/export.php">Export</a></li>
                 <li id="li1" class="list-element"><a href="<?php echo $depth?>system/settings/settings.php">Settings</a></li>
