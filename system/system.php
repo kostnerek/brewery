@@ -22,6 +22,7 @@ if ($_COOKIE['logged']!=true) {
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/system.css">
    
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
