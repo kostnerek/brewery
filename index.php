@@ -141,6 +141,7 @@
 
                 error_reporting(0);
                 $search    = $_GET["search"];
+                $search    = str_replace(" ",'_', $search);
                 $breweryId = $_GET["brewery"];
                 $countryId = $_GET["country"];
                 $year      = $_GET["year"];
@@ -152,7 +153,6 @@
 
                 if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on") {
                     $sql = "SELECT * FROM `beers` ORDER BY RAND()";
-                    
                 }
 
                 if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck != "on") { //brewery
@@ -160,17 +160,20 @@
                     LEFT JOIN breweries ON breweries.name = beers.brewery 
                     WHERE breweries.id = {$breweryId}";
                 }
+
                 if ($breweryCheck != "on" && $countryCheck == "on" && $yearCheck != "on") { //country   
                     
                     $sql = "SELECT * FROM beers 
                     LEFT JOIN countries ON countries.name = beers.country 
                     WHERE countries.id = {$countryId}";
                 }
+
                 if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck == "on") { //year
                 
                     $sql = "SELECT * FROM beers 
                     WHERE beers.production_date = {$year}";
                 }
+
                 if ($breweryCheck == "on" && $countryCheck == "on" && $yearCheck != "on") { //brewery country
                 
                     $sql = "SELECT * FROM beers 
@@ -178,18 +181,21 @@
                     LEFT JOIN breweries ON breweries.name = beers.brewery 
                     WHERE countries.id = {$countryId} AND breweries.id = {$breweryId}";
                 }
+
                 if ($breweryCheck == "on" && $countryCheck != "on" && $yearCheck == "on") { //brewery year
                     
                     $sql = "SELECT * FROM beers 
                     LEFT JOIN breweries ON breweries.name = beers.brewery 
                     WHERE beers.production_date='{$year}' AND breweries.id = {$breweryId}";
                 }
+
                 if ($breweryCheck != "on" && $countryCheck == "on" && $yearCheck == "on") { //country year
                     
                     $sql = "SELECT * FROM beers 
                     LEFT JOIN countries ON countries.name = beers.country 
                     WHERE countries.id = {$countryId} AND beers.production_date = {$year}";
                 }
+
                 if ($breweryCheck == "on" && $countryCheck == "on" && $yearCheck == "on") { //all
                     
                     $sql = "SELECT * FROM beers 

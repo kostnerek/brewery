@@ -1,5 +1,4 @@
 <?php 
-/* session_start(); */
 if ($_COOKIE['logged']!=true) {
     echo "<meta http-equiv=\"refresh\" content=\"0;url=../admin.php\">";
 }
@@ -23,6 +22,7 @@ if ($_COOKIE['logged']!=true) {
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/navbar.css">
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>List</title>
 </head>
@@ -31,18 +31,9 @@ if ($_COOKIE['logged']!=true) {
     <?php 
         include('../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
-
-        
     ?>
     <div class="center">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
-            <button type="button" class="btn" onclick="window.location.href='list.php'">List</button>
-            <button type="button" class="btn" onclick="window.location.href='../brewery/brewery.php'">Brewery</button>
-            <button type="button" class="btn"
-                onclick="window.location.href='../stats/stats.php?select=beers'">Stats</button>
-            <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"><?php echo $_COOKIE['username']?></button>
-        </div>
+    <?php include('../etc/navbar.php')?>
         <h3>List of all beers</h3>
         <table id='main'>
             <tr>

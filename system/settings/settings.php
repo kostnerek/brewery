@@ -30,16 +30,7 @@ if ($_COOKIE['logged']!=true) {
 
 <body>
     <div class="center">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn" onclick="window.location.href='../system.php'">System</button>
-            <button type="button" class="btn" onclick="window.location.href='../../list/list.php'">List</button>
-            <button type="button" class="btn"
-                onclick="window.location.href='../../brewery/brewery.php'">Brewery</button>
-            <button type="button" class="btn"
-                onclick="window.location.href='../../stats/stats.php?select=beers'">Stats</button>  
-            <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../../logout.php'"></button>
-            
-        </div>
+    <?php include('../../etc/navbar.php')?>
 
         <div class='options'>
             <button type="button" class="btn1 btn" onclick="window.location.href='action/fileIntegrity.php'">Check file system integrity</button>

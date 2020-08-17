@@ -32,14 +32,7 @@
 
 <body>
     <div class="center">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn" onclick="window.location.href='../../../system.php'">System</button>
-            <button type="button" class="btn" onclick="window.location.href='../../../import/import.php'">Import</button>
-            <button type="button" class="btn" onclick="window.location.href='../../../export/export.php'">Export</button>
-            <button type="button" class="btn" onclick="window.location.href='../../../settings/settings.php'">Settings</button>
-            <button type="button" class="btn" onclick="window.location.href='../../../../list/list.php'">List</button>
-            <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../../../logout.php'"></button>
-        </div>
+    <?php include('../../../../etc/navbar.php')?>
 
         <table>
             <tr>

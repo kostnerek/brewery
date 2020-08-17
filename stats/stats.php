@@ -24,6 +24,7 @@ if ($_COOKIE['logged']!=true) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
     <link rel="stylesheet" href="../resources/css/stats.css">
+    <!-- <link rel="stylesheet" href="../resources/css/navbar.css"> -->
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>Stats</title>
 </head>
@@ -35,13 +36,14 @@ if ($_COOKIE['logged']!=true) {
 
 <body>
     <div class="center">
-        <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
+        <?php include('../etc/navbar.php')?>
+        <!-- <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
             <button type="button" class="btn" onclick="window.location.href='../list/list.php'">List</button>
             <button type="button" class="btn" onclick="window.location.href='../brewery/brewery.php'">Brewery</button>
             <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
             <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"></button>
-        </div>
+        </div> -->
         
         <div class="btn-toolbar stat-bar" role="toolbar" aria-label="Toolbar with button groups">
             <button type="button" class="btn"  style='width:50%'onclick="window.location.href='stats.php?select=beers'"><b>BEERS</b></button>

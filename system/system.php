@@ -22,7 +22,7 @@ if ($_COOKIE['logged']!=true) {
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../resources/css/upload.css">
-    <link rel="stylesheet" href="../resources/css/system.css">
+   
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>System</title>
@@ -35,14 +35,7 @@ if ($_COOKIE['logged']!=true) {
     ?>
     <div class="center">
        
-            <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn" onclick="window.location.href='system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='import/import.php'">Import</button>
-                <button type="button" class="btn" onclick="window.location.href='export/export.php'">Export</button>
-                <button type="button" class="btn" onclick="window.location.href='settings/settings.php'">Settings</button>
-                <button type="button" class="btn" onclick="window.location.href='../list/list.php'">List</button>
-                <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"></button>
-            </div>
+    <?php include('../etc/navbar.php')?>
             <h3>Add new beer</h3>
             <?php
                 if (isset($_GET['error'])) {

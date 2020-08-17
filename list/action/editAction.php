@@ -56,13 +56,7 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
 
     <div class="center">
         
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn" onclick="window.location.href='../../system/system.php'">System</button>
-                <button type="button" class="btn" onclick="window.location.href='../list.php'">List</button>
-                <button type="button" class="btn" onclick="window.location.href='../../brewery/brewery.php'">Brewery</button>
-                <button type="button" class="btn" onclick="window.location.href='../../stats/stats.php?select=beers'">Stats</button>
-                <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../../logout.php'"></button>
-            </div>
+    <?php include('../../etc/navbar.php')?>
 
             <table>
                 <tr>
@@ -110,7 +104,7 @@ if ($_COOKIE['logged']!=true || $_COOKIE['group'] != 'admin') {
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            if( $row['name'] = $countryOption) {
+                            if( $row['name'] == $countryOption) {
                                 echo  "<option value={$row["name"]} selected='selected'>{$row["name"]}</option>";
                                 continue;
                             }
