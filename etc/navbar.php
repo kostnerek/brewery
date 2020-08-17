@@ -11,7 +11,7 @@
 
     function determineSlash($path) 
     {
-        if (strpos($path, '/') != 0) {
+        if (substr_count($path, '/') != 0) {
             return substr_count($path,'/');
         }
         else {
