@@ -9,14 +9,28 @@
         return $d;
     }
 
+    function determineSlash($path) 
+    {
+        if (strpos($path, '/') != 0) {
+            return substr_count($path,'/');
+        }
+        else {
+            return substr_count($path,'\\');
+        }
+    }
+
     $posStart = strpos(getcwd(), $rootDir);
 
     $path = substr(getcwd(), $posStart);
-    $depthCount = substr_count($path,"\\");
+    $depthCount = determineSlash($path);
+
     $depth = setDepth($depthCount);
 
-    var_dump(getcwd());
     
+    /* var_dump($path);
+    var_dump($depthCount);
+    var_dump(getcwd()); */
+
 ?>
 
 <head>
