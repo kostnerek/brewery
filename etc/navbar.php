@@ -27,9 +27,9 @@
     $depth = setDepth($depthCount);
 
     
-    /* var_dump($path);
+    var_dump($path);
     var_dump($depthCount);
-    var_dump(getcwd()); */
+    var_dump(getcwd());
 
 ?>
 
