@@ -14,6 +14,9 @@
     $path = substr(getcwd(), $posStart);
     $depthCount = substr_count($path,"\\");
     $depth = setDepth($depthCount);
+
+    var_dump(getcwd());
+    
 ?>
 
 <head>
