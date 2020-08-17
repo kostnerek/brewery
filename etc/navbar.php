@@ -25,12 +25,6 @@
     $depthCount = determineSlash($path);
 
     $depth = setDepth($depthCount);
-
-    
-    var_dump($path);
-    var_dump($depthCount);
-    var_dump(getcwd());
-
 ?>
 
 <head>
