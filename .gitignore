@@ -1,5 +1,2 @@
 resources/img/*
-etc/backup/*
-etc/info.txt
-etc/favicon.ico
-etc/config.php
+/etc/*
