@@ -24,7 +24,6 @@ if ($_COOKIE['logged']!=true) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
     <link rel="stylesheet" href="../resources/css/stats.css">
-    <!-- <link rel="stylesheet" href="../resources/css/navbar.css"> -->
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>Stats</title>
 </head>
@@ -37,13 +36,6 @@ if ($_COOKIE['logged']!=true) {
 <body>
     <div class="center">
         <?php include('../etc/navbar.php')?>
-        <!-- <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn" onclick="window.location.href='../system/system.php'">System</button>
-            <button type="button" class="btn" onclick="window.location.href='../list/list.php'">List</button>
-            <button type="button" class="btn" onclick="window.location.href='../brewery/brewery.php'">Brewery</button>
-            <button type="button" class="btn" onclick="window.location.href='stats.php?select=beers'">Stats</button>
-            <button type='button' class="btn fa fa-sign-out" style="color: black; font-size:25px; width:1%" onclick="window.location.href='../logout.php'"></button>
-        </div> -->
         
         <div class="btn-toolbar stat-bar" role="toolbar" aria-label="Toolbar with button groups">
             <button type="button" class="btn"  style='width:50%'onclick="window.location.href='stats.php?select=beers'"><b>BEERS</b></button>
@@ -79,9 +71,9 @@ if ($_COOKIE['logged']!=true) {
                             $sql = "SELECT * FROM `beers` WHERE brewery='{$allBrewieres[$i]}'";
                             $result = $conn->query($sql);
                             $beerCount = $result->num_rows;
-                            $percentageBeer = $beerCount / $allElementCount * 100; 
+                            $percentageBeer = round(($beerCount / $allElementCount * 100),2); 
                             $breweryName = ucfirst(str_replace("_"," ",$allBrewieres[$i]));
-                            array_push($dataPoints, array("label"=>"{$breweryName}", "y"=>"{$percentageBeer}", "count"=>"{$beerCount}", "type"=>"beer"));
+                            array_push($dataPoints, array("label"=>"{$breweryName}", "count"=>"{$percentageBeer}", "y"=>"{$beerCount}", "type"=>"beer"));
                         }
                         usort($dataPoints, function ($item1, $item2) {
                             return $item1['count'] <=> $item2['count'];
@@ -110,8 +102,8 @@ if ($_COOKIE['logged']!=true) {
                         }
 
                         foreach ($dataArray as $key => $value) {
-                            $percentageCountry = $value / $allEntriesCount * 100;
-                            array_push($dataPoints, array("label"=>"{$key}", "y"=>"{$percentageCountry}", "count"=>"{$value}", "type"=>"country"));
+                            $percentageCountry = round(($value / $allEntriesCount * 100),2);
+                            array_push($dataPoints, array("label"=>"{$key}", "count"=>"{$percentageCountry}", "y"=>"{$value}", "type"=>"country"));
                         }
                         usort($dataPoints, function ($item1, $item2) {
                             return $item1['count'] <=> $item2['count'];
@@ -135,10 +127,10 @@ if ($_COOKIE['logged']!=true) {
                 animationEnabled: true,
                 backgroundColor: "#DB2B39",
                 data: [{
-                    type: "pie",
+                    type: "bar",
                     click: onClick,
-                    yValueFormatString: "#,##0.00\"%\"",
-                    indexLabel: "{label} - {count}",
+                    yValueFormatString: "#,##0.\"\"",
+                    indexLabel: " {count}%",
                     dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
                     }]
             });

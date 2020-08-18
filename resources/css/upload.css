@@ -6,7 +6,9 @@ td.img_src {
 
     width: 60px;
 }
-
+*{
+    color: black !important;
+}
 
 input.form-check-input {
     text-align: center;

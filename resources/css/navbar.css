@@ -39,6 +39,8 @@ ol{
     -webkit-box-shadow: -3px 37px 53px 7px rgba(0,0,0,0.50);
     -moz-box-shadow: -3px 37px 53px 7px rgba(0,0,0,0.50);
     box-shadow: -3px 37px 53px 7px rgba(0,0,0,0.50);
+    width: 102%;
+    margin-left: -1%;
 }
 
 .list-element{
