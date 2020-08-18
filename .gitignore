@@ -1,3 +1,4 @@
 resources/img/*
-etc/config.php
+
 etc/backup/*
+etc/info.txt
