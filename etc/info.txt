@@ -1,0 +1,133 @@
+navbar:
+
+1. SYSTEM	:system|import|export/list
+2. IMPORT	:system| list |brewery/stats
+3. EXPORT	:system| list |brewery/stats
+4. LIST  	:system| list |brewery/stats
+5. BREWERY	:system| list |brewery/stats
+6. STATS	:system| list |brewery/stats
+
+1. 	system.php 	> posts/addPost.php > list.php
+
+2. 	import.php 	> actions/importAction.php 	> [yes]post/importPost.php > list.php
+											> [no] list.php
+
+3. 	export.php 	> actions/exportAction.php(TODO: should be post) > export.php 
+				> (TODO: [breweryname]>breweryaction/actions/showAction.php)
+
+4. 	list.php 	> [img_src] > actions/imgShowAction.php
+				> [action/edit] 	> actions/editAction.php 	> post/editPost.php 		> list.php	
+																							> (TODO: [breweryname]>breweryaction/actions/showAction.php)
+				> [action/delete] 	> actions/deleteAction.php 	> [yes]actions/deleteAction.php  > list.php
+																> [no] list.php
+																
+5. 	brewery.php	> [name]	> breweryaction/actions/showAction.php > [*] > actions/imgShowAction.php (TODO: [breweryname]>breweryaction/actions/showAction.php)
+				> [action/edit] > breweryaction/actions/editAction.php 	> breweryaction/post/editPost.php
+																		> (TODO: [breweryname]>breweryaction/actions/showAction.php)
+				> [action/delete] > breweryaction/actions/deleteAction.php 	> [yes]breweryaction/actions/deleteAction.php
+																			> [no]brewery.php
+																		
+6. 	stats.php 	>[beer_chart/brewery_name]breweryaction/actions/showAction.php																	
+
+
+
+
+structure: 
+|
+|-> brewery
+	|
+	|-> action
+		|-> deleteAction.php
+		|-> editAction.php
+		|-> showAction.php
+	|-> post
+		|-> editPost.php
+	|-> brewery.php
+|
+|-> etc
+	|-> .gitignore
+	|-> config.php
+	|-> favicon.ico
+|	
+|-> list
+	|-> action
+		|-> deleteAction.php
+		|-> editAction.php
+		|-> imgShowAction.php 
+	|->	post
+		|-> editPost.php
+	|-> list.php
+|	
+|-> resources
+|
+	|-> css
+		|-> (TODO)
+	|-> img
+		|-> [breweries]
+|
+|-> stats
+|
+	|-> stats.php
+|
+|-> system
+|
+	|-> export
+		|-> action
+			|-> exportAction.php
+		|-> export.php
+	|
+	|-> import
+		|->	action
+			|->	importAction.php
+		|->	post
+			|-> importPost.php
+		|->	import.php
+	|
+	|-> post
+		|-> addPost.php
+	|-> system.php
+|
+|-> index.php
+
+
+
+TODO: 
+-enclousure every single element of navbar in folder (correct paths of redirect)
+-css to every element for navbar
+-refactor files
+-look for zombiecode
+-ADD DOCUMENTATION
+
+
+
+CSS => brewery/brewery.php
+CSS => brewery/actions/deleteAction.php
+CSS => brewery/actions/editAction.php
+CSS => brewery/action/actions/showAction.php
+CSS => brewery/post/editPost.php
+
+=> etc/.gitignore
+=> etc/config.php
+=> etc/favicon.ico
+
+CSS => list/list.php
+CSS => list/actions/deleteAction.php
+CSS => list/actions/editAction.php
+CSS => list/action/actions/imgShowAction.php
+CSS => list/post/editPost.php
+
+=> resources/css/main.css
+=> resources/css/upload.css
+=> resources/img
+
+CSS => stats/stats.php
+
+TODO/PATHS CSS => system/export/action/exportAction.php
+CSS => system/export/export.php
+CSS => system/import/action/importAction.php
+CSS => system/import/post/importPost.php
+CSS => system/import/import.php
+PATHS CSS => system/post/addPost.php
+CSS => system/system.php
+
+PATHS CSS => index.php 
