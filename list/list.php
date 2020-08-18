@@ -23,6 +23,7 @@ if ($_COOKIE['logged']!=true) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../resources/css/upload.css">
     <link rel="stylesheet" href="../resources/css/navbar.css">
+    <link rel="stylesheet" href="../resources/css/list.css">
     <link rel="icon" type="image/ico" href="../etc/favicon.ico">
     <title>List</title>
 </head>
@@ -137,7 +138,7 @@ if ($_COOKIE['logged']!=true) {
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td name='{$row['id']}'>{$row['id']}</td>";
-                            echo "<td style='font-size:12px;'>{$row['beer_name']}</td>";
+                            echo "<td class='beer_name'>{$row['beer_name']}</td>";
                             echo "<td>
                                       <form action='../brewery/action/showAction.php' method='post'>
                                           <button class='action' value='{$row['brewery']}' type='submit' name='id'>{$row['brewery']}</button>
