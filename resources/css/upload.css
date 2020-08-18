@@ -1,0 +1,157 @@
+body {
+    background-color: #29335c;
+}
+
+td.img_src {
+
+    width: 60px;
+}
+
+
+input.form-check-input {
+    text-align: center;
+
+}
+
+html body div.center div.btn-group:hover{
+    -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    border: 1px solid black;
+    border-top:0;
+    animation-name: shadow;
+    animation-duration: 0.25s;
+    z-index: 9999999999999;
+}
+
+@keyframes shadow{
+    0%   {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.25);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.25);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.25);
+    }
+    25%  {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.40);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.40);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.40);
+    }
+    50%  {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.70);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.70);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,0.70);
+    }
+    100% {
+        -webkit-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+        -moz-box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+        box-shadow: 0px 30px 152px 15px rgba(0,0,0,1);
+    }
+}
+.btn-group > .btn:hover{
+    border: 1px solid black;
+    
+    -webkit-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    -moz-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+}
+
+
+div.btn-group {
+    width: 90%;
+    margin-left: 5%;
+    
+    border-bottom: 1px solid black;
+}
+
+
+div.btn-secondary {
+    background-color: #DB2B39;
+    border-radius: 0px;
+}
+
+div.btn-secondary:active {
+    background-color: #381013;
+    border-radius: 0px;
+}
+
+
+table th {
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+    border-left: 0;
+    border-right:0;
+}
+
+td {
+    border: 2px solid black;
+}
+
+.hide {
+    display: flex;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+}
+
+.action {
+    background-color: #DB2B39;
+    border: transparent;
+    color: #212529;
+}
+
+div#yesno {
+    background-color: #a1212c;
+    width: 12%;
+    border-radius: 10px;
+    border: 2px black solid;
+    margin-bottom: 10px;
+
+}
+
+.center {
+    text-align: center;
+    background-color: #DB2B39;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10%;
+    border-radius: 10px;
+    border: 5px solid black;
+
+    -webkit-box-shadow: 0px 0px 110px -4px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 110px -4px rgba(0,0,0,1);
+    box-shadow: 0px 0px 110px -4px rgba(0,0,0,1);
+}
+
+button#yesno-btn {
+    width: 100%;
+}
+
+.import {
+    margin-bottom: 5px;
+}
+
+.sort {
+    background-color: #DB2B39;
+    border: transparent;
+    font-weight: 700;
+    color: #212529;
+}
+
+.smallerSrc{
+    font-size: 12px;
+}
+
+div#stat.btn
+{
+    border-top: black 1px solid;
+}
+
+.export{
+    table-layout: fixed;
+}
+
+.export.firstCol{
+    width: 250px;
+}
