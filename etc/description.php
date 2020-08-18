@@ -23,6 +23,7 @@
                 } 
             ?>
         </div>
+        <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
     </div>
 </body>
 </html>
