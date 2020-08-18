@@ -38,6 +38,7 @@ if ($_COOKIE['logged']!=true) {
                         <th>COUNTRY OF ORIGIN</th>
                         <th>PRODUCTION DATE</th>
                         <th>IMG SRC</th>
+                        <th colspan="2">ACTION</th>
                     </tr>
 
                     <?php
@@ -63,7 +64,22 @@ if ($_COOKIE['logged']!=true) {
                                     $stSlice = substr($row['img_src'],0,14);
                                     $ndSlice = substr($row['img_src'],14,strlen($row['img_src']));
                                     echo "<td>$stSlice<br>$ndSlice</td>";
-                                echo "</tr>";
+                                    echo "<td>
+                                            <form action='editAction.php' method='post'>
+                                                <button  style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
+                                                    &#xf044;
+                                                </button>
+                                            </form>
+                                        </td>";
+
+                                    echo "<td>
+                                            <form action='deleteAction.php' method='post'>
+                                                <button style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
+                                                    &#xf00d;
+                                                </button>
+                                            </form>
+                                        </td>";
+                                    echo "</tr>";
                             }
                         } 
                         echo "</table>";

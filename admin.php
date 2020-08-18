@@ -33,7 +33,9 @@
             <?php 
                 //error_reporting(0);
                 include('etc/config.php');
+                include('etc/backup.php');
                 $conn = mysqli_connect($server, $user, $password, $db);
+                $backup = new backup($conn);
             
                 if (isset($_POST['username']) && isset($_POST['password'])) {
                     $username = $_POST['username'];

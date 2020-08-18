@@ -52,10 +52,10 @@ class edit
 
         if ($_POST['photo']==1) {//change photo
             $this->photo = $_POST['photo'];
-        } 
+        } /* 
         else {
             $this->photo = $_POST['photo'];
-        }
+        } */
 
         $this->newImgSrc = "resources/img/".$this->breweryName."/".$this->beerName.".jpg";
 
@@ -115,6 +115,8 @@ class edit
         var_dump($this->checkArray);
     }
        
+    public $brewerySrc;
+
     function editDb()
     {
         $dataToUpdate=array('beer_name'       => null,
@@ -149,9 +151,13 @@ class edit
 
         if (!$this->checkArray['img_src']) {
             $dataToUpdate['img_src'] = $this->newDataArray['img_src'];
+            
         } else {
             $dataToUpdate['img_src'] = $this->oldDataArray['img_src'];
         }
+
+        $this->brewerySrc = $dataToUpdate['brewery'];
+        
 
         var_dump($dataToUpdate);
 
@@ -162,14 +168,13 @@ class edit
                     production_date = '{$dataToUpdate['production_date']}',
                     img_src         = '{$dataToUpdate['img_src']}'
                 WHERE id = '{$this->id}'";
-        echo $sql;
         $this->conn->query($sql);
     }
 
     function postEditDb()
     {
         if ( !$this->checkArray['beer_name']) {
-            rename($this->oldDataArray['img_src'], $this->newDataArray['img_src']);
+            rename('../../'.$this->oldDataArray['img_src'], '../../'.$this->newDataArray['img_src']);
         }
         if ( !$this->checkArray['brewery']) {
 
@@ -177,7 +182,11 @@ class edit
                 mkdir("../../resources/img/".$this->newDataArray['brewery']);
             }
 
-            rename($this->oldDataArray['img_src'], $this->newDataArray['img_src']);
+            rename('../../'.$this->oldDataArray['img_src'], '../../'.$this->newDataArray['img_src']);
+        }
+
+        if ($this->photo == 1) {
+            $this->imgEdit();
         }
     }
 
@@ -198,7 +207,8 @@ class edit
         if(isset($_POST["submit"])) {
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         }
-        rename($target_file, $this->newImgSrc);
+        rename($target_file, '../../'.$this->newImgSrc);
+        var_dump(array($target_file, $this->newImgSrc));
     }
 }
     

@@ -1,3 +1,3 @@
-/resources/img/
-z.php
+resources/img/*
 etc/config.php
+etc/backup/*

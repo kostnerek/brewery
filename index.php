@@ -248,7 +248,7 @@
                             echo "    <a>Brewery: {$brewery}<br>";
                             echo "    Country of origin: {$row["country"]}<br>";
                             echo "    Date of production: {$row["production_date"]}</a><br>";
-                            echo "    <img src={$row["img_src"]} width='480' height='350'onerror=\"this.onerror=null; this.src='resources/error.png'; style=' filter: brightness(0%)'\">";
+                            echo "    <img src={$row["img_src"]} width='480' height='350'onerror=\"this.onerror=null; this.src='etc/error.png'; style=' filter: brightness(0%)'\">";
                             echo "    </div>";
                         }
                             echo "  </div>";
