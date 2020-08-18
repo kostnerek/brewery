@@ -135,7 +135,7 @@ button#yesno-btn {
 }
 
 .sort {
-    background-color: #DB2B39;
+    background-color: transparent;
     border: transparent;
     font-weight: 700;
     color: #212529;

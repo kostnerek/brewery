@@ -37,28 +37,28 @@ if ($_COOKIE['logged']!=true) {
     <?php include('../etc/navbar.php')?>
         <h3>List of all beers</h3><!-- TODO ADD ERRORS FROM SYSTEM/SETTINGS/FILEINTEGRITY -->
         <table id='main'>
-            <tr>
+            <tr >
                 <?php 
                     echo "<form method='post' action='list.php'>";
 
                     echo "<th>           
-                            <button value='id_up'   type='submit' name='sort'class='fa sort fa-arrow-up'></button>
+                            <button value='id_up'   type='submit' name='sort'class='fa sort fa-arrow-up'></button><br>ID<br>
                             <button value='id_down' type='submit' name='sort'class='fa sort fa-arrow-down'></button></th>";
 
-                    echo "<th>BEER 
-                            <button value='beer_name_up'    type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                    echo "<th>
+                            <button value='beer_name_up'    type='submit' name='sort' class='fa sort fa-arrow-up'></button><br>BEER<br> 
                             <button value='beer_name_down'  type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
 
-                    echo "<th>BREWERY
-                            <button value='brewery_up'      type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                    echo "<th>
+                            <button value='brewery_up'      type='submit' name='sort' class='fa sort fa-arrow-up'></button><br>BREWERY<br>
                             <button value='brewery_down'    type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
 
-                    echo "<th>COUNTRY 
-                            <button value='country_up'      type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                    echo "<th>
+                            <button value='country_up'      type='submit' name='sort' class='fa sort fa-arrow-up'></button><br>COUNTRY<br> 
                             <button value='country_down'    type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
 
-                    echo "<th>DATE        
-                            <button value='prodDate_up'     type='submit' name='sort' class='fa sort fa-arrow-up'></button>
+                    echo "<th>
+                            <button value='prodDate_up'     type='submit' name='sort' class='fa sort fa-arrow-up'></button>DATE        
                             <button value='prodDate_down'   type='submit' name='sort' class='fa sort fa-arrow-down'></button></th>";
 
                     echo "<th>IMG SRC</th>";
@@ -138,7 +138,7 @@ if ($_COOKIE['logged']!=true) {
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td name='{$row['id']}'>{$row['id']}</td>";
-                            echo "<td class='beer_name'>{$row['beer_name']}</td>";
+                            echo "<td class='beer_name' value='{$row['beer_name']}'>{$row['beer_name']}</td>";
                             echo "<td>
                                       <form action='../brewery/action/showAction.php' method='post'>
                                           <button class='action' value='{$row['brewery']}' type='submit' name='id'>{$row['brewery']}</button>
@@ -180,5 +180,20 @@ if ($_COOKIE['logged']!=true) {
         </form>
     </div>
 </body>
+<script>
+    window.onload = function setFontSize() {
+        var length = document.getElementsByClassName('beer_name').length
+        for (let i=0; i < length; i++) {
+            var beer = document.getElementsByClassName('beer_name')[i]
+            var beername = beer.textContent;
+
+            if (beername.length <= 22) {
+                beer.style.fontSize = '15px';
+            }
+        }
+        
+    }
+
+</script>
 
 </html>
