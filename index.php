@@ -270,6 +270,7 @@
                 
                 ?>
                 <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
+                <footer class="stamp"><a href='etc/description.php'>Click me to get more info about site!</a></footer>
             
             </div>
             <div class='cloned-stat-container' id="stat-cont-cloned">

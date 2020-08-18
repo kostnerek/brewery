@@ -1,0 +1,33 @@
+form{
+    display: flex;
+    flex-direction: column;
+    width:60%;
+    margin-left: 20%;
+    
+}
+.header{
+    margin-top: 10px;
+}
+.body{
+    height: 150px;
+}
+
+.body, .header, .submit{
+    border: 1px solid black;
+    background-image: linear-gradient(to bottom,#dbdbdb 0,#f5f5f5 100%);
+    margin-bottom: 10px;
+    z-index:1
+}
+.body:focus{
+    outline: 0;
+    -webkit-box-shadow: 0px 0px 117px 12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 117px 12px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 117px 12px rgba(0,0,0,0.75);
+    }
+.header:focus{
+    outline: 0;
+    z-index:1000;
+    -webkit-box-shadow: 0px 42px 125px 20px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 42px 125px 20px rgba(0,0,0,1);
+    box-shadow: 0px 42px 125px 20px rgba(0,0,0,1);
+    }

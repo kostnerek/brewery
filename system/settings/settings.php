@@ -33,9 +33,10 @@ if ($_COOKIE['logged']!=true) {
     <?php include('../../etc/navbar.php')?>
 
         <div class='options'>
-            <button type="button" class="btn1 btn" onclick="window.location.href='action/fileIntegrity.php'">Check file system integrity</button>
-            <button type="button" class="btn1 btn" onclick="window.location.href='action/dbIntegrity.php'">Check database integrity</button>
-            <button type="button" class="btn1 btn" style="border-bottom:0;" onclick="window.location.href='user/manageUsers.php'">Manage users</button>
+            <a class="btn1 btn" href='action/fileIntegrity.php'>Check file system integrity</a>
+            <a class="btn1 btn" href='action/dbIntegrity.php'>Check database integrity</a>
+            <a class="btn1 btn" href='user/manageUsers.php'>Check database integrity</a>
+            <a class="btn1 btn" style="border-bottom:0;" href='action/setDescription.php'>Set page description</a>
         </div>
 
     </div>

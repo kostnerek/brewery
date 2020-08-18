@@ -25,54 +25,32 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../../resources/css/upload.css">
-    <link rel="stylesheet" href="../../../resources/css/settings.css">
+    <link rel="stylesheet" href="../../../resources/css/setDesc.css">
     <link rel="icon" type="image/ico" href="../../../etc/favicon.ico">
-    <title>File Integrity</title>
+    <title>Description</title>
 </head>
 
 <body>
     <div class="center">
     <?php include('../../../etc/navbar.php')?>
-    <table>
-        <tr>
-            <th colspan="3"><h3>BEERS WITHOUT PHOTO</h3></th>
-        </tr>
-        <tr>
-            <th>BEER NAME</th>
-            <th>BREWERY</th>
-            <th><b class='fa fa-photo' style="font-size: 25px; color:black;"></b></th>
-        </tr>
-        <?php 
-            $counter=0;
-            $sql = "SELECT * FROM beers";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-               while($row = $result->fetch_assoc()) {
-                   echo "<tr>";
-                   if(!file_exists('../../../'.$row['img_src'])) {
-                       $counter++;
-                       echo "<td>{$row['beer_name']}</td>";
-                       echo "<td>{$row['brewery']}</td>";
-                       echo "<td>";
-                       echo "<form action='../../../list/action/editAction.php' method='post'/>";
-                       echo "<button style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
-                                 &#xf044;
-                            </button>";
-                       echo "</form>";
-                       echo "</td>";
-                   }
-                   echo "</tr>";
-               }
-            } 
-            if ($counter==0) {
-                echo "<tr><td colspan='3' style='font-size:25px'><B>Everything ok</B></td></tr>";
+    <?php
+        $sql = "SELECT * FROM description";
+        $data = array();
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                array_push($data, $row['header']);
+                array_push($data, $row['body']);
             }
-        ?>
-    </table>
+        } 
+    ?>
+   
+        <form action='../post/descriptionPost.php' method='post'>
+            <input type='text' class='header' name='header' placeholder="<?php echo $data[0]?>">
+            <textarea class='body' name='body' placeholder="<?php echo $data[1]?>"></textarea>
+            <input type='submit' class='submit' name='submit' value='Set description'></input>
+        </form>
 
     </div>
-
-    
-
 </body>
 </html>
