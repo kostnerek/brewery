@@ -125,15 +125,19 @@ if ($_COOKIE['logged']!=true) {
         window.onload = function beer() {
             var chart = new CanvasJS.Chart("chartContainerBeer", {
                 animationEnabled: true,
-                backgroundColor: "#DB2B39",
+                backgroundColor: "transparent",
+                
                 data: [{
-                    type: "bar",
+                    type: "column",
                     click: onClick,
                     yValueFormatString: "#,##0.\"\"",
-                    indexLabel: " {count}%",
+                    fontColor: "transparent",
+                    indexLabel: "",
                     dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
                     }]
             });
+            ctx= document.getElementsByClassName('canvasjs-chart-canvas');
+            ctx.style = "-webkit-tap-highlight-color: transparent;";
             chart.render();
         }
         function onClick(e) {

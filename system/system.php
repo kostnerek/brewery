@@ -79,6 +79,10 @@ if ($_COOKIE['logged']!=true) {
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
+                                    if($row["name"] == "Poland") {
+                                        echo  "<option value={$row["name"]} selected>{$row["name"]}</option>";
+                                        continue;
+                                    }
                                     $name = str_replace('_',' ',ucfirst($row['name']));
                                     echo  "<option value={$row["name"]}>{$name}</option>";
                                 }
