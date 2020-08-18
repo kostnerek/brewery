@@ -1,4 +1,5 @@
 resources/img/*
+!resources/img/.gitkeep 
 etc/config.php/
 etc/backup/*
 etc/info.txt
