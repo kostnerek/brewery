@@ -34,7 +34,7 @@ if ($_COOKIE['logged']!=true) {
     ?>
     <div class="center">
     <?php include('../etc/navbar.php')?>
-        <h3>List of all beers</h3>
+        <h3>List of all beers</h3><!-- TODO ADD ERRORS FROM SYSTEM/SETTINGS/FILEINTEGRITY -->
         <table id='main'>
             <tr>
                 <?php 

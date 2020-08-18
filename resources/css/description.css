@@ -1,0 +1,9 @@
+.main{
+    width: 45%;
+    position: absolute;
+    margin-top: 9.5%;
+    margin-left: 27%;
+}
+*{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}

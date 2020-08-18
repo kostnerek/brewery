@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../../../resources/css/upload.css">
     <link rel="stylesheet" href="../../../resources/css/settings.css">
     <link rel="icon" type="image/ico" href="../../../etc/favicon.ico">
-    <title>Settings</title>
+    <title>DB Integrity</title>
 </head>
 
 <body>
