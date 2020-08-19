@@ -126,11 +126,13 @@ if ($_COOKIE['logged']!=true) {
             var chart = new CanvasJS.Chart("chartContainerBeer", {
                 animationEnabled: true,
                 backgroundColor: "transparent",
-                
+                toolTip:{   
+                    content: "{label}: {y}, {count}%"      
+                },
                 data: [{
                     type: "column",
                     click: onClick,
-                    yValueFormatString: "#,##0.\"\"",
+                    //yValueFormatString: "#,##0.",
                     fontColor: "transparent",
                     indexLabel: "",
                     dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
