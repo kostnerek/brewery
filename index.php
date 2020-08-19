@@ -140,11 +140,12 @@
                 <?php
 
                 error_reporting(0);
-                $search    = $_GET["search"];
-                $search    = str_replace(" ",'_', $search);
-                $breweryId = $_GET["brewery"];
-                $countryId = $_GET["country"];
-                $year      = $_GET["year"];
+                $search      = $_GET["search"];
+                $search      = str_replace(" ",'_', $search);
+                $breweryId   = $_GET["brewery"];
+                $countryId   = $_GET["country"];
+                $year        = $_GET["year"];
+                $description = $_GET["description"];
 
                 $searchCheck  = $_GET['search-checkbox'];
                 $breweryCheck = $_GET['brewery-checkbox'];
@@ -211,20 +212,38 @@
                     LIKE '%{$search}%'";
                 } 
 
-                if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on" && $searchCheck != "on") { //all
+                if ($breweryCheck != "on" && $countryCheck != "on" && $yearCheck != "on" && $searchCheck != "on" && !isset($_GET['description'])) { //all
                     
                     $sql = "SELECT * FROM `beers` ORDER BY RAND() LIMIT 1";
                 }
-                $result = $conn->query($sql);
+
                 
-                if (!$result = $conn->query($sql)) {
+                if ($description != 'show') {
+                    $result = $conn->query($sql);
+                }
+
+                if($description == 'show')
+                {
+                    $sql = "SELECT * FROM description";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<div style='height: 450px; margin-top: 5%; color: black'>";
+                            echo "<h2>".$row['header']."</h2><br>";
+                            echo $row['body'];
+                            echo "</div>";
+                        }
+                    } 
+                }
+
+                if (!$result == $conn->query($sql)) {
                     echo "Error: " . $conn->error;
                 } else {
                     if ($result->num_rows==0) {
-                        echo "<div><img src='resources/error.png' style='filter: brightness(0%)'\"></div>";
+                        echo "<div><img src='etc/error.png' style='filter: brightness(0%)'\"></div>";
                         echo "    ";
                     }
-                    if ($result->num_rows > 0) {
+                    if ($result->num_rows > 0 && $description != 'show') {
                         echo "<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">";
                         $counter = 0;
                         echo "<ol class='carousel-indicators'>";
@@ -263,14 +282,13 @@
                             echo "</a>";
                         }
                             echo "</div>";
-                        /*  */
-                        
                     } 
                 }
-                
                 ?>
+
                 <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
-                <footer class="stamp"><a href='etc/description.php'>Click me to get more info about site!</a></footer>
+
+                <footer class="stamp"><a href='index.php?description=show'>Click to get info about site</a></footer>
             
             </div>
             <div class='cloned-stat-container' id="stat-cont-cloned">
@@ -347,6 +365,10 @@
                                                
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
+                                                    if($row["name"] == "Poland") {
+                                                        echo  "<option onclick=countrySet({$row["id"]}) value={$row["id"]} selected>{$row["name"]}</option>";
+                                                        continue;
+                                                    }
                                                     echo  "<option onclick=countrySet({$row["id"]}) value={$row["id"]}>{$row["name"]}</option>";
                                                 }
                                             }
