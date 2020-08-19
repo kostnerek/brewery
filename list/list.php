@@ -59,18 +59,23 @@ if ($_COOKIE['logged']!=true) {
             var noErrors = <?php echo countFileErrors($conn)?>;
             var system = document.getElementById('header');
             var settings = document.getElementById('settings');
-            console.log(settings);
+        
             if (noErrors>0) {
                 system.classList.add("error");
                 settings.classList.add("error");
                 var notify = document.getElementById('notify');
                 notify.style.display = 'block'
                 notify.innerHTML = noErrors;
-            }
-            
-           
-           
 
+                if (noErrors<=9) {
+                    notify.style.top = '-11px'
+                    notify.style.right = '-11px'
+                    notify.style.padding = '2px 7px 4px 7px';
+                }
+                else{
+                    notify.style.padding = '3px 7px 5px 7px;';
+                }
+            }
         </script>
 
 
