@@ -118,7 +118,7 @@ a, a:hover{
     position: absolute;
     top: -11px;
     right: -12px;
-    padding: 3px 4px 5px 4px;
+    padding: 3px 4px 5px;
     background-color: orangered;
     font-size: 0.65em;
     border-radius: 50%;
