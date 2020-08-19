@@ -17,7 +17,7 @@
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        echo "<h2>".$row['header']."</h2>"."<br>";
+                        echo "<h2>".$row['header']."</h2><br>";
                         echo $row['body'];
                     }
                 } 

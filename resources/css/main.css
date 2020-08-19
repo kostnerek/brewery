@@ -241,7 +241,6 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     .filter-bar {
         background: linear-gradient( transparent,#DB2B39);
         margin: 0;
-        margin-left: 0;
         width: 90%;
         margin-left: 5%;
     }

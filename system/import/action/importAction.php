@@ -34,7 +34,8 @@ if ($_COOKIE['logged']!=true) {
 
             <?php 
                     $filename = $_FILES["file"]["tmp_name"];
-                    if (($h = fopen("{$filename}", "r")) !== FALSE) {
+                    $h = fopen("{$filename}", "r");
+                    if ($h !== FALSE) {
                         while (($data = fgetcsv($h, 1000, ",")) !== FALSE) {
                             $csvData[] = $data;
                         }
