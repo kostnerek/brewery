@@ -203,9 +203,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 
 
 @media screen and (max-width: 1240px){
-    .stamp{
-       /*  display: none; */
-    }
+    
     body{
         overflow: visible;
     }
