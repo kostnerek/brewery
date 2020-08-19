@@ -1,3 +1,50 @@
 .beer_name{
     font-size: calc((12vw - 5.5rem) / 9);
 }
+.error{
+    animation: highlightText 5s infinite !important;
+    font-weight: bolder;
+    font-size: 15px;
+}
+@keyframes highlightText{
+    0%   {
+        font-weight: bolder;
+    }
+    10%  {
+        font-weight: normal;
+    }
+    20%   {
+        font-weight: bolder;
+    }
+    30%  {
+        font-weight: normal;
+    }
+    40%   {
+        font-weight: bolder;
+    }
+    50%  {
+        font-weight: normal;
+    }
+    60%   {
+        font-weight: bolder;
+    }
+    70%  {
+        font-weight: normal;
+    }
+    80%   {
+        font-weight: bolder;
+    }
+    90%  {
+        font-weight: normal;
+    }
+    100%  {
+        font-weight: bolder;
+    }
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 30%;
+    margin-left: 35%;
+}

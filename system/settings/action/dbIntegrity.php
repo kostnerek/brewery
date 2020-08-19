@@ -40,6 +40,8 @@
             <th>ERROR</th>
         </tr>
         <?php
+            error_reporting(0);
+
             $beerArray=array();
             $breweryArray=array();
 
@@ -61,18 +63,53 @@
                    array_push($breweryArray, $row['name']);
                 }
             } 
-            sort($breweryArray);
 
+            $brewerySorted = array_values(array_unique(deleteMultipleEntries($breweryArray)));
+            sort($brewerySorted);
             
-            if (checkForEmptyBreweries($sorted, $breweryArray) && checkForMissingBrewery($sorted, $breweryArray)) {
+            
+
+            if (checkForEmptyBreweries($sorted, $brewerySorted) && checkForMissingBrewery($sorted, $brewerySorted)) {
                 echo "<tr><td colspan='2' style='font-size:25px'><B>Everything ok</B></td></tr>";
             }
+
+            function deleteMultipleEntries($breweryArray)
+            {
+                
+                $array=[];
+                $array = array_count_values($breweryArray);
+
+                /* echo "<pre>"; */
+                
+                foreach ($array as $value=>$key) {
+                    /* var_dump(array($value,$key)); */
+                    if ($key!=1) {
+                        include('../../../etc/config.php');
+                        $conn = mysqli_connect($server, $user, $password, $db);
+
+                        $sql = "SELECT * FROM `breweries` WHERE `name` = '{$value}'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {//brewery array
+                            while($row = $result->fetch_assoc()) {
+                                $sql = "DELETE FROM `breweries` WHERE `id` = '{$row['id']}'";
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                return $breweryArray;
+            }
+            
 
             function checkForEmptyBreweries($beerArray, $breweryArray)
             {
                 $counter=0;
                 for ($i=0; $i<count($breweryArray); $i++) {
+                    
                     if ($breweryArray[$i] != $beerArray[$i]) {
+                        
                         $counter++;
                         if ($counter == 1) {
                             echo "<tr>";

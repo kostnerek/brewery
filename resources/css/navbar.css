@@ -111,3 +111,16 @@ a, a:hover{
     padding-top: 10px;
     font-size: 2rem !important;
 }
+.notify-bubble {
+    display: none;
+    border: 1.5px solid black;
+    color: white !important;
+    position: absolute;
+    top: -11px;
+    right: -12px;
+    padding: 3px 4px 5px 4px;
+    background-color: orangered;
+    font-size: 0.65em;
+    border-radius: 50%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+}

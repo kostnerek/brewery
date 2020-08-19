@@ -32,10 +32,50 @@ if ($_COOKIE['logged']!=true) {
     <?php 
         include('../etc/config.php');
         $conn = mysqli_connect($server, $user, $password, $db);
+
+        function countFileErrors($conn)
+        {
+            $counter=0;
+            $sql = "SELECT * FROM beers";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+               while($row = $result->fetch_assoc()) {
+                    
+                    if(!file_exists('../'.$row['img_src'])) {
+                        $counter++;
+                    }
+                }
+            }
+            return $counter;
+        }
     ?>
+    
+
     <div class="center">
     <?php include('../etc/navbar.php')?>
-        <h3>List of all beers</h3><!-- TODO ADD ERRORS FROM SYSTEM/SETTINGS/FILEINTEGRITY -->
+
+
+        <script>
+            var noErrors = <?php echo countFileErrors($conn)?>;
+            var system = document.getElementById('header');
+            var settings = document.getElementById('settings');
+            console.log(settings);
+            if (noErrors>0) {
+                system.classList.add("error");
+                settings.classList.add("error");
+                var notify = document.getElementById('notify');
+                notify.style.display = 'block'
+                notify.innerHTML = noErrors;
+            }
+            
+           
+           
+
+        </script>
+
+
+        <h3>List of all beers</h3>
+           
         <table id='main'>
             <tr >
                 <?php 
