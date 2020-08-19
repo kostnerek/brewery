@@ -22,12 +22,12 @@ body {
 }
 
 html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide a.carousel-control-prev span.fa.fa-angle-left.arrow{
-    font-size: 70px; 
+    font-size: 70px;
     color:black;
     z-index: 9000220;
 
 }html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide a.carousel-control-next{
-    font-size: 70px; 
+    font-size: 70px;
     color:black;
     z-index: 9000220;
 
@@ -67,7 +67,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 }
 
 .stat-container{
-    opacity: 0; 
+    opacity: 0;
     color: black;
     font-size: 60px;
     height: 500px;
@@ -76,7 +76,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     display: inline-flex;
     background: linear-gradient(#DB2B39, #29335c);
     border-radius: .25rem;
-    border-top-right-radius: 0px;
+    border-top-right-radius: 0;
 }
 .stat-container:hover{
     opacity:1;
@@ -86,7 +86,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     z-index: 100;
 }
 .stat-container:hover + .main{
-    border-top-left-radius: 0px;
+    border-top-left-radius: 0;
 }
 
 .check {
@@ -100,13 +100,13 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 .search-checkbox{
     top:86px;
 }
-.brewery-checkbox{    
+.brewery-checkbox{
     top: 42px;
 }
-.country-checkbox{    
+.country-checkbox{
     top: -3px;
 }
-.year-checkbox{    
+.year-checkbox{
     top: -43px;
 }
 
@@ -142,7 +142,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     opacity:1;
     animation-name: slide-right;
     animation-duration: 0.2s;
-    margin-left: 0px;
+    margin-left: 0;
     z-index: 100;
     position: relative;
 }
@@ -183,9 +183,9 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 }
 html body div.outer div.container div.main div#carouselExampleIndicators.carousel.slide div.carousel-inner div.carousel-item.active img {
     position: inherit;
-    -webkit-box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 70px -18px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0 0 70px -18px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 70px -18px rgba(0,0,0,0.75);
+    box-shadow: 0 0 70px -18px rgba(0,0,0,0.75);
 }
 @keyframes slide-right {
     0%  {margin-left: -30px;}
@@ -198,7 +198,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     70% {margin-left: -3px;}
     80% {margin-left: -2px;}
     90% {margin-left: -1px;}
-    100%{margin-left: 0px;}
+    100%{margin-left: 0;}
 }
 
 
@@ -241,7 +241,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     .filter-bar {
         background: linear-gradient( transparent,#DB2B39);
         margin: 0;
-        margin-left: 0px;
+        margin-left: 0;
         width: 90%;
         margin-left: 5%;
     }
@@ -257,9 +257,9 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     img{
         width: 600px;
         height: 400px;
-        -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0.75);
+        -moz-box-shadow: 0 0 0 0 rgba(0,0,0,0.75);
+        box-shadow: 0 0 0 0 rgba(0,0,0,0.75);
     }
    
     input.check{
@@ -277,13 +277,13 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         /* margin-bottom: 10px; */
         position: inherit;
         background-color: #DB2B39;
-        border: 0px;
+        border: 0;
         border: 2px solid black;
         /* border-radius: 0.5em; */
     }
 
     select.form-input{
-        border-top: 0px;
+        border-top: 0;
         height: 60px;
 
         -webkit-appearance: none;
@@ -295,25 +295,25 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         
     }
     input.search{
-        left: 0px;
+        left: 0;
         border-top-left-radius: 0.5em;
         border-top-right-radius: 0.5em;
     }
     input.submit{
-        border-top: 0px;
-        left: 0px;
+        border-top: 0;
+        left: 0;
         border-bottom-left-radius: 0.5em;
         border-bottom-right-radius: 0.5em;
     }
 
     .brewery{
-        top:0px;
+        top:0;
     }
     .country{
-        bottom: 0px;
+        bottom: 0;
     }
     .year{
-        bottom: 0px;
+        bottom: 0;
     }
 }
 @media screen and (max-width: 770px){
@@ -336,7 +336,3 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
         opacity: 1;
     }
 }
-/*      var resBig      = [1240,750];
-        var resSmall    = [1000, 750];
-        var resSmallest = [750, 750]; 
-*/

@@ -39,7 +39,6 @@ class importAction
             
                 echo "<meta http-equiv=\"refresh\" content=\"0;url=../import.php?error=badcsv\">";
                 exit();
-                die();
             }
             else {
                 continue;

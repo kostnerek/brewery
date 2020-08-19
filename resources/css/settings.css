@@ -10,14 +10,14 @@ div.options{
     border-radius: 0.25rem;
 
     position: inherit;
-    -webkit-box-shadow: -1px 10px 26px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -1px 10px 26px 0px rgba(0,0,0,0.75);
-    box-shadow: -1px 10px 26px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 10px 26px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 10px 26px 0 rgba(0,0,0,0.75);
+    box-shadow: -1px 10px 26px 0 rgba(0,0,0,0.75);
 }
 
 .btn1{
     border-bottom: 1px solid black;
-    border-radius: 0px;
+    border-radius: 0;
     width:90%;
     text-align: center;
     position: relative;
@@ -27,9 +27,9 @@ div.options:last-child{
     border-bottom: 2px black solid ;
 }
 div.options>*:hover{
-    -webkit-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
-    -moz-box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
-    box-shadow: inset 0px 30px 82px -53px rgba(0,0,0,0.61);
+    -webkit-box-shadow: inset 0 30px 82px -53px rgba(0,0,0,0.61);
+    -moz-box-shadow: inset 0 30px 82px -53px rgba(0,0,0,0.61);
+    box-shadow: inset 0 30px 82px -53px rgba(0,0,0,0.61);
 }
 a{
     cursor: pointer;
