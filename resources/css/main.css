@@ -44,7 +44,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 }
 .stamp{
     color: black;
-    font-size: 10px;
+    font-size: 13px;
     background-color: transparent;
     text-align: left;
     text-align: center;
@@ -204,7 +204,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 
 @media screen and (max-width: 1240px){
     .stamp{
-        display: none;
+       /*  display: none; */
     }
     body{
         overflow: visible;
