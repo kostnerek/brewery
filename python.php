@@ -28,12 +28,12 @@
 
     function update($data, $conn)
     {
-        $sql = "UPDATE `data` SET `id`='1',`data`='{$data}' WHERE id=1";
+        $sql = "UPDATE `api` SET `id`='1',`data`='{$data}' WHERE id=1";
         $conn->query($sql);
     }
 
     function response($conn){
-        $sql = "SELECT `data` FROM `data` WHERE id=1";
+        $sql = "SELECT `data` FROM `api` WHERE id=1";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
