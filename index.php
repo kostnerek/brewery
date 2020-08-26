@@ -57,38 +57,22 @@
         usort($dataPoints, function ($item1, $item2) {
             return $item1['count'] <=> $item2['count'];
         });
+        $dataPoints = array_reverse($dataPoints);
+        $newData = array(
+                        'all_elements'=>$allElementCount,
+                        't1'=>array($dataPoints[0]['label'],$dataPoints[0]['count']),
+                        't2'=>array($dataPoints[1]['label'],$dataPoints[1]['count']),
+                        't3'=>array($dataPoints[3]['label'],$dataPoints[2]['count']),
+        );
     ?>
 
     <div class="outer">
         <div class='container' >
             <div class='stat-container' id="stat-cont">
-                <div id="chartContainerBeer" style="height: 470px; width: 100%"></div>
-                <script>
-                    
-                    function beer() {
-                    var chart = new CanvasJS.Chart("chartContainerBeer", {
-                        animationEnabled: true,
-                        backgroundColor: "transparent",
-                        /* title:{
-                            text: "Brewery stats"
-                        }, */
-                        data: [{
-                            type: "pie",
-                            exploded: false,
-                            explodeOnClick: false,
-                            indexLabel: "{label} - {y} - {count}", 
-                            toolTipContent: "{label} - {count} - {y}",
-                            yValueFormatString: "#,##0.00\"%\"",
-                            indexLabelPlacement: "inside", 
-                            indexLabelFontColor: "#FFFFFFFF",
-                            indexLabelFontSize: 0,
-                            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                        }]
-                    });
-                    chart.render();
-                }
-                </script>
-                
+                <h3 class='beer_count'>Beer count: <b><?php echo $newData['all_elements']?></b></h3>
+                <h4>Top 1<br><?php echo $newData['t1'][0]." - <b>".$newData['t1'][1]?></b></h4>
+                <h4>Top 2<br><?php echo $newData['t2'][0]." - <b>".$newData['t2'][1]?></b></h4>
+                <h4>Top 3<br><?php echo $newData['t3'][0]." - <b>".$newData['t3'][1]?></b></h4>        
             </div>
             <div class="main">
                 
@@ -288,39 +272,14 @@
 
                 <footer class="stamp">Made by: Filip Kostecki contact: filip.kostecki00@gmail.com</footer>
 
-                <footer class="stamp"><a href='index.php?description=show'>Click to get info about site</a></footer>
+                <footer class="stamp"><button class='stamp-button' onclick="window.location.href='index.php?description=show'">Click to get info about site</button></footer>
             
             </div>
             <div class='cloned-stat-container' id="stat-cont-cloned">
-                <div id="chartContainerBeer-cloned" style="height: 370px; width: 70%;margin-left: 15%;margin-top: -45px;"></div>
-                <script>
-                    if (window.screen.height < 720 && window.screen.width < 1220) {
-                        beers()
-                    }
-                    function beers() {
-                    var chart = new CanvasJS.Chart("chartContainerBeer-cloned", {
-                        animationEnabled: true,
-                        backgroundColor: "transparent",
-                        /* title:{
-                            text: "Brewery stats"
-                        }, */
-                        data: [{
-                            type: "pie",
-                            exploded: false,
-                            explodeOnClick: false,
-                            indexLabel: "{label} - {y} - {count}", 
-                            toolTipContent: "{label} - {count} - {y}",
-                            yValueFormatString: "#,##0.00\"%\"",
-                            indexLabelPlacement: "inside", 
-                            indexLabelFontColor: "#FFFFFFFF",
-                            indexLabelFontSize: 0,
-                            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                        }]
-                    });
-                    chart.render();
-                }
-                </script>
-                
+                <h3 class='beer_count'>Beer count: <b><?php echo $newData['all_elements']?></b></h3>
+                <h4>Top 1<br><?php echo $newData['t1'][0]." - <b>".$newData['t1'][1]?></b></h4>
+                <h4>Top 2<br><?php echo $newData['t2'][0]." - <b>".$newData['t2'][1]?></b></h4>
+                <h4>Top 3<br><?php echo $newData['t3'][0]." - <b>".$newData['t3'][1]?></b></h4> 
             </div>
             <div class="search-container" id="search-cont">
                 <div class='filter-bar'>

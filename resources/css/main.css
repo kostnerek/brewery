@@ -49,6 +49,19 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     text-align: left;
     text-align: center;
 }
+
+.stamp-button{
+    outline: 0;
+    border:0;
+    color: #107be7;
+    background-color: transparent;
+}
+.stamp-button:hover{
+    color: #0056b3;
+    text-decoration: underline;
+    text-decoration-style: #0056b3;
+}
+
 .nodata{
     margin-top: 20%;
     margin-bottom: 50%;
@@ -73,7 +86,7 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     height: 500px;
     width: 250px;
     margin-bottom: auto;
-    display: inline-flex;
+    text-align: center;
     background: linear-gradient(#DB2B39, #29335c);
     border-radius: .25rem;
     border-top-right-radius: 0;
@@ -87,6 +100,9 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
 }
 .stat-container:hover + .main{
     border-top-left-radius: 0;
+}
+.beer_count{
+    margin-top:40%;
 }
 
 .check {
@@ -330,6 +346,11 @@ html body div.outer div.container div.main div#carouselExampleIndicators.carouse
     }
     div.cloned-stat-container{
         display: block;
+        color:black;
+        text-align: center;
         opacity: 1;
+    }
+    .beer_count{
+        margin: 10px !important;
     }
 }
