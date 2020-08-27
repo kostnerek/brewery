@@ -76,7 +76,7 @@ tr:hover{
     border: 2px solid black;
     border-radius: 0.25em;
     background-color: #db2b39;
-    box-shadow: 0 0 62px 6px rgba(0,0,0,0.75);
+    box-shadow: 0 0 62px 6px rgba(0,0,0,1.5);
 }
 
 .pagination{
