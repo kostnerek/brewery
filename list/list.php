@@ -84,8 +84,19 @@ if ($_COOKIE['logged']!=true) {
             }
         </script>
 
-
-        <h3>List of all beers</h3>
+        <div class="header">
+            <?php 
+                if(isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    $back = $page-1;
+                    $next = $page+1;
+                }
+            ?>
+            <div><button class='fa fa-arrow-left sort'  style='font-size: 25px' onclick="window.location.href='list.php?page=<?php echo $back?>'"></button></div>
+            <h3>List of all beers</h3>
+            <div><button class='fa fa-arrow-right sort' style='font-size: 25px' onclick="window.location.href='list.php?page=<?php echo $next?>'"></button></div>
+        </div>
+        
            
         <table id='main'>
             <tr>
@@ -210,11 +221,11 @@ if ($_COOKIE['logged']!=true) {
                                     
                             echo "<td>
                                     <button onclick=\"showImage('{$row['img_src']}', '{$row['beer_name']}')\" onmouseout=\"destroyImage()\"
-                                    class='fa fa-photo action' style='font-size: 36px; color:black'></button>
+                                    class='fa fa-photo action' style='font-size: 36px; color:black !important'></button>
                                 </td>";
                             echo "<td>
                                     <form action='action/editAction.php' method='post'>
-                                        <button  style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
+                                        <button  style='font-size: 36px; color:black !important' class='action fa' value='{$row['id']}' type='submit' name='id'>
                                             &#xf044;
                                         </button>
                                     </form>
@@ -222,7 +233,7 @@ if ($_COOKIE['logged']!=true) {
 
                             echo "<td>
                                     <form action='action/deleteAction.php' method='post'>
-                                        <button style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
+                                        <button style='font-size: 36px; color:black !important' class='action fa' value='{$row['id']}' type='submit' name='id'>
                                             &#xf00d;
                                         </button>
                                     </form>
@@ -244,7 +255,7 @@ if ($_COOKIE['logged']!=true) {
                 for ($i=0; $i < floor($pages)+1 ; $i++) { 
                     $number = $i+1;
                     echo "<form  class='pageButton' action='list.php?page=$i' method='post'>";
-                    echo "  <button  type='submit'>{$number}</button>";
+                    echo "  <button type='submit'>{$number}</button>";
                     echo "</form>";
                     if ($i==19) {
                         break;
