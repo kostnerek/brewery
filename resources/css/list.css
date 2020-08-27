@@ -86,6 +86,7 @@ tr:hover{
     width:auto;
     height: 50px;
     font-size: 2rem;
+    border:1px solid transparent;
 }
 .pagination:hover{
     border:1px solid black;

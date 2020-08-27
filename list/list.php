@@ -237,9 +237,10 @@ if ($_COOKIE['logged']!=true) {
                 $result = $conn->query($sql);
                 $elementCount = $result->num_rows;
                 $pages = (float)$elementCount/50;
-                for ($i=1; $i < floor($pages)+1 ; $i++) { 
-                    echo "<form class='pageButton' action='list.php?page=$i' method='post'>";
-                    echo "  <button  type='submit' name='page' value='{$i}'>{$i}</button>";
+                for ($i=0; $i < floor($pages)+1 ; $i++) { 
+                    $number = $i+1;
+                    echo "<form  class='pageButton' action='list.php?page=$i' method='post'>";
+                    echo "  <button  type='submit'>{$number}</button>";
                     echo "</form>";
                 }
             ?>
