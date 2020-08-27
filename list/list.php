@@ -237,12 +237,32 @@ if ($_COOKIE['logged']!=true) {
                 $result = $conn->query($sql);
                 $elementCount = $result->num_rows;
                 $pages = (float)$elementCount/50;
-                for ($i=0; $i < floor($pages)+1 ; $i++) { 
+                for ($i=0; $i < floor($pages)+19 ; $i++) { 
                     $number = $i+1;
                     echo "<form  class='pageButton' action='list.php?page=$i' method='post'>";
                     echo "  <button  type='submit'>{$number}</button>";
                     echo "</form>";
+                    if ($i==19) {
+                        break;
+                    }
                 }
+                
+            ?>
+        </div>
+        <div class='pagination'>
+            <?php 
+            if ($elementCount>=20) {
+                for ($i=20; $i < floor($pages)+19; $i++) { 
+                    $number = $i+1;
+                    echo "<form  class='pageButton' action='list.php?page=$i' method='post'>";
+                    echo "  <button  type='submit'>{$number}</button>";
+                    echo "</form>";
+                    if ($i==19) {
+                        break;
+                    }
+                }
+            }
+                
             ?>
         </div>
 
