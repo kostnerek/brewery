@@ -1,5 +1,5 @@
 .beer_name{
-    font-size: calc((12vw - 5.5rem) / 9);
+    font-size: calc((12vw - 4rem) / 9);
 }
 .error{
     animation: highlightText 5s infinite !important;
@@ -56,10 +56,10 @@
 }
 #main tr:first-child{
     background-color: transparent !important;
-    border: 0px !important;
+    border: 0 !important;
 }
 #main tr:first-child:hover{
-    outline: 0px !important;
+    outline: 0 !important;
 }
 
 tr:hover{
@@ -76,6 +76,7 @@ tr:hover{
     border: 2px solid black;
     border-radius: 0.25em;
     background-color: #db2b39;
+    box-shadow: 0 0 62px 6px rgba(0,0,0,0.75);
 }
 
 .pagination{

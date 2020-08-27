@@ -115,7 +115,7 @@ if ($_COOKIE['logged']!=true) {
                     echo "<th>IMG SRC</th>";
 
                     echo "</form>";
-                    echo "<th colspan='2'>ACTION</th>";
+                    echo "<th colspan='3'>ACTION</th>";
                     ?>
             </tr>
             <?php
@@ -202,12 +202,16 @@ if ($_COOKIE['logged']!=true) {
                             $breweryLength = strlen($row['brewery']);
                             $stSlice = substr($row['img_src'],0,15+$breweryLength);
                             $ndSlice = substr($row['img_src'],15+$breweryLength,strlen($row['img_src']));
-                            echo "<td class='smallerSrc' id='{$row['beer_name']}' onmouseover=\"showImage('{$row['img_src']}', '{$row['beer_name']}')\" onmouseout=\"destroyImage()\">
+                            echo "<td class='smallerSrc' id='{$row['beer_name']}'>
                                     <form method='post' action='action/imgShowAction.php'>
                                      <button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$stSlice}<br>{$ndSlice}</button>
                                     </form>
                                   </td>";
                                     
+                            echo "<td>
+                                    <button onclick=\"showImage('{$row['img_src']}', '{$row['beer_name']}')\" onmouseout=\"destroyImage()\"
+                                    class='fa fa-photo action' style='font-size: 36px; color:black'></button>
+                                </td>";
                             echo "<td>
                                     <form action='action/editAction.php' method='post'>
                                         <button  style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
@@ -269,18 +273,9 @@ if ($_COOKIE['logged']!=true) {
     </div>
     
 </body>
+<script src='../resources/js/fontChange.js'></script>
 <script>
-    window.onload = function setFontSize() {
-        var length = document.getElementsByClassName('beer_name').length
-        for (let i=0; i < length; i++) {
-            var beer = document.getElementsByClassName('beer_name')[i]
-            var beername = beer.textContent;
-
-            if (beername.length <= 22) {
-                beer.style.fontSize = '15px';
-            }
-        }
-    }
+    
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -291,16 +286,13 @@ if ($_COOKIE['logged']!=true) {
         var beerContainer = document.getElementById(beer_name)
         var element = document.getElementsByClassName('showImage')
         var element =  document.getElementById('elementId');
+
         if (typeof(element) == 'undefined' && element == null)
         {
             return false;
         }
-
-        await sleep(200);
         
         var rect = beerContainer.getBoundingClientRect();
-        //console.log(rect.top, rect.right, rect.bottom, rect.left);
-
 
         var width  = beerContainer.offsetWidth;
         var height = (350/480)*width;
@@ -308,13 +300,12 @@ if ($_COOKIE['logged']!=true) {
         image = document.createElement("div")
         image.classList.add('showImage')
         image.setAttribute("id", "beerImg")
-        image.style.position = 'absolute';
+        image.style.position = 'fixed';
         image.style.top = rect.top+"px";
-        image.style.left = rect.left+"px";
+        image.style.left = rect.left-5+"px";
 
-
-        image.innerHTML = "<img width="+width+" height="+height+" src="+"../"+img_src+" onerror=\"this.onerror=null; this.src='../etc/error.png';\">"
-        //document.getElementById("main").appendChild(image);
+        image.innerHTML = "<img width="+width+" height="+height+" src="+"../"+img_src+" onerror=\"this.onerror=null; this.src='../etc/error.png';style=' filter: brightness(0%)'\">"
+        document.getElementById("main").appendChild(image);
 
     }
     function destroyImage()

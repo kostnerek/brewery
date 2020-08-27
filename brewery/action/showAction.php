@@ -71,7 +71,7 @@ if ($_COOKIE['logged']!=true) {
                     echo "<tr>";
                     echo "<form method='post' action='../../list/action/imgShowAction.php'>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['id']}</td>";
-                    echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['beer_name']}</td>";
+                    echo "  <td class='beer_name'><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['beer_name']}</td>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['brewery']}</td>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['country']}</td>";
                     echo "  <td><button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$row['production_date']}</td>";
@@ -88,8 +88,20 @@ if ($_COOKIE['logged']!=true) {
             
         ?>
         </table>
-
+        
     </div>
+    <script>
+        var length = document.getElementsByClassName('beer_name').length
+        for (let i=0; i < length; i++) {
+            var beer = document.getElementsByClassName('beer_name')[i]
+            var beername = beer.textContent;
+
+            if (beername.length >= 22) {
+                console.log(beer)
+                beer.style.fontSize = '10px';
+            }
+        }
+    </script>
 </body>
 
 </html>
