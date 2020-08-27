@@ -45,7 +45,7 @@
             </ol>
         </div>
 
-        <a class="nav-btn" href="<?php echo $depth?>list/list.php">List</a>
+        <a class="nav-btn" href="<?php echo $depth?>list/list.php?page=1">List</a>
         <a class="nav-btn" href="<?php echo $depth?>brewery/brewery.php">Brewery</a>
         <a class="nav-btn" href="<?php echo $depth?>stats/stats.php?select=beers">Stats</a>
         <a class="nav-btn fa logout" href="<?php echo $depth?>logout.php">&#xf08b;</a>

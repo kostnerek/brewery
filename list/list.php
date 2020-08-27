@@ -48,11 +48,17 @@ if ($_COOKIE['logged']!=true) {
             }
             return $counter;
         }
+        if (isset($_GET['page'])) {
+            $page = $_GET["page"];
+        }
+        else {
+            $page = 1;
+        }
     ?>
     
 
     <div class="center">
-    <?php include('../etc/navbar.php')?>
+        <?php include('../etc/navbar.php')?>
 
 
         <script>
@@ -82,7 +88,7 @@ if ($_COOKIE['logged']!=true) {
         <h3>List of all beers</h3>
            
         <table id='main'>
-            <tr >
+            <tr>
                 <?php 
                     echo "<form method='post' action='list.php'>";
 
@@ -113,31 +119,34 @@ if ($_COOKIE['logged']!=true) {
                     ?>
             </tr>
             <?php
+
+                $limit = 50 * $page;
+
                     if (isset($_POST['sort'])) {
                         switch($_POST['sort']) {
                             case 'id_up':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `id` ASC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `id` ASC limit {$limit},50";
                                     break;
                                 }
                             case 'id_down':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `id` DESC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `id` DESC limit {$limit},50";
                                     break;
                                 }
                             case 'beer_name_up':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `beer_name` ASC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `beer_name` ASC limit {$limit},50";
                                     break;
                                 }
                             case 'beer_name_down':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `beer_name` DESC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `beer_name` DESC limit {$limit},50";
                                     break;
                                 }
                             case 'country_up':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `country` ASC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `country` ASC limit {$limit},50";
                                     break;
                                 }
                             case 'country_down':
@@ -147,35 +156,34 @@ if ($_COOKIE['logged']!=true) {
                                 }
                             case 'brewery_up':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `brewery` ASC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `brewery` ASC limit {$limit},50";
                                     break;
                                 }
                             case 'brewery_down':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `brewery` DeSC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `brewery` DeSC limit {$limit},50";
                                     break;
                                 }
                             case 'prodDate_up':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `production_date` ASC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `production_date` ASC limit {$limit},50";
                                     break;
                                 }
                             case 'prodDate_down':
                                 {
-                                    $sql = "SELECT * FROM `beers` ORDER BY `production_date` DESC";
+                                    $sql = "SELECT * FROM `beers` ORDER BY `production_date` DESC limit {$limit},50";
                                     break;
                                 }
                             default:
                                 {
-                                    $sql = "SELECT * FROM `beers`";
+                                    $sql = "SELECT * FROM `beers` limit {$limit},50";
                                     break;
                                 }
                         }
                     }
-                   
                     
                     if (!isset($_POST['sort'])) {
-                        $sql = "SELECT * FROM `beers`";
+                        $sql = "SELECT * FROM `beers` limit {$limit},50";
                     }
 
                     $result = $conn->query($sql);
@@ -194,11 +202,11 @@ if ($_COOKIE['logged']!=true) {
                             $breweryLength = strlen($row['brewery']);
                             $stSlice = substr($row['img_src'],0,15+$breweryLength);
                             $ndSlice = substr($row['img_src'],15+$breweryLength,strlen($row['img_src']));
-                            echo "<td class='smallerSrc'>
+                            echo "<td class='smallerSrc' id='{$row['beer_name']}' onmouseover=\"showImage('{$row['img_src']}', '{$row['beer_name']}')\" onmouseout=\"destroyImage()\">
                                     <form method='post' action='action/imgShowAction.php'>
                                      <button class='action' name='img_src' type='submit' value='{$row['img_src']}'>{$stSlice}<br>{$ndSlice}</button>
                                     </form>
-                                    </td>";
+                                  </td>";
                                     
                             echo "<td>
                                     <form action='action/editAction.php' method='post'>
@@ -222,8 +230,23 @@ if ($_COOKIE['logged']!=true) {
                     } 
                 ?>
         </table>
-        </form>
+
+        <div class='pagination'>
+            <?php 
+                $sql = "SELECT * FROM beers";
+                $result = $conn->query($sql);
+                $elementCount = $result->num_rows;
+                $pages = (float)$elementCount/50;
+                for ($i=1; $i < floor($pages)+1 ; $i++) { 
+                    echo "<form class='pageButton' action='list.php?page=$i' method='post'>";
+                    echo "  <button  type='submit' name='page' value='{$i}'>{$i}</button>";
+                    echo "</form>";
+                }
+            ?>
+        </div>
+
     </div>
+    
 </body>
 <script>
     window.onload = function setFontSize() {
@@ -236,8 +259,54 @@ if ($_COOKIE['logged']!=true) {
                 beer.style.fontSize = '15px';
             }
         }
-        
     }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function showImage(img_src,beer_name)
+    {
+        var beerContainer = document.getElementById(beer_name)
+        var element = document.getElementsByClassName('showImage')
+        var element =  document.getElementById('elementId');
+        if (typeof(element) == 'undefined' && element == null)
+        {
+            return false;
+        }
+
+        await sleep(200);
+        
+        var rect = beerContainer.getBoundingClientRect();
+        //console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+
+        var width  = beerContainer.offsetWidth;
+        var height = (350/480)*width;
+
+        image = document.createElement("div")
+        image.classList.add('showImage')
+        image.setAttribute("id", "beerImg")
+        image.style.position = 'absolute';
+        image.style.top = rect.top+"px";
+        image.style.left = rect.left+"px";
+
+
+        image.innerHTML = "<img width="+width+" height="+height+" src="+"../"+img_src+" onerror=\"this.onerror=null; this.src='../etc/error.png';\">"
+        //document.getElementById("main").appendChild(image);
+
+    }
+    function destroyImage()
+    {
+        var elements = document.getElementsByClassName('showImage');
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+
+
+
 
 </script>
 
