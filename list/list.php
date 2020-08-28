@@ -221,11 +221,11 @@ if ($_COOKIE['logged']!=true) {
                                     
                             echo "<td>
                                     <button onclick=\"showImage('{$row['img_src']}', '{$row['beer_name']}')\" onmouseout=\"destroyImage()\"
-                                    class='fa fa-photo action' style='font-size: 36px; color:black !important'></button>
+                                    class='fa fa-photo action' style='font-size: 36px; color:black'></button>
                                 </td>";
                             echo "<td>
                                     <form action='action/editAction.php' method='post'>
-                                        <button  style='font-size: 36px; color:black !important' class='action fa' value='{$row['id']}' type='submit' name='id'>
+                                        <button  style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
                                             &#xf044;
                                         </button>
                                     </form>
@@ -233,7 +233,7 @@ if ($_COOKIE['logged']!=true) {
 
                             echo "<td>
                                     <form action='action/deleteAction.php' method='post'>
-                                        <button style='font-size: 36px; color:black !important' class='action fa' value='{$row['id']}' type='submit' name='id'>
+                                        <button style='font-size: 36px; color:black' class='action fa' value='{$row['id']}' type='submit' name='id'>
                                             &#xf00d;
                                         </button>
                                     </form>

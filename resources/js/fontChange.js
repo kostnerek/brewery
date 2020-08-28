@@ -5,7 +5,6 @@ window.onload = function setFontSize() {
         var beername = beer.textContent;
 
         if (beername.length <= 22) {
-            console.log(beer)
             beer.style.fontSize = '13px';
         }
     }
