@@ -5,37 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piekności</title>
     <link rel="stylesheet" href="../resources/css/upload.css">
+    <link rel="stylesheet" href="../resources/css/api.css">
     <link rel="icon" type="image/ico" href="favicon.ico">
 </head>
-<style>
-    table{
-        border-collapse: collapse;
-        width: 400px;
-        margin-left: 30%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    table, td{
-        border: 2px solid black;
-    }
-    td{
-        width:  50px;
-        height: 50px;
-        
-    }
-    tr{
-        width: 400px;
-        height: 50px;
-    }
-    button{
-        width:  100%;
-        height: -webkit-fill-available;
-        border: 0px;
-    }
-    button:hover{
-        background: #e0e0e0;
-    }
-</style>
+
 <body>
     <div class="center">
         <table>
