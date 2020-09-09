@@ -22,6 +22,9 @@
                 }
             ?>
             <tr>
+                <td colspan="8"><input id='sendText' type='textarea'></td>
+            </tr>
+            <tr>
                 <td colspan="8">
                     <button onclick="save()">Send</button>
                 </td>
@@ -58,20 +61,26 @@
             data[id[1]][id[2]] = 1;
         }
         console.log(data);
-        var json = JSON.stringify(data);
-        console.log(JSON.parse(json))
     }
 
     function save() {
-        window.location.href = "save.php?r0=" 
-                 + data[0] 
-        + "&r1=" + data[1] 
-        + "&r2=" + data[2] 
-        + "&r3=" + data[3]
-        + "&r4=" + data[4]
-        + "&r5=" + data[5]
-        + "&r6=" + data[6]
-        + "&r7=" + data[7];
+        if (document.getElementById('sendText').value != "") {
+            return window.location.href = "save.php?mode='1'"
+            + "&r0=" + document.getElementById('sendText').value;
+        }
+        else {
+            window.location.href = "save.php?mode='0'"
+            + "&r0=" + data[0] 
+            + "&r1=" + data[1] 
+            + "&r2=" + data[2] 
+            + "&r3=" + data[3]
+            + "&r4=" + data[4]
+            + "&r5=" + data[5]
+            + "&r6=" + data[6]
+            + "&r7=" + data[7];
+        }
+
+        
     }
 
 </script>

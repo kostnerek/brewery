@@ -39,7 +39,7 @@ tr{
     width: 400px;
     height: 50px;
 }
-button{
+button, input{
     width:  100%;
     height: -webkit-fill-available;
     border: 0px;
